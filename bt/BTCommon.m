@@ -7,8 +7,43 @@
 //
 
 #import "BTCommon.h"
+#import "MBProgressHUD.h"
 
 @implementation BTCommon
+- (void)info:(NSString *)message {
+  void(^exe)() = ^{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.label.text = message;
+    hud.label.textColor = [UIColor whiteColor];
+    hud.bezelView.color = [UIColor blackColor];
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hideAnimated:YES afterDelay:2];
+  };
+  if ([NSThread isMainThread]) exe();
+  else dispatch_async(dispatch_get_main_queue(), exe);
+}
+
+- (void)startLoading {
+  void(^exe)() = ^{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.activityIndicatorColor = [UIColor whiteColor];
+    hud.bezelView.color = [UIColor blackColor];
+    hud.removeFromSuperViewOnHide = YES;
+  };
+  if ([NSThread isMainThread]) exe();
+  else dispatch_async(dispatch_get_main_queue(), exe);
+}
+
+- (void)endLoading {
+  void(^exe)() = ^{
+    [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+  };
+  if ([NSThread isMainThread]) exe();
+  else dispatch_async(dispatch_get_main_queue(), exe);
+}
+
 - (NSDictionary *)syncPost:(NSString *)url forms:(NSDictionary *)forms {
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
   request.HTTPMethod = @"POST";
@@ -22,23 +57,24 @@
   }
   if (error) {
     NSLog(@"%@", error);
-    [Message info:@"网络不给力，请稍后重试"];
+    [self info:@"网络不给力，请稍后重试"];
     return nil;
   }
   NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
   if (error) {
     NSLog(@"%@", error);
-    [Message info:@"网络不给力，请稍后重试"];
+    [self info:@"网络不给力，请稍后重试"];
     return nil;
   }
   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
   if (error) {
     NSLog(@"%@", error);
-    [Message info:@"网络不给力，请稍后重试"];
+    [self info:@"网络不给力，请稍后重试"];
     return nil;
   }
   return json;
 }
+
 - (void)asyncPost:(NSString *)url forms:(NSDictionary *)forms completion:(void (^)(NSDictionary *))completion {
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
   request.HTTPMethod = @"POST";
@@ -52,26 +88,30 @@
   }
   if (error) {
     NSLog(@"%@", error);
-    [Message info:@"网络不给力，请稍后重试"];
+    [self info:@"网络不给力，请稍后重试"];
+    completion(nil);
     return;
   }
   NSURLSession *session = [NSURLSession sharedSession];
   NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
     if (error) {
       NSLog(@"%@", error);
-      [Message info:@"网络不给力，请稍后重试"];
+      [self info:@"网络不给力，请稍后重试"];
+      completion(nil);
       return;
     }
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     if (error) {
       NSLog(@"%@", error);
-      [Message info:@"网络不给力，请稍后重试"];
+      [self info:@"网络不给力，请稍后重试"];
+      completion(nil);
       return;
     }
     completion(json);
   }];
   [task resume];
 }
+
 - (void)requestQueue:(void(^)())block {
   dispatch_queue_t queue = dispatch_queue_create("requestQueue", nil);
   dispatch_async(queue, block);

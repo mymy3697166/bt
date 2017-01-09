@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00053FE01E210A0200067791 /* BTRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00053FDF1E210A0200067791 /* BTRegisterViewController.m */; };
-		00053FE41E21178D00067791 /* BTMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 00053FE31E21178D00067791 /* BTMessage.m */; };
 		00053FEE1E22587900067791 /* BTCaptchaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00053FED1E22587900067791 /* BTCaptchaViewController.m */; };
 		00053FF11E22825B00067791 /* BTCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 00053FF01E22825B00067791 /* BTCommon.m */; };
 		007E561C1E1FCC6A001CFCD4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 007E561B1E1FCC6A001CFCD4 /* main.m */; };
@@ -29,8 +28,6 @@
 /* Begin PBXFileReference section */
 		00053FDE1E210A0200067791 /* BTRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRegisterViewController.h; sourceTree = "<group>"; };
 		00053FDF1E210A0200067791 /* BTRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRegisterViewController.m; sourceTree = "<group>"; };
-		00053FE21E21178D00067791 /* BTMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMessage.h; sourceTree = "<group>"; };
-		00053FE31E21178D00067791 /* BTMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMessage.m; sourceTree = "<group>"; };
 		00053FEC1E22587900067791 /* BTCaptchaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCaptchaViewController.h; sourceTree = "<group>"; };
 		00053FED1E22587900067791 /* BTCaptchaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCaptchaViewController.m; sourceTree = "<group>"; };
 		00053FEF1E22825B00067791 /* BTCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCommon.h; sourceTree = "<group>"; };
@@ -143,8 +140,6 @@
 		007E56311E1FDFEC001CFCD4 /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				00053FE21E21178D00067791 /* BTMessage.h */,
-				00053FE31E21178D00067791 /* BTMessage.m */,
 				00053FEF1E22825B00067791 /* BTCommon.h */,
 				00053FF01E22825B00067791 /* BTCommon.m */,
 			);
@@ -205,7 +200,7 @@
 				TargetAttributes = {
 					007E56161E1FCC6A001CFCD4 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 77Z6WQB2YV;
+						DevelopmentTeam = 5ZDM7H945X;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -257,7 +252,6 @@
 				5C4389A91E232F40009C7C75 /* BTUser.m in Sources */,
 				00053FF11E22825B00067791 /* BTCommon.m in Sources */,
 				007E563E1E1FF203001CFCD4 /* BTViewController.m in Sources */,
-				00053FE41E21178D00067791 /* BTMessage.m in Sources */,
 				007E561C1E1FCC6A001CFCD4 /* main.m in Sources */,
 				5C4389A51E2329E5009C7C75 /* MBProgressHUD.m in Sources */,
 			);
@@ -378,7 +372,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 77Z6WQB2YV;
+				DEVELOPMENT_TEAM = 5ZDM7H945X;
 				INFOPLIST_FILE = bt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.selfdoctor.bt;
@@ -391,7 +385,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 77Z6WQB2YV;
+				DEVELOPMENT_TEAM = 5ZDM7H945X;
 				INFOPLIST_FILE = bt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.selfdoctor.bt;
