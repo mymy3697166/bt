@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BTAlert : NSObject
-- (void)show:(NSString *)message;
+@interface BTMessage : NSObject
+- (void)info:(NSString *)message;
 @end

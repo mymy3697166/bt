@@ -7,15 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00053FE01E210A0200067791 /* BTRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00053FDF1E210A0200067791 /* BTRegisterViewController.m */; };
+		00053FE41E21178D00067791 /* BTMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 00053FE31E21178D00067791 /* BTMessage.m */; };
+		00053FEB1E2125F300067791 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 00053FEA1E2125F300067791 /* MBProgressHUD.m */; };
+		00053FEE1E22587900067791 /* BTCaptchaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00053FED1E22587900067791 /* BTCaptchaViewController.m */; };
+		00053FF11E22825B00067791 /* BTCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 00053FF01E22825B00067791 /* BTCommon.m */; };
 		007E561C1E1FCC6A001CFCD4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 007E561B1E1FCC6A001CFCD4 /* main.m */; };
 		007E561F1E1FCC6A001CFCD4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 007E561E1E1FCC6A001CFCD4 /* AppDelegate.m */; };
 		007E56221E1FCC6A001CFCD4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007E56211E1FCC6A001CFCD4 /* ViewController.m */; };
 		007E56251E1FCC6A001CFCD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 007E56231E1FCC6A001CFCD4 /* Main.storyboard */; };
 		007E56271E1FCC6A001CFCD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 007E56261E1FCC6A001CFCD4 /* Assets.xcassets */; };
 		007E562A1E1FCC6A001CFCD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 007E56281E1FCC6A001CFCD4 /* LaunchScreen.storyboard */; };
+		007E56351E1FE05D001CFCD4 /* BTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007E56341E1FE05D001CFCD4 /* BTTabBarController.m */; };
+		007E56381E1FE1B6001CFCD4 /* BTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007E56371E1FE1B6001CFCD4 /* BTNavigationController.m */; };
+		007E563B1E1FE2F9001CFCD4 /* BTLoginNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007E563A1E1FE2F9001CFCD4 /* BTLoginNavigationController.m */; };
+		007E563E1E1FF203001CFCD4 /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007E563D1E1FF203001CFCD4 /* BTViewController.m */; };
+		007E56411E1FF224001CFCD4 /* BTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007E56401E1FF224001CFCD4 /* BTLoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00053FDE1E210A0200067791 /* BTRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRegisterViewController.h; sourceTree = "<group>"; };
+		00053FDF1E210A0200067791 /* BTRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRegisterViewController.m; sourceTree = "<group>"; };
+		00053FE21E21178D00067791 /* BTMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMessage.h; sourceTree = "<group>"; };
+		00053FE31E21178D00067791 /* BTMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMessage.m; sourceTree = "<group>"; };
+		00053FE91E2125F300067791 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = "../../../../Downloads/MBProgressHUD-master/MBProgressHUD.h"; sourceTree = "<group>"; };
+		00053FEA1E2125F300067791 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = "../../../../Downloads/MBProgressHUD-master/MBProgressHUD.m"; sourceTree = "<group>"; };
+		00053FEC1E22587900067791 /* BTCaptchaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCaptchaViewController.h; sourceTree = "<group>"; };
+		00053FED1E22587900067791 /* BTCaptchaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCaptchaViewController.m; sourceTree = "<group>"; };
+		00053FEF1E22825B00067791 /* BTCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCommon.h; sourceTree = "<group>"; };
+		00053FF01E22825B00067791 /* BTCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCommon.m; sourceTree = "<group>"; };
 		007E56171E1FCC6A001CFCD4 /* bt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		007E561B1E1FCC6A001CFCD4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		007E561D1E1FCC6A001CFCD4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,6 +46,16 @@
 		007E56261E1FCC6A001CFCD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		007E56291E1FCC6A001CFCD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		007E562B1E1FCC6A001CFCD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		007E56331E1FE05D001CFCD4 /* BTTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTabBarController.h; sourceTree = "<group>"; };
+		007E56341E1FE05D001CFCD4 /* BTTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTabBarController.m; sourceTree = "<group>"; };
+		007E56361E1FE1B6001CFCD4 /* BTNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTNavigationController.h; sourceTree = "<group>"; };
+		007E56371E1FE1B6001CFCD4 /* BTNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTNavigationController.m; sourceTree = "<group>"; };
+		007E56391E1FE2F9001CFCD4 /* BTLoginNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLoginNavigationController.h; sourceTree = "<group>"; };
+		007E563A1E1FE2F9001CFCD4 /* BTLoginNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLoginNavigationController.m; sourceTree = "<group>"; };
+		007E563C1E1FF203001CFCD4 /* BTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTViewController.h; sourceTree = "<group>"; };
+		007E563D1E1FF203001CFCD4 /* BTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTViewController.m; sourceTree = "<group>"; };
+		007E563F1E1FF224001CFCD4 /* BTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLoginViewController.h; sourceTree = "<group>"; };
+		007E56401E1FF224001CFCD4 /* BTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +69,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00053FE11E21155600067791 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				007E56391E1FE2F9001CFCD4 /* BTLoginNavigationController.h */,
+				007E563A1E1FE2F9001CFCD4 /* BTLoginNavigationController.m */,
+				007E563F1E1FF224001CFCD4 /* BTLoginViewController.h */,
+				007E56401E1FF224001CFCD4 /* BTLoginViewController.m */,
+				00053FDE1E210A0200067791 /* BTRegisterViewController.h */,
+				00053FDF1E210A0200067791 /* BTRegisterViewController.m */,
+				00053FEC1E22587900067791 /* BTCaptchaViewController.h */,
+				00053FED1E22587900067791 /* BTCaptchaViewController.m */,
+			);
+			name = login;
+			sourceTree = "<group>";
+		};
+		00053FE81E2124E600067791 /* libraries */ = {
+			isa = PBXGroup;
+			children = (
+				00053FE91E2125F300067791 /* MBProgressHUD.h */,
+				00053FEA1E2125F300067791 /* MBProgressHUD.m */,
+			);
+			name = libraries;
+			sourceTree = "<group>";
+		};
 		007E560E1E1FCC6A001CFCD4 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +112,9 @@
 		007E56191E1FCC6A001CFCD4 /* bt */ = {
 			isa = PBXGroup;
 			children = (
+				00053FE81E2124E600067791 /* libraries */,
+				007E56321E1FDFFB001CFCD4 /* controllers */,
+				007E56311E1FDFEC001CFCD4 /* utils */,
 				007E561D1E1FCC6A001CFCD4 /* AppDelegate.h */,
 				007E561E1E1FCC6A001CFCD4 /* AppDelegate.m */,
 				007E56201E1FCC6A001CFCD4 /* ViewController.h */,
@@ -77,6 +134,31 @@
 				007E561B1E1FCC6A001CFCD4 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		007E56311E1FDFEC001CFCD4 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				00053FE21E21178D00067791 /* BTMessage.h */,
+				00053FE31E21178D00067791 /* BTMessage.m */,
+				00053FEF1E22825B00067791 /* BTCommon.h */,
+				00053FF01E22825B00067791 /* BTCommon.m */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
+		007E56321E1FDFFB001CFCD4 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				007E56331E1FE05D001CFCD4 /* BTTabBarController.h */,
+				007E56341E1FE05D001CFCD4 /* BTTabBarController.m */,
+				007E56361E1FE1B6001CFCD4 /* BTNavigationController.h */,
+				007E56371E1FE1B6001CFCD4 /* BTNavigationController.m */,
+				007E563C1E1FF203001CFCD4 /* BTViewController.h */,
+				007E563D1E1FF203001CFCD4 /* BTViewController.m */,
+				00053FE11E21155600067791 /* login */,
+			);
+			name = controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,6 +192,7 @@
 				TargetAttributes = {
 					007E56161E1FCC6A001CFCD4 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 5ZDM7H945X;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -150,8 +233,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00053FE01E210A0200067791 /* BTRegisterViewController.m in Sources */,
+				00053FEE1E22587900067791 /* BTCaptchaViewController.m in Sources */,
+				007E56411E1FF224001CFCD4 /* BTLoginViewController.m in Sources */,
 				007E56221E1FCC6A001CFCD4 /* ViewController.m in Sources */,
+				007E563B1E1FE2F9001CFCD4 /* BTLoginNavigationController.m in Sources */,
+				00053FEB1E2125F300067791 /* MBProgressHUD.m in Sources */,
 				007E561F1E1FCC6A001CFCD4 /* AppDelegate.m in Sources */,
+				007E56351E1FE05D001CFCD4 /* BTTabBarController.m in Sources */,
+				007E56381E1FE1B6001CFCD4 /* BTNavigationController.m in Sources */,
+				00053FF11E22825B00067791 /* BTCommon.m in Sources */,
+				007E563E1E1FF203001CFCD4 /* BTViewController.m in Sources */,
+				00053FE41E21178D00067791 /* BTMessage.m in Sources */,
 				007E561C1E1FCC6A001CFCD4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,6 +363,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 5ZDM7H945X;
 				INFOPLIST_FILE = bt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.selfdoctor.bt;
@@ -281,6 +376,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 5ZDM7H945X;
 				INFOPLIST_FILE = bt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.selfdoctor.bt;
@@ -307,6 +404,7 @@
 				007E56301E1FCC6A001CFCD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

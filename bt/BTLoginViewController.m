@@ -8,30 +8,49 @@
 
 #import "BTLoginViewController.h"
 
-@interface BTLoginViewController ()
-
+@interface BTLoginViewController () {
+  __weak IBOutlet UIButton *btnLogin;
+  __weak IBOutlet UITextField *tbUid;
+  __weak IBOutlet UITextField *tbPwd;
+}
 @end
 
 @implementation BTLoginViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+  [super viewDidLoad];
+  btnLogin.clipsToBounds = YES;
+  btnLogin.layer.cornerRadius = 23;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
-*/
 
+- (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender {
+  [tbUid resignFirstResponder];
+  [tbPwd resignFirstResponder];
+}
+
+- (IBAction)loginClick:(UIButton *)sender {
+  if ([tbUid.text isEqualToString:@""]) {
+    [self.message info:@"请输入手机号"];
+    return;
+  }
+  if ([tbPwd.text isEqualToString:@""]) {
+    [self.message info:@"请输入密码"];
+    return;
+  }
+  
+}
+
+- (IBAction)closeClick:(UIButton *)sender {
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

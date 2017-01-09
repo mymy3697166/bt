@@ -6,16 +6,15 @@
 //  Copyright © 2017年 selfdoctor. All rights reserved.
 //
 
-#import "BTTabBarVc.h"
+#import "BTTabBarController.h"
 
-@interface BTTabBarVc ()
+@interface BTTabBarController ()
 
 @end
 
-@implementation BTTabBarVc
+@implementation BTTabBarController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
 }
 @end

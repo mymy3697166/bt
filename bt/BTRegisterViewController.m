@@ -7,31 +7,37 @@
 //
 
 #import "BTRegisterViewController.h"
+#import "BTCaptchaViewController.h"
 
-@interface BTRegisterViewController ()
-
+@interface BTRegisterViewController () {
+  
+  __weak IBOutlet UITextField *tbUid;
+}
 @end
 
 @implementation BTRegisterViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+  [super viewDidLoad];
+  [tbUid becomeFirstResponder];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)nextClick:(UIBarButtonItem *)sender {
+  if ([tbUid.text isEqualToString:@""]) {
+    [self.message info:@"请输入您的手机号"];
+    return;
+  }
+  [self performSegueWithIdentifier:@"register_captcha" sender:self];
 }
 
-/*
-#pragma mark - Navigation
+- (IBAction)backClick:(UIBarButtonItem *)sender {
+  [self.navigationController popViewControllerAnimated:YES];
+}
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+  if ([segue.identifier isEqualToString:@"register_captcha"]) {
+    BTCaptchaViewController *cvc = segue.destinationViewController;
+    cvc.uid = tbUid.text;
+  }
 }
-*/
-
 @end

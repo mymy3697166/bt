@@ -8,30 +8,49 @@
 
 #import "BTCaptchaViewController.h"
 
-@interface BTCaptchaViewController ()
-
+@interface BTCaptchaViewController () {
+  __weak IBOutlet UILabel *labUid;
+  __weak IBOutlet UITextField *tbCaptcha;
+  __weak IBOutlet UIButton *btnFetch;
+}
 @end
 
 @implementation BTCaptchaViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+  [super viewDidLoad];
+  [tbCaptcha becomeFirstResponder];
+  labUid.text = [labUid.text stringByAppendingString:self.uid];
+  [self startCount];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)startCount {
+  btnFetch.enabled = NO;
+  [btnFetch setTitleColor:[self.common rgb:200 g:200 b:200] forState:UIControlStateNormal];
+  __block int s = 10;
+  __block NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer *t) {
+    s--;
+    if (s == 0) {
+      [timer invalidate];
+      timer = nil;
+      btnFetch.titleLabel.text = @"重新获取";
+      btnFetch.enabled = YES;
+      [btnFetch setTitle:@"重新获取" forState:UIControlStateNormal];
+      [btnFetch setTitleColor:[self.common rgb:94 g:94 b:94] forState:UIControlStateNormal];
+      return;
+    }
+    NSString *ss = [NSString stringWithFormat:@"重新获取（%dS）", s];
+    btnFetch.titleLabel.text = ss;
+    [btnFetch setTitle:ss forState:UIControlStateNormal];
+  }];
+  [timer fire];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)fetchClick:(UIButton *)sender {
+  
 }
-*/
 
+- (IBAction)backClick:(UIBarButtonItem *)sender {
+  [self.navigationController popViewControllerAnimated:YES];
+}
 @end

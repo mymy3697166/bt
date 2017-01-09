@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BTTabBarVc : UITabBarController
+@interface BTTabBarController : UITabBarController
 
 @end

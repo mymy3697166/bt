@@ -9,5 +9,5 @@
 #import "BTViewController.h"
 
 @interface BTCaptchaViewController : BTViewController
-
+@property (strong, nonatomic) NSString *uid;
 @end

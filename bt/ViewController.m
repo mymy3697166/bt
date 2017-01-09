@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "BTLoginNavigationController.h"
 
 @interface ViewController ()
 
@@ -16,14 +17,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  // Do any additional setup after loading the view, typically from a nib.
+  BTLoginNavigationController *lnc = [self.storyboard instantiateViewControllerWithIdentifier:@"BTLoginNavigationController"];
+  [self presentViewController:lnc animated:YES completion:nil];
 }
-
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
-}
-
-
 @end

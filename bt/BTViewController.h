@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTMessage.h"
+#import "BTCommon.h"
 
 @interface BTViewController : UIViewController
-
+@property (strong, nonatomic) BTMessage *message;
+@property (strong, nonatomic) BTCommon *common;
 @end
