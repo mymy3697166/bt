@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "BTLoginNavigationController.h"
+#import "BTCommon.h"
 
 @interface ViewController ()
 

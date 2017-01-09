@@ -24,9 +24,14 @@
 
 - (IBAction)nextClick:(UIBarButtonItem *)sender {
   if ([tbUid.text isEqualToString:@""]) {
-    [self.message info:@"请输入您的手机号"];
+    [Message info:@"请输入您的手机号"];
     return;
   }
+  [Common asyncPost:URL_REGISTERCODE forms:@{@"mobile_no": tbUid.text} completion:^(NSDictionary *data) {
+    if ([data[@"status"] isEqual:@0]) {
+      
+    } else [Message info:data[@"data"][@"description"]];
+  }];
   [self performSegueWithIdentifier:@"register_captcha" sender:self];
 }
 

@@ -40,14 +40,23 @@
 
 - (IBAction)loginClick:(UIButton *)sender {
   if ([tbUid.text isEqualToString:@""]) {
-    [self.message info:@"请输入手机号"];
+    [Message info:@"请输入手机号"];
     return;
   }
   if ([tbPwd.text isEqualToString:@""]) {
-    [self.message info:@"请输入密码"];
+    [Message info:@"请输入密码"];
     return;
   }
-  
+  NSDictionary *forms = @{@"uid": tbUid.text, @"pwd": tbPwd.text};
+  [Common asyncPost:URL_LOGIN forms:forms completion:^(NSDictionary *data) {
+    if ([data[@"status"] isEqual:@0]) {
+      User.uid = data[@"data"][@"mid"];
+      User.token = data[@"data"][@"access_token"];
+      [self closeClick:nil];
+    } else {
+      [Message info:data[@"description"]];
+    }
+  }];
 }
 
 - (IBAction)closeClick:(UIButton *)sender {

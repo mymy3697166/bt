@@ -16,7 +16,5 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.message = [[BTMessage alloc] init];
-  self.common = [[BTCommon alloc] init];
 }
 @end
