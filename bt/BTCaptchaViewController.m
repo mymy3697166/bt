@@ -7,6 +7,7 @@
 //
 
 #import "BTCaptchaViewController.h"
+#import "BTPwdViewController.h"
 
 @interface BTCaptchaViewController () {
   __weak IBOutlet UILabel *labUid;
@@ -16,7 +17,6 @@
 @end
 
 @implementation BTCaptchaViewController
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   [tbCaptcha becomeFirstResponder];
@@ -47,7 +47,34 @@
 }
 
 - (IBAction)fetchClick:(UIButton *)sender {
-  
+  [Common asyncPost:URL_REGISTERCODE forms:@{@"mobile_no": self.uid} completion:^(NSDictionary *data) {
+    if (data == nil) return;
+    if ([data[@"status"] isEqual:@0]) {
+      [self startCount];
+    } else [Common info:data[@"description"]];
+  }];
+}
+
+- (IBAction)nextClick:(UIBarButtonItem *)sender {
+//  if ([tbCaptcha.text isEqualToString:@""]) {
+//    [Common info:@"请输入验证码"];
+//    return;
+//  }
+//  [Common asyncPost:URL_VALIDATECODE forms:@{@"mobile_no": self.uid, @"code": tbCaptcha.text} completion:^(NSDictionary *data) {
+//    if (data == nil) return;
+//    if ([data[@"status"] isEqual:@0]) {
+//      [self.navigationController performSegueWithIdentifier:@"captcha_pwd" sender:nil];
+//    } else [Common info:data[@"description"]];
+//  }];
+  [self performSegueWithIdentifier:@"captcha_pwd" sender:nil];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if ([segue.identifier isEqualToString:@"captcha_pwd"]) {
+    BTPwdViewController *vc = segue.destinationViewController;
+    vc.uid = self.uid;
+    vc.captcha = tbCaptcha.text;
+  }
 }
 
 - (IBAction)backClick:(UIBarButtonItem *)sender {

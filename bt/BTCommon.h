@@ -21,13 +21,23 @@
 #define URL_TEST [URL_BASE stringByAppendingString:@"api_v2/mem/test"]
 #define URL_LOGIN [URL_BASE stringByAppendingString:@"api_v2/mem/login"]
 #define URL_REGISTERCODE [URL_BASE stringByAppendingString:@"api/sms/register_code"]
+#define URL_VALIDATECODE [URL_BASE stringByAppendingString:@"api/sms/validate_code"]
+#define URL_REGISTER [URL_BASE stringByAppendingString:@"api_v2/mem/register"]
 
 @interface BTCommon : NSObject
+/// 信息提示
 - (void)info:(NSString *)message;
-- (void)startLoading;
-- (void)endLoading;
+/// 显示加载状态
+- (void)showLoading;
+/// 隐藏加载状态
+- (void)hideLoading;
+/// 同步发送post请求
 - (NSDictionary *)syncPost:(NSString *)url forms:(NSDictionary *)forms;
+/// 异步发送post请求
 - (void)asyncPost:(NSString *)url forms:(NSDictionary *)forms completion:(void(^)(NSDictionary *data))completion;
+/// 开启请求队列
 - (void)requestQueue:(void(^)())block;
+/// 正则验证
+- (BOOL)regularTest:(NSString *)reg text:(NSString *)text;
 @end
 

@@ -13,7 +13,6 @@
 @end
 
 @implementation BTLoginNavigationController
-
 - (void)viewDidLoad {
   [super viewDidLoad];
 }

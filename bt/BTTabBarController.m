@@ -13,7 +13,6 @@
 @end
 
 @implementation BTTabBarController
-
 - (void)viewDidLoad {
   [super viewDidLoad];
 }

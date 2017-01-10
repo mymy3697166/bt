@@ -24,7 +24,7 @@
   else dispatch_async(dispatch_get_main_queue(), exe);
 }
 
-- (void)startLoading {
+- (void)showLoading {
   void(^exe)() = ^{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
@@ -36,7 +36,7 @@
   else dispatch_async(dispatch_get_main_queue(), exe);
 }
 
-- (void)endLoading {
+- (void)hideLoading {
   void(^exe)() = ^{
     [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
   };
@@ -115,5 +115,11 @@
 - (void)requestQueue:(void(^)())block {
   dispatch_queue_t queue = dispatch_queue_create("requestQueue", nil);
   dispatch_async(queue, block);
+}
+
+- (BOOL)regularTest:(NSString *)regStr text:(NSString *)text {
+  NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:regStr options:NSRegularExpressionCaseInsensitive error:nil];
+  NSRange range = NSMakeRange(0, [text lengthOfBytesUsingEncoding:kCFStringEncodingUTF8]);
+  return [reg numberOfMatchesInString:text options:NSMatchingReportProgress range:range] > 0;
 }
 @end

@@ -16,7 +16,6 @@
 @end
 
 @implementation BTLoginViewController
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   btnLogin.clipsToBounds = YES;
@@ -48,9 +47,9 @@
     return;
   }
   NSDictionary *forms = @{@"uid": tbUid.text, @"pwd": tbPwd.text};
-  [Common startLoading];
+  [Common showLoading];
   [Common asyncPost:URL_LOGIN forms:forms completion:^(NSDictionary *data) {
-    [Common endLoading];
+    [Common hideLoading];
     if (data == nil) return;
     if ([data[@"status"] isEqual:@0]) {
       User.uid = data[@"data"][@"mid"];
