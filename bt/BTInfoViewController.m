@@ -7,8 +7,9 @@
 //
 
 #import "BTInfoViewController.h"
+#import "BTDatePickerView.h"
 
-@interface BTInfoViewController () {
+@interface BTInfoViewController () <BTDatePickerViewDelegate> {
   __weak IBOutlet UIView *avatarBgView;
   
   __weak IBOutlet UIView *genderBgFView;
@@ -19,7 +20,9 @@
   __weak IBOutlet UIView *genderMView;
   __weak IBOutlet UIButton *btnGenderM;
   
+  __weak IBOutlet UITextField *tbDob;
   NSString *gender;
+  UIAlertController *alert;
 }
 @end
 
@@ -69,8 +72,39 @@
   gender = @"M";
 }
 
+- (IBAction)avatarClick:(UIButton *)sender {
+  if (!alert) {
+    alert = [UIAlertController alertControllerWithTitle:@"选择头像" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+      UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+      ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
+      [self presentViewController:ipc animated:YES completion:nil];
+    }];
+    UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+      UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+      ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+      [self presentViewController:ipc animated:YES completion:nil];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cameraAction];
+    [alert addAction:albumAction];
+    [alert addAction:cancelAction];
+  }
+  [self presentViewController:alert animated:YES completion:nil];
+}
+
 - (IBAction)dobClick:(UITapGestureRecognizer *)sender {
-  NSLog(@"asdf");
+  BTDatePickerView *dpv = [[BTDatePickerView alloc] init];
+  dpv.datePickerViewDelegate = self;
+  if ([tbDob.text isEqualToString:@""]) [dpv show];
+  else {
+    NSDate *date = [Common stringToDate:tbDob.text byFormat:@"yyyy年MM月dd日"];
+    [dpv showWithDate:date];
+  }
+}
+
+- (void)onConfirm:(NSDate *)date {
+  tbDob.text = [Common dateToString:date byFormat:@"yyyy年MM月dd日"];
 }
 
 - (IBAction)nextClick:(id)sender {

@@ -122,4 +122,22 @@
   NSRange range = NSMakeRange(0, [text lengthOfBytesUsingEncoding:kCFStringEncodingUTF8]);
   return [reg numberOfMatchesInString:text options:NSMatchingReportProgress range:range] > 0;
 }
+
+- (NSInteger)getInfoFromDate:(NSDate *)date byFormat:(NSString *)format {
+  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+  [formatter setDateFormat:format];
+  return [[formatter stringFromDate:date] integerValue];
+}
+
+- (NSDate *)stringToDate:(NSString *)string byFormat:(NSString *)format {
+  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+  [formatter setDateFormat:format];
+  return [formatter dateFromString:string];
+}
+
+- (NSString *)dateToString:(NSDate *)date byFormat:(NSString *)format {
+  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+  [formatter setDateFormat:format];
+  return [formatter stringFromDate:date];
+}
 @end

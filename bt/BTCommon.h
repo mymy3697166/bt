@@ -39,5 +39,11 @@
 - (void)requestQueue:(void(^)())block;
 /// 正则验证
 - (BOOL)regularTest:(NSString *)reg text:(NSString *)text;
+/// 从日期对象中获取年月日时分秒信息
+- (NSInteger)getInfoFromDate:(NSDate *)date byFormat:(NSString *)format;
+/// 字符串转日期
+- (NSDate *)stringToDate:(NSString *)string byFormat:(NSString *)format;
+/// 日期转字符串
+- (NSString *)dateToString:(NSDate *)date byFormat:(NSString *)format;
 @end
 

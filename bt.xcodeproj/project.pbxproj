@@ -21,6 +21,8 @@
 		007E563B1E1FE2F9001CFCD4 /* BTLoginNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007E563A1E1FE2F9001CFCD4 /* BTLoginNavigationController.m */; };
 		007E563E1E1FF203001CFCD4 /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007E563D1E1FF203001CFCD4 /* BTViewController.m */; };
 		007E56411E1FF224001CFCD4 /* BTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007E56401E1FF224001CFCD4 /* BTLoginViewController.m */; };
+		5C3F7F8D1E25C0C50057D831 /* BTDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3F7F8C1E25C0C50057D831 /* BTDatePickerView.m */; };
+		5C3F7F8F1E25C1410057D831 /* BTDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C3F7F8E1E25C1410057D831 /* BTDatePickerView.xib */; };
 		5C4389A51E2329E5009C7C75 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4389A41E2329E5009C7C75 /* MBProgressHUD.m */; };
 		5C4389A91E232F40009C7C75 /* BTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4389A81E232F40009C7C75 /* BTUser.m */; };
 		5CCE4BB01E24A4F20010DDA5 /* BTPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCE4BAF1E24A4F20010DDA5 /* BTPwdViewController.m */; };
@@ -54,6 +56,9 @@
 		007E563D1E1FF203001CFCD4 /* BTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTViewController.m; sourceTree = "<group>"; };
 		007E563F1E1FF224001CFCD4 /* BTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLoginViewController.h; sourceTree = "<group>"; };
 		007E56401E1FF224001CFCD4 /* BTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLoginViewController.m; sourceTree = "<group>"; };
+		5C3F7F8B1E25C0C50057D831 /* BTDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDatePickerView.h; sourceTree = "<group>"; };
+		5C3F7F8C1E25C0C50057D831 /* BTDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDatePickerView.m; sourceTree = "<group>"; };
+		5C3F7F8E1E25C1410057D831 /* BTDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTDatePickerView.xib; sourceTree = "<group>"; };
 		5C4389A31E2329E5009C7C75 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		5C4389A41E2329E5009C7C75 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		5C4389A71E232F40009C7C75 /* BTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUser.h; sourceTree = "<group>"; };
@@ -122,6 +127,7 @@
 		007E56191E1FCC6A001CFCD4 /* bt */ = {
 			isa = PBXGroup;
 			children = (
+				5C3F7F8A1E25BFBD0057D831 /* views */,
 				00053FE81E2124E600067791 /* libraries */,
 				007E56311E1FDFEC001CFCD4 /* utils */,
 				5C4389A61E232F07009C7C75 /* models */,
@@ -170,6 +176,16 @@
 			name = controllers;
 			sourceTree = "<group>";
 		};
+		5C3F7F8A1E25BFBD0057D831 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				5C3F7F8B1E25C0C50057D831 /* BTDatePickerView.h */,
+				5C3F7F8C1E25C0C50057D831 /* BTDatePickerView.m */,
+				5C3F7F8E1E25C1410057D831 /* BTDatePickerView.xib */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
 		5C4389A61E232F07009C7C75 /* models */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,7 +226,7 @@
 				TargetAttributes = {
 					007E56161E1FCC6A001CFCD4 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 5ZDM7H945X;
+						DevelopmentTeam = 77Z6WQB2YV;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -240,6 +256,7 @@
 			files = (
 				007E562A1E1FCC6A001CFCD4 /* LaunchScreen.storyboard in Resources */,
 				007E56271E1FCC6A001CFCD4 /* Assets.xcassets in Resources */,
+				5C3F7F8F1E25C1410057D831 /* BTDatePickerView.xib in Resources */,
 				007E56251E1FCC6A001CFCD4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,6 +278,7 @@
 				007E561F1E1FCC6A001CFCD4 /* AppDelegate.m in Sources */,
 				007E56351E1FE05D001CFCD4 /* BTTabBarController.m in Sources */,
 				007E56381E1FE1B6001CFCD4 /* BTNavigationController.m in Sources */,
+				5C3F7F8D1E25C0C50057D831 /* BTDatePickerView.m in Sources */,
 				5C4389A91E232F40009C7C75 /* BTUser.m in Sources */,
 				00053FF11E22825B00067791 /* BTCommon.m in Sources */,
 				007E563E1E1FF203001CFCD4 /* BTViewController.m in Sources */,
@@ -384,7 +402,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5ZDM7H945X;
+				DEVELOPMENT_TEAM = 77Z6WQB2YV;
 				INFOPLIST_FILE = bt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.selfdoctor.bt;
@@ -397,7 +415,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5ZDM7H945X;
+				DEVELOPMENT_TEAM = 77Z6WQB2YV;
 				INFOPLIST_FILE = bt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.selfdoctor.bt;
