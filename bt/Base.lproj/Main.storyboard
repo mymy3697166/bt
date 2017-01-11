@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5WH-py-XBv">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5WH-py-XBv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -681,7 +681,7 @@
         <!--个人信息-->
         <scene sceneID="fke-Yy-Hlh">
             <objects>
-                <viewController title="个人信息" id="i3v-E2-5SO" customClass="BTInfoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BTInfoViewController" title="个人信息" id="i3v-E2-5SO" customClass="BTInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3vc-Je-ttF"/>
                         <viewControllerLayoutGuide type="bottom" id="Z4t-Cg-jhE"/>
@@ -853,6 +853,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="IGR-wi-6kw" firstAttribute="leading" secondItem="iCC-MH-gMe" secondAttribute="leading" constant="24" id="0ku-40-2IU"/>
                             <constraint firstItem="fW9-vg-6g3" firstAttribute="width" secondItem="iCC-MH-gMe" secondAttribute="width" multiplier="2:7" id="4gv-Xf-28f"/>
@@ -880,9 +881,13 @@
                             <constraint firstItem="fW9-vg-6g3" firstAttribute="centerX" secondItem="iCC-MH-gMe" secondAttribute="centerX" id="wsn-du-aGX"/>
                             <constraint firstAttribute="trailing" secondItem="YDb-e1-aPb" secondAttribute="trailing" constant="24" id="zE3-Ef-v9R"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="abK-LN-cQv" appends="YES" id="6tc-38-qRv"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="avatarBgView" destination="fW9-vg-6g3" id="z6Q-t0-he4"/>
+                        <outlet property="btnAvatar" destination="Sys-vy-U0f" id="wZ8-Bu-nwX"/>
                         <outlet property="btnGenderF" destination="oKl-9F-r7D" id="aXv-qs-5EZ"/>
                         <outlet property="btnGenderM" destination="VQg-ez-JYV" id="xCd-Jd-alG"/>
                         <outlet property="genderBgFView" destination="VI1-o8-cna" id="xPn-eG-aHV"/>
@@ -890,12 +895,18 @@
                         <outlet property="genderFView" destination="glK-hO-z3M" id="Csr-hL-zOS"/>
                         <outlet property="genderMView" destination="cDz-Iy-IND" id="igo-LM-z4a"/>
                         <outlet property="tbDob" destination="FxZ-yX-ZKX" id="ohT-5p-gxA"/>
+                        <outlet property="tbNickname" destination="YDb-e1-aPb" id="Hhm-9a-YkM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JoT-wp-y71" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="J1N-fT-7yA">
                     <connections>
                         <action selector="dobClick:" destination="i3v-E2-5SO" id="sPR-hp-d0l"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="abK-LN-cQv">
+                    <connections>
+                        <action selector="bgClick:" destination="i3v-E2-5SO" id="Uia-KM-vNt"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

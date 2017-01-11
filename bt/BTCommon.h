@@ -45,5 +45,7 @@
 - (NSDate *)stringToDate:(NSString *)string byFormat:(NSString *)format;
 /// 日期转字符串
 - (NSString *)dateToString:(NSDate *)date byFormat:(NSString *)format;
+/// 压缩图片
+- (UIImage *)compressImage:(UIImage *)image;
 @end
 

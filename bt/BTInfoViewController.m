@@ -9,8 +9,9 @@
 #import "BTInfoViewController.h"
 #import "BTDatePickerView.h"
 
-@interface BTInfoViewController () <BTDatePickerViewDelegate> {
+@interface BTInfoViewController () <BTDatePickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
   __weak IBOutlet UIView *avatarBgView;
+  __weak IBOutlet UIButton *btnAvatar;
   
   __weak IBOutlet UIView *genderBgFView;
   __weak IBOutlet UIView *genderFView;
@@ -21,8 +22,12 @@
   __weak IBOutlet UIButton *btnGenderM;
   
   __weak IBOutlet UITextField *tbDob;
+  __weak IBOutlet UITextField *tbNickname;
+  
   NSString *gender;
+  NSString *avatar;
   UIAlertController *alert;
+  UIImagePickerController *ipc;
 }
 @end
 
@@ -75,13 +80,14 @@
 - (IBAction)avatarClick:(UIButton *)sender {
   if (!alert) {
     alert = [UIAlertController alertControllerWithTitle:@"选择头像" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    ipc = [[UIImagePickerController alloc] init];
+    ipc.allowsEditing = YES;
+    ipc.delegate = self;
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-      UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
       ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
       [self presentViewController:ipc animated:YES completion:nil];
     }];
     UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-      UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
       ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
       [self presentViewController:ipc animated:YES completion:nil];
     }];
@@ -91,6 +97,20 @@
     [alert addAction:cancelAction];
   }
   [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+  UIImage *image = info[UIImagePickerControllerEditedImage];
+  UIImage *nImage = [Common compressImage:image];
+  UIImageView *iv = [[UIImageView alloc] initWithImage:nImage];
+  [self.view addSubview:iv];
+  NSLog(@"%ld", UIImageJPEGRepresentation(nImage, 1).length);
+  [ipc dismissViewControllerAnimated:YES completion:nil];
+  
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+  [ipc dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)dobClick:(UITapGestureRecognizer *)sender {
@@ -107,8 +127,24 @@
   tbDob.text = [Common dateToString:date byFormat:@"yyyy年MM月dd日"];
 }
 
+- (IBAction)bgClick:(UITapGestureRecognizer *)sender {
+  [tbNickname resignFirstResponder];
+}
+
 - (IBAction)nextClick:(id)sender {
-  
+  if (!avatar || [avatar isEqualToString:@""]) {
+    [Common info:@"请上传头像"];
+    return;
+  }
+  if ([tbNickname.text isEqualToString:@""]) {
+    [Common info:@"请输入昵称"];
+    return;
+  }
+  if ([tbDob.text isEqualToString:@""]) {
+    [Common info:@"请输入生日"];
+    return;
+  }
+  [self performSegueWithIdentifier:@"info_body" sender:nil];
 }
 
 - (IBAction)backClick:(UIBarButtonItem *)sender {

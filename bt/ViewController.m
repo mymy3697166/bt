@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "BTLoginNavigationController.h"
+#import "BTInfoViewController.h"
 #import "BTCommon.h"
 
 @interface ViewController ()
@@ -19,6 +20,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   BTLoginNavigationController *lnc = [self.storyboard instantiateViewControllerWithIdentifier:@"BTLoginNavigationController"];
+  BTInfoViewController *ivc = [self.storyboard instantiateViewControllerWithIdentifier:@"BTInfoViewController"];
+  [lnc pushViewController:ivc animated:NO];
   [self presentViewController:lnc animated:YES completion:nil];
 }
 @end

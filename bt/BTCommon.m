@@ -140,4 +140,27 @@
   [formatter setDateFormat:format];
   return [formatter stringFromDate:date];
 }
+
+- (UIImage *)compressImage:(UIImage *)image {
+  CGFloat w = image.size.width;
+  CGFloat h = image.size.height;
+  CGFloat nw = w;
+  CGFloat nh = h;
+  if (nw > 480) {
+    nw = 480;
+    nh = h * nw / w;
+    w = nw;
+    h = nh;
+  }
+  if (nh > 480) {
+    nh = 480;
+    nw = w * nh / h;
+  }
+  UIGraphicsBeginImageContext(CGSizeMake(nw, nh));
+  [image drawInRect:CGRectMake(0, 0, nw, nh)];
+  UIImage *nImage = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  NSData *data = UIImageJPEGRepresentation(nImage, 1);
+  return [UIImage imageWithData:data];
+}
 @end

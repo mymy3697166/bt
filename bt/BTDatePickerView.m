@@ -41,7 +41,7 @@
   self.frame = CGRectMake(0, window.bounds.size.height, width, height);
   [window addSubview:self];
 
-  [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+  [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
     bgView.alpha = 0.3;
     self.frame = CGRectMake(0, y, width, height);
   } completion:nil];
@@ -63,7 +63,7 @@
 }
 
 - (void)hide {
-  [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+  [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
     bgView.alpha = 0;
     CGFloat width = window.bounds.size.width;
     CGFloat height = window.bounds.size.height * 2 / 5;
