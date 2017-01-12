@@ -19,10 +19,14 @@
 #define URL_BASE @"http://test.renjk.com/"
 //#define URL_BASE @"http://192.168.0.207:3000/"
 #define URL_TEST [URL_BASE stringByAppendingString:@"api_v2/mem/test"]
+#define URL_AVATARPATH @"http://testassets.renjk.com/mem/"
+#define URL_IMAGEPATH @"http://testassets.renjk.com/health/"
 #define URL_LOGIN [URL_BASE stringByAppendingString:@"api_v2/mem/login"]
 #define URL_REGISTERCODE [URL_BASE stringByAppendingString:@"api/sms/register_code"]
 #define URL_VALIDATECODE [URL_BASE stringByAppendingString:@"api/sms/validate_code"]
 #define URL_REGISTER [URL_BASE stringByAppendingString:@"api_v2/mem/register"]
+#define URL_UPLOADAVATAR [URL_BASE stringByAppendingString:@"upload_image/mem"]
+#define URL_UPLOADIMAGE [URL_BASE stringByAppendingString:@"upload_image/health"]
 
 @interface BTCommon : NSObject
 /// 信息提示
@@ -45,7 +49,15 @@
 - (NSDate *)stringToDate:(NSString *)string byFormat:(NSString *)format;
 /// 日期转字符串
 - (NSString *)dateToString:(NSDate *)date byFormat:(NSString *)format;
-/// 压缩图片
-- (UIImage *)compressImage:(UIImage *)image;
+/// 压缩社区图片
+- (NSData *)compressImage:(UIImage *)image;
+/// 压缩用户头像
+- (NSData *)compressAvatar:(UIImage *)image;
+/// NSData数据转Base64字符串
+- (NSString *)dataToBase64String:(NSData *)data;
+/// MD5加密
+- (NSString *)md5:(NSString *)source;
+/// 缓存图片
+- (void)cacheImage:(NSString *)url completion:(void(^)(UIImage *image))completion;
 @end
 

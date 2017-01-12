@@ -8,6 +8,7 @@
 
 #import "BTCommon.h"
 #import "MBProgressHUD.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation BTCommon
 - (void)info:(NSString *)message {
@@ -141,26 +142,67 @@
   return [formatter stringFromDate:date];
 }
 
-- (UIImage *)compressImage:(UIImage *)image {
+- (NSData *)compressImage:(UIImage *)image {
   CGFloat w = image.size.width;
   CGFloat h = image.size.height;
   CGFloat nw = w;
   CGFloat nh = h;
-  if (nw > 480) {
-    nw = 480;
+  CGFloat len = 800 / [[UIScreen mainScreen] scale];
+  if (nw > len) {
+    nw = len;
     nh = h * nw / w;
-    w = nw;
-    h = nh;
   }
-  if (nh > 480) {
-    nh = 480;
-    nw = w * nh / h;
-  }
-  UIGraphicsBeginImageContext(CGSizeMake(nw, nh));
+  UIGraphicsBeginImageContextWithOptions(CGSizeMake(nw, nh), NO, [[UIScreen mainScreen] scale]);
   [image drawInRect:CGRectMake(0, 0, nw, nh)];
   UIImage *nImage = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
-  NSData *data = UIImageJPEGRepresentation(nImage, 1);
-  return [UIImage imageWithData:data];
+  return UIImageJPEGRepresentation(nImage, 0.6);
+}
+
+- (NSData *)compressAvatar:(UIImage *)image {
+  CGFloat len = 512 / [[UIScreen mainScreen] scale];
+  UIGraphicsBeginImageContextWithOptions(CGSizeMake(len, len), NO, [[UIScreen mainScreen] scale]);
+  [image drawInRect:CGRectMake(0, 0, len, len)];
+  UIImage *nImage = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  return UIImageJPEGRepresentation(nImage, 0.6);
+}
+
+- (NSString *)dataToBase64String:(NSData *)data {
+  return [[data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength] stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
+}
+
+- (NSString *)md5:(NSString *)source {
+  const char *cStr = [source UTF8String];
+  unsigned char result[CC_MD5_DIGEST_LENGTH];
+  CC_MD5(cStr, (CC_LONG)strlen(cStr), result);
+  NSMutableString *res = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH];
+  for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
+    [res appendFormat:@"%02X", result[i]];
+  }
+  return res;
+}
+
+- (void)cacheImage:(NSString *)url completion:(void(^)(UIImage *image))completion {
+  dispatch_async(dispatch_queue_create(nil, nil), ^{
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *fn = [NSString stringWithFormat:@"%@.jpg", [self md5:url]];
+    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *imagesPath = [docPath stringByAppendingPathComponent:@"images"];
+    NSString *fp = [imagesPath stringByAppendingPathComponent:fn];
+    if (![fm fileExistsAtPath:fp]) {
+      if (![fm fileExistsAtPath:imagesPath]) {
+        NSError *error;
+        [fm createDirectoryAtPath:imagesPath withIntermediateDirectories:YES attributes:nil error:&error];
+        NSLog(@"%@", error);
+      }
+      NSURL *URL = [NSURL URLWithString:url];
+      NSData *data = [NSData dataWithContentsOfURL:URL];
+      [fm createFileAtPath:fp contents:data attributes:nil];
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+      completion([UIImage imageWithContentsOfFile:fp]);
+    });
+  });
 }
 @end

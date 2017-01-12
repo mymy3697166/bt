@@ -38,6 +38,26 @@
   gender = @"F";
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  alert = [UIAlertController alertControllerWithTitle:@"选择头像" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+  ipc = [[UIImagePickerController alloc] init];
+  ipc.allowsEditing = YES;
+  ipc.delegate = self;
+  UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self presentViewController:ipc animated:YES completion:nil];
+  }];
+  UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    ipc.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    [self presentViewController:ipc animated:YES completion:nil];
+  }];
+  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+  [alert addAction:cameraAction];
+  [alert addAction:albumAction];
+  [alert addAction:cancelAction];
+}
+
 - (void)initUI {
   avatarBgView.clipsToBounds = YES;
   avatarBgView.layer.cornerRadius = avatarBgView.bounds.size.width / 2;
@@ -78,33 +98,24 @@
 }
 
 - (IBAction)avatarClick:(UIButton *)sender {
-  if (!alert) {
-    alert = [UIAlertController alertControllerWithTitle:@"选择头像" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    ipc = [[UIImagePickerController alloc] init];
-    ipc.allowsEditing = YES;
-    ipc.delegate = self;
-    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-      ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
-      [self presentViewController:ipc animated:YES completion:nil];
-    }];
-    UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-      ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-      [self presentViewController:ipc animated:YES completion:nil];
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    [alert addAction:cameraAction];
-    [alert addAction:albumAction];
-    [alert addAction:cancelAction];
-  }
   [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
   UIImage *image = info[UIImagePickerControllerEditedImage];
-  UIImage *nImage = [Common compressImage:image];
-  UIImageView *iv = [[UIImageView alloc] initWithImage:nImage];
-  [self.view addSubview:iv];
-  NSLog(@"%ld", UIImageJPEGRepresentation(nImage, 1).length);
+  NSData *data = [Common compressAvatar:image];
+  [Common showLoading];
+  [Common asyncPost:URL_UPLOADAVATAR forms:@{@"images": @[[Common dataToBase64String:data]]} completion:^(NSDictionary *data) {
+    [Common hideLoading];
+    if (!data) return;
+    if ([data[@"status"] isEqual:@0]) {
+      avatar = data[@"data"][0];
+      NSLog(@"%@", avatar);
+      [Common cacheImage:[URL_AVATARPATH stringByAppendingString:avatar] completion:^(UIImage *image) {
+        [btnAvatar setBackgroundImage:image forState:UIControlStateNormal];
+      }];
+    }
+  }];
   [ipc dismissViewControllerAnimated:YES completion:nil];
   
 }
