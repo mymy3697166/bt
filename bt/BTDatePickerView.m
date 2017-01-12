@@ -41,7 +41,7 @@
   self.frame = CGRectMake(0, window.bounds.size.height, width, height);
   [window addSubview:self];
 
-  [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+  [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
     bgView.alpha = 0.3;
     self.frame = CGRectMake(0, y, width, height);
   } completion:nil];
@@ -63,7 +63,7 @@
 }
 
 - (void)hide {
-  [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+  [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
     bgView.alpha = 0;
     CGFloat width = window.bounds.size.width;
     CGFloat height = window.bounds.size.height * 2 / 5;
@@ -129,7 +129,7 @@
     NSInteger month = [pvDatePicker selectedRowInComponent:1] + 1;
     NSInteger day = [pvDatePicker selectedRowInComponent:2] + 1;
     NSDate *date = [Common stringToDate:[NSString stringWithFormat:@"%ld-%02ld-%02ld", (long)year, (long)month, (long)day] byFormat:@"yyyy-MM-dd"];
-    [self.datePickerViewDelegate onConfirm:date];
+    [self.datePickerViewDelegate datePickerViewOnConfirm:date];
   }
   [self hide];
 }

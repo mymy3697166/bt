@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @protocol BTDatePickerViewDelegate <NSObject>
-- (void)onConfirm:(NSDate *)date;
+- (void)datePickerViewOnConfirm:(NSDate *)date;
 @end
 
 @interface BTDatePickerView : UIView <UIPickerViewDelegate, UIPickerViewDataSource>

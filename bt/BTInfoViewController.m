@@ -8,8 +8,9 @@
 
 #import "BTInfoViewController.h"
 #import "BTDatePickerView.h"
+#import "BTHeightPickerView.h"
 
-@interface BTInfoViewController () <BTDatePickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
+@interface BTInfoViewController () <BTDatePickerViewDelegate, BTHeightPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
   __weak IBOutlet UIView *avatarBgView;
   __weak IBOutlet UIButton *btnAvatar;
   
@@ -23,6 +24,8 @@
   
   __weak IBOutlet UITextField *tbDob;
   __weak IBOutlet UITextField *tbNickname;
+  __weak IBOutlet UITextField *tbHeight;
+  __weak IBOutlet UITextField *tbWeight;
   
   NSString *gender;
   NSString *avatar;
@@ -34,8 +37,12 @@
 @implementation BTInfoViewController
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [self initUI];
   gender = @"F";
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [self initUI];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -59,6 +66,7 @@
 }
 
 - (void)initUI {
+  //[self.view layoutIfNeeded];
   avatarBgView.clipsToBounds = YES;
   avatarBgView.layer.cornerRadius = avatarBgView.bounds.size.width / 2;
   
@@ -134,15 +142,30 @@
   }
 }
 
-- (void)onConfirm:(NSDate *)date {
-  tbDob.text = [Common dateToString:date byFormat:@"yyyy年MM月dd日"];
+- (IBAction)heightClick:(UITapGestureRecognizer *)sender {
+  BTHeightPickerView *hpv = [[BTHeightPickerView alloc] init];
+  hpv.heightPickerViewDelegate = self;
+  if ([tbHeight.text isEqualToString:@""]) [hpv show];
+  else [hpv showWithHeight:[tbHeight.text integerValue]];
+}
+
+- (IBAction)weightClick:(UITapGestureRecognizer *)sender {
+  
+}
+
+- (void)datePickerViewOnConfirm:(NSDate *)date {
+    tbDob.text = [Common dateToString:date byFormat:@"yyyy年MM月dd日"];
+}
+
+- (void)heightPickerViewOnConfirm:(NSInteger)height {
+  tbHeight.text = [NSString stringWithFormat:@"%ld", height];
 }
 
 - (IBAction)bgClick:(UITapGestureRecognizer *)sender {
   [tbNickname resignFirstResponder];
 }
 
-- (IBAction)nextClick:(id)sender {
+- (IBAction)completeClick:(UIBarButtonItem *)sender {
   if (!avatar || [avatar isEqualToString:@""]) {
     [Common info:@"请上传头像"];
     return;
@@ -153,6 +176,14 @@
   }
   if ([tbDob.text isEqualToString:@""]) {
     [Common info:@"请输入生日"];
+    return;
+  }
+  if ([tbHeight.text isEqualToString:@""]) {
+    [Common info:@"请输入身高"];
+    return;
+  }
+  if ([tbWeight.text isEqualToString:@""]) {
+    [Common info:@"请输入体重"];
     return;
   }
   [self performSegueWithIdentifier:@"info_body" sender:nil];
