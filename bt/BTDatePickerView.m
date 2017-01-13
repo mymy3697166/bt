@@ -85,8 +85,7 @@
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
-  CGFloat tw = pickerView.bounds.size.width;
-  UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tw / 3, 24)];
+  UILabel *label = [[UILabel alloc] init];
   label.textAlignment = NSTextAlignmentCenter;
   if (component == 0) {
     if (view) return view;

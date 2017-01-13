@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BTWeightPickerView : UIView
+@protocol BTWeightPickerViewDelegate <NSObject>
+- (void)weightPickerViewOnConfirm:(float)weight;
+@end
 
+@interface BTWeightPickerView : UIView <UIPickerViewDelegate, UIPickerViewDataSource>
+@property (strong, nonatomic) id<BTWeightPickerViewDelegate> weightPickerViewDelegate;
+- (void)show;
+- (void)showWithWeight:(float)weight;
 @end

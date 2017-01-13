@@ -15,5 +15,8 @@
 @implementation BTViewController
 - (void)viewDidLoad {
   [super viewDidLoad];
+  UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
+  temporaryBarButtonItem.title = @"";
+  self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
 }
 @end

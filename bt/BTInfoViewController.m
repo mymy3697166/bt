@@ -9,8 +9,9 @@
 #import "BTInfoViewController.h"
 #import "BTDatePickerView.h"
 #import "BTHeightPickerView.h"
+#import "BTWeightPickerView.h"
 
-@interface BTInfoViewController () <BTDatePickerViewDelegate, BTHeightPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
+@interface BTInfoViewController () <BTDatePickerViewDelegate, BTHeightPickerViewDelegate, BTWeightPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
   __weak IBOutlet UIView *avatarBgView;
   __weak IBOutlet UIButton *btnAvatar;
   
@@ -38,10 +39,6 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   gender = @"F";
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
   [self initUI];
 }
 
@@ -66,7 +63,8 @@
 }
 
 - (void)initUI {
-  //[self.view layoutIfNeeded];
+  self.navigationItem.hidesBackButton = YES;
+  [self.view layoutIfNeeded];
   avatarBgView.clipsToBounds = YES;
   avatarBgView.layer.cornerRadius = avatarBgView.bounds.size.width / 2;
   
@@ -118,7 +116,6 @@
     if (!data) return;
     if ([data[@"status"] isEqual:@0]) {
       avatar = data[@"data"][0];
-      NSLog(@"%@", avatar);
       [Common cacheImage:[URL_AVATARPATH stringByAppendingString:avatar] completion:^(UIImage *image) {
         [btnAvatar setBackgroundImage:image forState:UIControlStateNormal];
       }];
@@ -146,26 +143,33 @@
   BTHeightPickerView *hpv = [[BTHeightPickerView alloc] init];
   hpv.heightPickerViewDelegate = self;
   if ([tbHeight.text isEqualToString:@""]) [hpv show];
-  else [hpv showWithHeight:[tbHeight.text integerValue]];
+  else [hpv showWithHeight:[tbHeight.text intValue]];
 }
 
 - (IBAction)weightClick:(UITapGestureRecognizer *)sender {
-  
+  BTWeightPickerView *wpv = [[BTWeightPickerView alloc] init];
+  wpv.weightPickerViewDelegate = self;
+  if ([tbWeight.text isEqualToString:@""]) [wpv show];
+  else [wpv showWithWeight:[tbWeight.text floatValue]];
 }
 
 - (void)datePickerViewOnConfirm:(NSDate *)date {
     tbDob.text = [Common dateToString:date byFormat:@"yyyy年MM月dd日"];
 }
 
-- (void)heightPickerViewOnConfirm:(NSInteger)height {
-  tbHeight.text = [NSString stringWithFormat:@"%ld", height];
+- (void)heightPickerViewOnConfirm:(int)height {
+  tbHeight.text = [NSString stringWithFormat:@"%d", height];
+}
+
+- (void)weightPickerViewOnConfirm:(float)weight {
+  tbWeight.text = [NSString stringWithFormat:@"%.1f", weight];
 }
 
 - (IBAction)bgClick:(UITapGestureRecognizer *)sender {
   [tbNickname resignFirstResponder];
 }
 
-- (IBAction)completeClick:(UIBarButtonItem *)sender {
+- (IBAction)nextClick:(UIBarButtonItem *)sender {
   if (!avatar || [avatar isEqualToString:@""]) {
     [Common info:@"请上传头像"];
     return;
@@ -186,11 +190,25 @@
     [Common info:@"请输入体重"];
     return;
   }
-  [self performSegueWithIdentifier:@"info_body" sender:nil];
+  [Common showLoading];
+  [Common requestQueue:^{
+    NSDictionary *params = @{@"avatar": avatar, @"nc": tbNickname.text, @"gender": gender, @"height": @([tbHeight.text intValue]), @"weight": @([tbWeight.text floatValue])};
+    NSDictionary *data = [Common syncPost:URL_UPDATEUSERINFO forms:params];
+    if ([data[@"status"] isEqual:@1]) {
+      [Common info:data[@"description"]];
+      return;
+    }
+    data = [Common syncPost:URL_UPDATEHEIGHT forms:@{@"height": @([tbHeight.text intValue])}];
+    data = [Common syncPost:URL_UPDATEWEIGHT forms:@{@"weight": @([tbWeight.text intValue])}];
+    [Common hideLoading];
+    User.avatar = avatar;
+    User.nickname = tbNickname.text;
+    User.gender = gender;
+    User.height = @([tbHeight.text intValue]);
+    User.weight = @([tbWeight.text floatValue]);
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [self performSegueWithIdentifier:@"info_tag" sender:nil];
+    });
+  }];
 }
-
-- (IBAction)backClick:(UIBarButtonItem *)sender {
-  [self.navigationController popViewControllerAnimated:YES];
-}
-
 @end

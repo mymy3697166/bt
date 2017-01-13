@@ -16,17 +16,26 @@
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1]
 #define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 
+#ifdef DEBUG
+#define URL_BASE @"http://192.168.0.207:3000/"
+#define URL_PATH @"http://192.168.0.207:3000/upload/"
+#else
 #define URL_BASE @"http://test.renjk.com/"
-//#define URL_BASE @"http://192.168.0.207:3000/"
+#define URL_PATH @"http://testassets.renjk.com/"
+#endif
 #define URL_TEST [URL_BASE stringByAppendingString:@"api_v2/mem/test"]
-#define URL_AVATARPATH @"http://testassets.renjk.com/mem/"
-#define URL_IMAGEPATH @"http://testassets.renjk.com/health/"
+#define URL_AVATARPATH [URL_PATH stringByAppendingString:@"mem/"]
+#define URL_IMAGEPATH [URL_PATH stringByAppendingString:@"health/"]
 #define URL_LOGIN [URL_BASE stringByAppendingString:@"api_v2/mem/login"]
 #define URL_REGISTERCODE [URL_BASE stringByAppendingString:@"api/sms/register_code"]
 #define URL_VALIDATECODE [URL_BASE stringByAppendingString:@"api/sms/validate_code"]
 #define URL_REGISTER [URL_BASE stringByAppendingString:@"api_v2/mem/register"]
 #define URL_UPLOADAVATAR [URL_BASE stringByAppendingString:@"upload_image/mem"]
 #define URL_UPLOADIMAGE [URL_BASE stringByAppendingString:@"upload_image/health"]
+#define URL_UPDATEUSERINFO [URL_BASE stringByAppendingString:@"api_v2/mem/update_mem_info"]
+#define URL_UPDATEHEIGHT [URL_BASE stringByAppendingString:@"api_v2/mem/update_height"]
+#define URL_UPDATEWEIGHT [URL_BASE stringByAppendingString:@"api_v2/mem/update_weight"]
+#define URL_FETCHTAGS [URL_BASE stringByAppendingString:@"api_v2/health_course/fetch_tags"]
 
 @interface BTCommon : NSObject
 /// 信息提示

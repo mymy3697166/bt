@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSString *token;
 @property (strong, nonatomic) NSString *nickname;
 @property (strong, nonatomic) NSString *avatar;
+@property (strong, nonatomic) NSString *gender;
 @property (strong, nonatomic) NSNumber *weight;
 @property (strong, nonatomic) NSNumber *height;
 @end

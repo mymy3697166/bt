@@ -18,25 +18,30 @@
 @implementation BTRegisterViewController
 - (void)viewDidLoad {
   [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
   [tbUid becomeFirstResponder];
 }
 
 - (IBAction)nextClick:(UIBarButtonItem *)sender {
-//  if ([tbUid.text isEqualToString:@""]) {
-//    [Common info:@"请输入手机号"];
-//    return;
-//  }
-//  if (![Common regularTest:@"^1\\d{10}$" text:tbUid.text]) {
-//    [Common info:@"您输入的手机号格式有误"];
-//    return;
-//  }
-//  [Common asyncPost:URL_REGISTERCODE forms:@{@"mobile_no": tbUid.text} completion:^(NSDictionary *data) {
-//    if (data == nil) return;
-//    if ([data[@"status"] isEqual:@0]) {
-//      [self performSegueWithIdentifier:@"register_captcha" sender:self];
-//    } else [Common info:data[@"description"]];
-//  }];
-  [self performSegueWithIdentifier:@"register_captcha" sender:self];
+  if ([tbUid.text isEqualToString:@""]) {
+    [Common info:@"请输入手机号"];
+    return;
+  }
+  if (![Common regularTest:@"^1\\d{10}$" text:tbUid.text]) {
+    [Common info:@"您输入的手机号格式有误"];
+    return;
+  }
+  [Common showLoading];
+  [Common asyncPost:URL_REGISTERCODE forms:@{@"mobile_no": tbUid.text} completion:^(NSDictionary *data) {
+    [Common hideLoading];
+    if (data == nil) return;
+    if ([data[@"status"] isEqual:@0]) {
+      [self performSegueWithIdentifier:@"register_captcha" sender:self];
+    } else [Common info:data[@"description"]];
+  }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -44,9 +49,5 @@
     BTCaptchaViewController *cvc = segue.destinationViewController;
     cvc.uid = tbUid.text;
   }
-}
-
-- (IBAction)backClick:(UIBarButtonItem *)sender {
-  [self.navigationController popViewControllerAnimated:YES];
 }
 @end

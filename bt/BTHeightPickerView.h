@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @protocol BTHeightPickerViewDelegate <NSObject>
-- (void)heightPickerViewOnConfirm:(NSInteger)height;
+- (void)heightPickerViewOnConfirm:(int)height;
 @end
 
 @interface BTHeightPickerView : UIView <UIPickerViewDelegate, UIPickerViewDataSource>
 @property (strong, nonatomic) id<BTHeightPickerViewDelegate> heightPickerViewDelegate;
 - (void)show;
-- (void)showWithHeight:(NSInteger)height;
+- (void)showWithHeight:(int)height;
 @end

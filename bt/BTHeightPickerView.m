@@ -47,7 +47,7 @@
   [pvPicker selectRow:90 inComponent:0 animated:NO];
 }
 
-- (void)showWithHeight:(NSInteger)height {
+- (void)showWithHeight:(int)height {
   [self show];
   [pvPicker selectRow:height - 80 inComponent:0 animated:NO];
 }
@@ -73,11 +73,10 @@
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
-  CGFloat tw = pickerView.bounds.size.width;
-  UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tw, 24)];
-  label.textAlignment = NSTextAlignmentCenter;
   if (view) return view;
-  label.text = [NSString stringWithFormat:@"%ld公分", (long)(row + 80)];
+  UILabel *label = [[UILabel alloc] init];
+  label.textAlignment = NSTextAlignmentCenter;
+  label.text = [NSString stringWithFormat:@"%ld", (long)(row + 80)];
   return label;
 }
 
@@ -92,7 +91,7 @@
 - (IBAction)confirmClick:(UIButton *)sender {
   if (self.heightPickerViewDelegate) {
     NSInteger height = [pvPicker selectedRowInComponent:0];
-    [self.heightPickerViewDelegate heightPickerViewOnConfirm:height + 80];
+    [self.heightPickerViewDelegate heightPickerViewOnConfirm:(int)(height + 80)];
   }
   [self hide];
 }

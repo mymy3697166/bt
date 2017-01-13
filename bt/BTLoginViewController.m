@@ -22,14 +22,16 @@
   btnLogin.layer.cornerRadius = 23;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [self.navigationController setNavigationBarHidden:YES animated:animated];
   [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+  [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 - (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender {

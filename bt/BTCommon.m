@@ -19,7 +19,7 @@
     hud.label.textColor = [UIColor whiteColor];
     hud.bezelView.color = [UIColor blackColor];
     hud.removeFromSuperViewOnHide = YES;
-    [hud hideAnimated:YES afterDelay:2];
+    [hud hideAnimated:YES afterDelay:1];
   };
   if ([NSThread isMainThread]) exe();
   else dispatch_async(dispatch_get_main_queue(), exe);
@@ -90,7 +90,8 @@
   if (error) {
     NSLog(@"%@", error);
     [self info:@"网络不给力，请稍后重试"];
-    completion(nil);
+    if ([NSThread isMainThread]) completion(nil);
+    else dispatch_async(dispatch_get_main_queue(), ^{completion(nil);});
     return;
   }
   NSURLSession *session = [NSURLSession sharedSession];
@@ -98,17 +99,20 @@
     if (error) {
       NSLog(@"%@", error);
       [self info:@"网络不给力，请稍后重试"];
-      completion(nil);
+      if ([NSThread isMainThread]) completion(nil);
+      else dispatch_async(dispatch_get_main_queue(), ^{completion(nil);});
       return;
     }
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     if (error) {
       NSLog(@"%@", error);
       [self info:@"网络不给力，请稍后重试"];
-      completion(nil);
+      if ([NSThread isMainThread]) completion(nil);
+      else dispatch_async(dispatch_get_main_queue(), ^{completion(nil);});
       return;
     }
-    completion(json);
+    if ([NSThread isMainThread]) completion(json);
+    else dispatch_async(dispatch_get_main_queue(), ^{completion(json);});
   }];
   [task resume];
 }

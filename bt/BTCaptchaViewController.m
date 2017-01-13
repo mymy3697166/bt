@@ -19,9 +19,13 @@
 @implementation BTCaptchaViewController
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [tbCaptcha becomeFirstResponder];
   labUid.text = [labUid.text stringByAppendingString:self.uid];
   [self startCount];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [tbCaptcha becomeFirstResponder];
 }
 
 - (void)startCount {
@@ -56,17 +60,18 @@
 }
 
 - (IBAction)nextClick:(UIBarButtonItem *)sender {
-//  if ([tbCaptcha.text isEqualToString:@""]) {
-//    [Common info:@"请输入验证码"];
-//    return;
-//  }
-//  [Common asyncPost:URL_VALIDATECODE forms:@{@"mobile_no": self.uid, @"code": tbCaptcha.text} completion:^(NSDictionary *data) {
-//    if (data == nil) return;
-//    if ([data[@"status"] isEqual:@0]) {
-//      [self.navigationController performSegueWithIdentifier:@"captcha_pwd" sender:nil];
-//    } else [Common info:data[@"description"]];
-//  }];
-  [self performSegueWithIdentifier:@"captcha_pwd" sender:nil];
+  if ([tbCaptcha.text isEqualToString:@""]) {
+    [Common info:@"请输入验证码"];
+    return;
+  }
+  [Common showLoading];
+  [Common asyncPost:URL_VALIDATECODE forms:@{@"mobile_no": self.uid, @"code": tbCaptcha.text} completion:^(NSDictionary *data) {
+    [Common hideLoading];
+    if (data == nil) return;
+    if ([data[@"status"] isEqual:@0]) {
+      [self performSegueWithIdentifier:@"captcha_pwd" sender:nil];
+    } else [Common info:data[@"description"]];
+  }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -75,9 +80,5 @@
     vc.uid = self.uid;
     vc.captcha = tbCaptcha.text;
   }
-}
-
-- (IBAction)backClick:(UIBarButtonItem *)sender {
-  [self.navigationController popViewControllerAnimated:YES];
 }
 @end
