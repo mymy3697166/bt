@@ -10,6 +10,8 @@
 #import "BTCommon.h"
 
 @implementation BTTagCell {
+  __weak IBOutlet UIView *bgView;
+  __weak IBOutlet UIView *bgMaskView;
   __weak IBOutlet UIImageView *ivIcon;
   __weak IBOutlet UILabel *labName;
   __weak IBOutlet UIImageView *ivSelected;
@@ -35,6 +37,10 @@
 
 - (void)awakeFromNib {
   [super awakeFromNib];
+  bgView.clipsToBounds = YES;
+  bgView.layer.cornerRadius = 3;
+  bgMaskView.clipsToBounds = YES;
+  bgMaskView.layer.cornerRadius = 3;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
