@@ -57,6 +57,7 @@
       User.uid = data[@"data"][@"mid"];
       User.token = data[@"data"][@"access_token"];
       if (![data[@"data"][@"nc"] null]) User.nickname = data[@"data"][@"nc"];
+      if (![data[@"data"][@"avatar"] null]) User.avatar = data[@"data"][@"avatar"];
       if (![data[@"data"][@"gender"] null]) User.gender = data[@"data"][@"gender"];
       if (![data[@"data"][@"dob"] null]) User.dob = [((NSString *)data[@"data"][@"dob"]) toDateWithFormat:@"yyyy-MM-dd"];
       if (![data[@"data"][@"height"] null]) User.height = data[@"data"][@"height"];
