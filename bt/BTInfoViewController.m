@@ -111,7 +111,7 @@
   UIImage *image = info[UIImagePickerControllerEditedImage];
   NSData *data = [Common compressAvatar:image];
   [Common showLoading];
-  [Common asyncPost:URL_UPLOADAVATAR forms:@{@"images": @[[Common dataToBase64String:data]]} completion:^(NSDictionary *data) {
+  [Common asyncPost:URL_UPLOADAVATAR forms:@{@"images": @[[data toBase64String]]} completion:^(NSDictionary *data) {
     [Common hideLoading];
     if (!data) return;
     if ([data[@"status"] isEqual:@0]) {
@@ -134,7 +134,7 @@
   dpv.datePickerViewDelegate = self;
   if ([tbDob.text isEqualToString:@""]) [dpv show];
   else {
-    NSDate *date = [Common stringToDate:tbDob.text byFormat:@"yyyy年MM月dd日"];
+    NSDate *date = [tbDob.text toDateWithFormat:@"yyyy年MM月dd日"];
     [dpv showWithDate:date];
   }
 }
@@ -154,7 +154,7 @@
 }
 
 - (void)datePickerViewOnConfirm:(NSDate *)date {
-    tbDob.text = [Common dateToString:date byFormat:@"yyyy年MM月dd日"];
+  tbDob.text = [date toStringWithFormat:@"yyyy年MM月dd日"];
 }
 
 - (void)heightPickerViewOnConfirm:(int)height {
@@ -192,7 +192,9 @@
   }
   [Common showLoading];
   [Common requestQueue:^{
-    NSDictionary *params = @{@"avatar": avatar, @"nc": tbNickname.text, @"gender": gender, @"height": @([tbHeight.text intValue]), @"weight": @([tbWeight.text floatValue])};
+    NSDate *dob = [tbDob.text toDateWithFormat:@"yyyy年MM月dd日"];
+    NSString *dobString = [dob toStringWithFormat:@"yyyy-MM-dd"];
+    NSDictionary *params = @{@"avatar": avatar, @"nc": tbNickname.text, @"gender": gender, @"dob": dobString};
     NSDictionary *data = [Common syncPost:URL_UPDATEUSERINFO forms:params];
     if ([data[@"status"] isEqual:@1]) {
       [Common info:data[@"description"]];

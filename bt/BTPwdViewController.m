@@ -28,7 +28,7 @@
     [Common info:@"请输入密码"];
     return;
   }
-  if (![Common regularTest:@"^.{6,20}$" text:tbPwd.text]) {
+  if (![tbPwd.text testByRegular:@"^.{6,20}$"]) {
     [Common info:@"您输入的密码位数有误"];
     return;
   }

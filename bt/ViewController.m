@@ -21,10 +21,10 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   BTLoginNavigationController *lnc = [self.storyboard instantiateViewControllerWithIdentifier:@"BTLoginNavigationController"];
-//  BTInfoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BTInfoViewController"];
-  BTTagViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BTTagViewController"];
+  //BTInfoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BTInfoViewController"];
+  //BTTagViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BTTagViewController"];
   [self presentViewController:lnc animated:YES completion:nil];
-  [lnc pushViewController:vc animated:NO];
+  //[lnc pushViewController:vc animated:NO];
 //  UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
 //  temporaryBarButtonItem.title = @"";
 //  self.navigationItem.backBarButtonItem = temporaryBarButtonItem;

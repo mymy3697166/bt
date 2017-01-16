@@ -127,7 +127,7 @@
     NSInteger year = nowYear - 99 + [pvDatePicker selectedRowInComponent:0];
     NSInteger month = [pvDatePicker selectedRowInComponent:1] + 1;
     NSInteger day = [pvDatePicker selectedRowInComponent:2] + 1;
-    NSDate *date = [Common stringToDate:[NSString stringWithFormat:@"%ld-%02ld-%02ld", (long)year, (long)month, (long)day] byFormat:@"yyyy-MM-dd"];
+    NSDate *date = [[NSString stringWithFormat:@"%ld-%02ld-%02ld", (long)year, (long)month, (long)day] toDateWithFormat:@"yyyy-MM-dd"];
     [self.datePickerViewDelegate datePickerViewOnConfirm:date];
   }
   [self hide];

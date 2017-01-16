@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSString *nickname;
 @property (strong, nonatomic) NSString *avatar;
 @property (strong, nonatomic) NSString *gender;
+@property (strong, nonatomic) NSDate *dob;
 @property (strong, nonatomic) NSNumber *weight;
 @property (strong, nonatomic) NSNumber *height;
 @end

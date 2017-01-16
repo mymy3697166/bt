@@ -30,7 +30,7 @@
     [Common info:@"请输入手机号"];
     return;
   }
-  if (![Common regularTest:@"^1\\d{10}$" text:tbUid.text]) {
+  if (![tbUid.text testByRegular:@"^1\\d{10}$"]) {
     [Common info:@"您输入的手机号格式有误"];
     return;
   }

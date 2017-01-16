@@ -29,8 +29,11 @@
 - (NSString *)avatar {return [ud objectForKey:@"USER-AVATAR"];}
 - (void)setAvatar:(NSString *)avatar {[ud setObject:avatar forKey:@"USER-AVATAR"];}
 
-- (NSString *)gender {return [ud objectForKey:@"USER-AVATAR"];}
-- (void)setGender:(NSString *)gender {[ud setObject:gender forKey:@"USER-AVATAR"];}
+- (NSString *)gender {return [ud objectForKey:@"USER-GENDER"];}
+- (void)setGender:(NSString *)gender {[ud setObject:gender forKey:@"USER-GENDER"];}
+
+- (NSDate *)dob {return [ud objectForKey:@"USER-DOB"];}
+- (void)setDob:(NSDate *)dob {[ud setObject:dob forKey:@"USER-DOB"];}
 
 - (NSNumber *)weight {return [ud objectForKey:@"USER-WEIGHT"];}
 - (void)setWeight:(NSNumber *)weight {[ud setObject:weight forKey:@"USER-WEIGHT"];}

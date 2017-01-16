@@ -122,28 +122,10 @@
   dispatch_async(queue, block);
 }
 
-- (BOOL)regularTest:(NSString *)regStr text:(NSString *)text {
-  NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:regStr options:NSRegularExpressionCaseInsensitive error:nil];
-  NSRange range = NSMakeRange(0, [text lengthOfBytesUsingEncoding:kCFStringEncodingUTF8]);
-  return [reg numberOfMatchesInString:text options:NSMatchingReportProgress range:range] > 0;
-}
-
 - (NSInteger)getInfoFromDate:(NSDate *)date byFormat:(NSString *)format {
   NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
   [formatter setDateFormat:format];
   return [[formatter stringFromDate:date] integerValue];
-}
-
-- (NSDate *)stringToDate:(NSString *)string byFormat:(NSString *)format {
-  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-  [formatter setDateFormat:format];
-  return [formatter dateFromString:string];
-}
-
-- (NSString *)dateToString:(NSDate *)date byFormat:(NSString *)format {
-  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-  [formatter setDateFormat:format];
-  return [formatter stringFromDate:date];
 }
 
 - (NSData *)compressImage:(UIImage *)image {
@@ -172,25 +154,10 @@
   return UIImageJPEGRepresentation(nImage, 0.6);
 }
 
-- (NSString *)dataToBase64String:(NSData *)data {
-  return [[data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength] stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
-}
-
-- (NSString *)md5:(NSString *)source {
-  const char *cStr = [source UTF8String];
-  unsigned char result[CC_MD5_DIGEST_LENGTH];
-  CC_MD5(cStr, (CC_LONG)strlen(cStr), result);
-  NSMutableString *res = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH];
-  for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
-    [res appendFormat:@"%02X", result[i]];
-  }
-  return res;
-}
-
 - (void)cacheImage:(NSString *)url completion:(void(^)(UIImage *image))completion {
   dispatch_async(dispatch_queue_create(nil, nil), ^{
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *fn = [NSString stringWithFormat:@"%@.jpg", [self md5:url]];
+    NSString *fn = [NSString stringWithFormat:@"%@.jpg", [url md5]];
     NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *imagesPath = [docPath stringByAppendingPathComponent:@"images"];
     NSString *fp = [imagesPath stringByAppendingPathComponent:fn];
@@ -208,5 +175,11 @@
       completion([UIImage imageWithContentsOfFile:fp]);
     });
   });
+}
+
+- (float)bmiWithHeight:(float)height andWeight:(float)weight {
+  float h = height / 100;
+  float hs = h * h;
+  return weight / hs;
 }
 @end

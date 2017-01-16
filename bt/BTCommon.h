@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "BTUser.h"
+#import "NSObject+Extension.h"
+#import "NSDate+Extension.h"
+#import "NSString+Extension.h"
+#import "NSData+Extension.h"
+#import "UIImageView+Extension.h"
 
 #define Common [[BTCommon alloc] init]
 #define User [[BTUser alloc] init]
@@ -17,10 +22,8 @@
 #define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 
 #ifdef DEBUG
-//#define URL_BASE @"http://192.168.0.207:3000/"
-//#define URL_PATH @"http://192.168.0.207:3000/upload/"
-#define URL_BASE @"http://test.renjk.com/"
-#define URL_PATH @"http://testassets.renjk.com/"
+#define URL_BASE @"http://192.168.0.208:3000/"
+#define URL_PATH @"http://192.168.0.208:3000/upload/"
 #else
 #define URL_BASE @"http://test.renjk.com/"
 #define URL_PATH @"http://testassets.renjk.com/"
@@ -38,6 +41,8 @@
 #define URL_UPDATEHEIGHT [URL_BASE stringByAppendingString:@"api_v2/mem/update_height"]
 #define URL_UPDATEWEIGHT [URL_BASE stringByAppendingString:@"api_v2/mem/update_weight"]
 #define URL_FETCHTAGS [URL_BASE stringByAppendingString:@"api_v2/health_course/fetch_tags"]
+#define URL_FETCHRECOMMENTCOURSE [URL_BASE stringByAppendingString:@"api_v2/health_course/fetch_recomment_course"]
+#define URL_JOINCOURSE [URL_BASE stringByAppendingString:@"api_v2/health_course/join_course"]
 
 @interface BTCommon : NSObject
 /// 信息提示
@@ -52,23 +57,15 @@
 - (void)asyncPost:(NSString *)url forms:(NSDictionary *)forms completion:(void(^)(NSDictionary *data))completion;
 /// 开启请求队列
 - (void)requestQueue:(void(^)())block;
-/// 正则验证
-- (BOOL)regularTest:(NSString *)reg text:(NSString *)text;
 /// 从日期对象中获取年月日时分秒信息
 - (NSInteger)getInfoFromDate:(NSDate *)date byFormat:(NSString *)format;
-/// 字符串转日期
-- (NSDate *)stringToDate:(NSString *)string byFormat:(NSString *)format;
-/// 日期转字符串
-- (NSString *)dateToString:(NSDate *)date byFormat:(NSString *)format;
 /// 压缩社区图片
 - (NSData *)compressImage:(UIImage *)image;
 /// 压缩用户头像
 - (NSData *)compressAvatar:(UIImage *)image;
-/// NSData数据转Base64字符串
-- (NSString *)dataToBase64String:(NSData *)data;
-/// MD5加密
-- (NSString *)md5:(NSString *)source;
 /// 缓存图片
 - (void)cacheImage:(NSString *)url completion:(void(^)(UIImage *image))completion;
+/// 计算bmi值
+- (float)bmiWithHeight:(float)height andWeight:(float)weight;
 @end
 
