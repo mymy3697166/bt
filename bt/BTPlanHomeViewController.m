@@ -23,6 +23,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  tvTable.estimatedRowHeight = 80;
+  tvTable.rowHeight = UITableViewAutomaticDimension;
   [Common asyncPost:URL_ACCESSTOKENLOGIN forms:nil completion:^(NSDictionary *data) {
     if (!data) return;
     if ([data[@"status"] isEqual:@0]) {
@@ -71,7 +73,7 @@
     } else if (indexPath.section == 1) {
       cell = [tableView dequeueReusableCellWithIdentifier:@"BTCurrentCourseCell" forIndexPath:indexPath];
       BTCurrentCourseCell *ccCell = (BTCurrentCourseCell *)cell;
-      [ccCell setData:dataSource[@"course_plans"] userPlans:dataSource[@"user_plans"]];
+      [ccCell setData:dataSource];
     }
   }
   return cell;

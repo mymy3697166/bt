@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5WH-py-XBv">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5WH-py-XBv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -61,15 +61,15 @@
                         <viewControllerLayoutGuide type="bottom" id="mxR-EE-0Lm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Mex-e9-0I8">
-                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="1387"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="159" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="xVQ-0c-7UK">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1387"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BTWeightCell" rowHeight="158" id="t4t-yc-tPv" customClass="BTWeightCell">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="158"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="158"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t4t-yc-tPv" id="BUX-EW-Y6Q">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="158"/>
@@ -125,6 +125,7 @@
                                                 <constraint firstItem="FfQ-tO-Tvd" firstAttribute="top" secondItem="LaH-f1-dxD" secondAttribute="bottom" id="58i-rf-0eb"/>
                                                 <constraint firstItem="FfQ-tO-Tvd" firstAttribute="leading" secondItem="BUX-EW-Y6Q" secondAttribute="leading" id="6vP-Be-wWp"/>
                                                 <constraint firstAttribute="trailing" secondItem="LaH-f1-dxD" secondAttribute="trailing" id="8Z4-LP-1C1"/>
+                                                <constraint firstAttribute="bottom" secondItem="FfQ-tO-Tvd" secondAttribute="bottom" id="AJg-R4-bOk"/>
                                                 <constraint firstItem="VyC-0z-AJF" firstAttribute="leading" secondItem="hFL-py-1Jl" secondAttribute="trailing" constant="8" id="Ch9-GA-V3z"/>
                                                 <constraint firstItem="XMD-cg-Oep" firstAttribute="centerX" secondItem="BUX-EW-Y6Q" secondAttribute="centerX" id="FPt-WO-aQ5"/>
                                                 <constraint firstItem="VyC-0z-AJF" firstAttribute="top" secondItem="hFL-py-1Jl" secondAttribute="top" constant="4" id="InC-xb-QTF"/>
@@ -143,11 +144,11 @@
                                             <outlet property="labWeight" destination="hFL-py-1Jl" id="SBs-Oc-CqX"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BTCurrentCourseCell" rowHeight="252" id="nnT-Rl-aae" customClass="BTCurrentCourseCell">
-                                        <rect key="frame" x="0.0" y="213.5" width="375" height="252"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BTCurrentCourseCell" rowHeight="337" id="nnT-Rl-aae" customClass="BTCurrentCourseCell">
+                                        <rect key="frame" x="0.0" y="214" width="375" height="337"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nnT-Rl-aae" id="9M0-ZI-Neg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="252"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="337"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbe-8k-rAr">
@@ -177,18 +178,102 @@
                                                         <constraint firstAttribute="height" constant="1" id="lk9-8y-Oyo"/>
                                                     </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日训练" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlr-Z1-nSy">
+                                                    <rect key="frame" x="16" y="87" width="70" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rest_day" translatesAutoresizingMaskIntoConstraints="NO" id="QIb-7B-biH">
+                                                    <rect key="frame" x="0.0" y="122.5" width="375" height="214.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="QIb-7B-biH" secondAttribute="height" multiplier="7:4" id="gjE-vv-IKd"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消耗热量：231kcal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5de-D6-qDt">
+                                                    <rect key="frame" x="16" y="295.5" width="120.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.8862745098" green="0.8862745098" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日已完成" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moU-X1-Gux">
+                                                    <rect key="frame" x="262.5" y="295.5" width="71.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.8862745098" green="0.8862745098" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天地练身大法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXt-QP-kjc">
+                                                    <rect key="frame" x="16" y="146.5" width="146" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="初级训练 ／ 无需器械" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UaK-Xj-C22">
+                                                    <rect key="frame" x="16" y="183.5" width="136.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.8862745098" green="0.8862745098" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="耗时：12:31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aK-tu-a6u">
+                                                    <rect key="frame" x="16" y="270.5" width="76.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.8862745098" green="0.8862745098" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pQW-dy-WVI">
+                                                    <rect key="frame" x="335" y="292" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="GxH-sz-344"/>
+                                                        <constraint firstAttribute="width" constant="24" id="hse-1m-zqZ"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天是休息日，可以做一些有氧运动哦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kP0-6T-aNW">
+                                                    <rect key="frame" x="57.5" y="271" width="260.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.36862745099999999" green="0.36862745099999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="YD1-eC-vcp" firstAttribute="top" secondItem="kbe-8k-rAr" secondAttribute="bottom" id="3xx-2x-adG"/>
+                                                <constraint firstItem="pQW-dy-WVI" firstAttribute="centerY" secondItem="5de-D6-qDt" secondAttribute="centerY" id="5Lk-10-7MA"/>
                                                 <constraint firstItem="YD1-eC-vcp" firstAttribute="leading" secondItem="9M0-ZI-Neg" secondAttribute="leading" id="9fX-72-Hcg"/>
+                                                <constraint firstItem="DXt-QP-kjc" firstAttribute="leading" secondItem="QIb-7B-biH" secondAttribute="leading" constant="16" id="9tm-iv-flv"/>
+                                                <constraint firstItem="QIb-7B-biH" firstAttribute="top" secondItem="hlr-Z1-nSy" secondAttribute="bottom" constant="16" id="AVa-we-uK1"/>
+                                                <constraint firstItem="moU-X1-Gux" firstAttribute="bottom" secondItem="5de-D6-qDt" secondAttribute="bottom" id="C3l-Yd-OGW"/>
+                                                <constraint firstAttribute="trailing" secondItem="pQW-dy-WVI" secondAttribute="trailing" constant="16" id="Efj-bv-QeI"/>
+                                                <constraint firstItem="5de-D6-qDt" firstAttribute="bottom" secondItem="QIb-7B-biH" secondAttribute="bottom" constant="-24" id="FUj-D7-fbb"/>
                                                 <constraint firstItem="kbe-8k-rAr" firstAttribute="leading" secondItem="9M0-ZI-Neg" secondAttribute="leading" constant="16" id="KGs-hq-9UN"/>
+                                                <constraint firstItem="UaK-Xj-C22" firstAttribute="top" secondItem="DXt-QP-kjc" secondAttribute="bottom" constant="8" id="LVs-Gp-y1S"/>
+                                                <constraint firstItem="hlr-Z1-nSy" firstAttribute="top" secondItem="YD1-eC-vcp" secondAttribute="bottom" constant="16" id="Miw-bH-HAp"/>
+                                                <constraint firstItem="UaK-Xj-C22" firstAttribute="leading" secondItem="DXt-QP-kjc" secondAttribute="leading" id="NQ5-TE-oKl"/>
+                                                <constraint firstAttribute="trailing" secondItem="QIb-7B-biH" secondAttribute="trailing" id="RWa-ky-v36"/>
+                                                <constraint firstItem="5de-D6-qDt" firstAttribute="leading" secondItem="DXt-QP-kjc" secondAttribute="leading" id="SZG-22-1eT"/>
+                                                <constraint firstItem="hlr-Z1-nSy" firstAttribute="leading" secondItem="9M0-ZI-Neg" secondAttribute="leading" constant="16" id="WNw-kV-8f4"/>
+                                                <constraint firstItem="5de-D6-qDt" firstAttribute="top" secondItem="5aK-tu-a6u" secondAttribute="bottom" constant="8" id="doH-tz-Lm4"/>
+                                                <constraint firstItem="pQW-dy-WVI" firstAttribute="leading" secondItem="moU-X1-Gux" secondAttribute="trailing" constant="1" id="fG0-CS-Ous"/>
+                                                <constraint firstItem="QIb-7B-biH" firstAttribute="leading" secondItem="9M0-ZI-Neg" secondAttribute="leading" id="g9M-FZ-19S"/>
                                                 <constraint firstAttribute="trailing" secondItem="YD1-eC-vcp" secondAttribute="trailing" id="iCC-Di-Utn"/>
+                                                <constraint firstItem="kP0-6T-aNW" firstAttribute="centerX" secondItem="QIb-7B-biH" secondAttribute="centerX" id="ioM-kV-pJ4"/>
+                                                <constraint firstItem="DXt-QP-kjc" firstAttribute="top" secondItem="QIb-7B-biH" secondAttribute="top" constant="24" id="r2Q-Rw-dyV"/>
+                                                <constraint firstAttribute="bottom" secondItem="QIb-7B-biH" secondAttribute="bottom" id="rFr-aB-nTm"/>
+                                                <constraint firstItem="kP0-6T-aNW" firstAttribute="bottom" secondItem="QIb-7B-biH" secondAttribute="bottom" constant="-48" id="tTC-py-hAk"/>
+                                                <constraint firstItem="5aK-tu-a6u" firstAttribute="leading" secondItem="DXt-QP-kjc" secondAttribute="leading" id="teq-DL-6eB"/>
                                                 <constraint firstItem="kbe-8k-rAr" firstAttribute="top" secondItem="9M0-ZI-Neg" secondAttribute="top" id="v71-rS-nPA"/>
                                                 <constraint firstAttribute="trailing" secondItem="kbe-8k-rAr" secondAttribute="trailing" constant="16" id="vL5-hq-t27"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="btnCourse" destination="RoM-hA-rv5" id="xUS-Bw-70k"/>
+                                            <outlet property="ivComplete" destination="pQW-dy-WVI" id="PPM-uZ-Jui"/>
+                                            <outlet property="ivPlanImage" destination="QIb-7B-biH" id="DX5-XX-vNr"/>
+                                            <outlet property="labCaloire" destination="5de-D6-qDt" id="BDl-sQ-c1i"/>
+                                            <outlet property="labComplete" destination="moU-X1-Gux" id="6ff-Kj-R4B"/>
+                                            <outlet property="labDuration" destination="5aK-tu-a6u" id="zAD-YE-Wvr"/>
+                                            <outlet property="labLevel" destination="UaK-Xj-C22" id="LwR-Ue-QGA"/>
+                                            <outlet property="labPlanTitle" destination="DXt-QP-kjc" id="ezF-T6-IY1"/>
+                                            <outlet property="labRestDesc" destination="kP0-6T-aNW" id="2Iz-CY-8da"/>
+                                            <outlet property="labTitle" destination="hlr-Z1-nSy" id="2AZ-3V-beV"/>
                                             <outlet property="vCalendar" destination="kbe-8k-rAr" id="2vn-0u-dYo"/>
                                         </connections>
                                     </tableViewCell>
@@ -213,13 +298,15 @@
                             <color key="tintColor" red="0.36862745099999999" green="0.36862745099999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="1500"/>
                     <connections>
                         <outlet property="tvTable" destination="xVQ-0c-7UK" id="lPJ-Sx-Xip"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IzU-bY-WPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="912.79999999999995" y="-1010.6446776611695"/>
+            <point key="canvasLocation" x="912.79999999999995" y="-635.08245877061472"/>
         </scene>
         <!--登陆导航-->
         <scene sceneID="yHM-AS-R0v">
@@ -1025,7 +1112,7 @@
                                 <color key="backgroundColor" red="0.97254901960784312" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BTTagCell" rowHeight="120" id="vkO-Q1-0er" customClass="BTTagCell">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="120"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vkO-Q1-0er" id="URd-PZ-mhX">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
@@ -1497,6 +1584,7 @@
         <image name="icon_weixin" width="16" height="16"/>
         <image name="info_avatar" width="16" height="16"/>
         <image name="login_top" width="16" height="16"/>
+        <image name="rest_day" width="16" height="16"/>
         <image name="tab_article" width="16" height="16"/>
         <image name="tab_community" width="16" height="16"/>
         <image name="tab_plan" width="16" height="16"/>

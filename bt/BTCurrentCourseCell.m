@@ -13,6 +13,15 @@
 @implementation BTCurrentCourseCell {
   __weak IBOutlet UIButton *btnCourse;
   __weak IBOutlet UIView *vCalendar;
+  __weak IBOutlet UILabel *labTitle;
+  __weak IBOutlet UIImageView *ivPlanImage;
+  __weak IBOutlet UIImageView *ivComplete;
+  __weak IBOutlet UILabel *labPlanTitle;
+  __weak IBOutlet UILabel *labLevel;
+  __weak IBOutlet UILabel *labDuration;
+  __weak IBOutlet UILabel *labCaloire;
+  __weak IBOutlet UILabel *labComplete;
+  __weak IBOutlet UILabel *labRestDesc;
 }
 
 - (void)awakeFromNib {
@@ -21,7 +30,10 @@
   btnCourse.layer.cornerRadius = 16;
 }
 
-- (void)setData:(NSArray *)plans userPlans:(NSArray *)userPlans {
+- (void)setData:(NSDictionary *)data {
+  if (!data) return;
+  NSArray *plans = data[@"course_plans"];
+  NSArray *userPlans = data[@"user_plans"];
   // 去重用户训练
   NSArray *duPlans = [self distinct:userPlans];
   // 计算自今天起之后的训练
@@ -50,9 +62,10 @@
       plan = yPlans[i];
     }
     if (i == 0) {
-      view.labDate.text = @"今日";
+      view.labDate.text = @"今";
       if (plan && [plan[@"id"] isEqual:@0]) {
         view.labComplete.text = @"休息";
+        view.labDate.textColor = RGB(0, 178, 255);
         view.ivIcon.image = [UIImage imageNamed:@"icon_rest"];
         [view.ivIcon tintColor:RGB(0, 178, 255)];
       }
@@ -79,6 +92,37 @@
     view.frame = CGRectMake(w * i, 0, w, 70);
     [vCalendar addSubview:view];
     [dates addObject:view];
+  }
+  [self setPlan:yPlans[0] isComplete:tPlan != nil];
+}
+
+- (void)setPlan:(NSDictionary *)plan isComplete:(BOOL)com {
+  BOOL rest = [plan[@"id"] isEqual:@0];
+  if (rest) {
+    labTitle.text = @"今日休息";
+    ivPlanImage.image = [UIImage imageNamed:@"rest_day"];
+    ivComplete.hidden = YES;
+    labPlanTitle.hidden = YES;
+    labLevel.hidden = YES;
+    labDuration.hidden = YES;
+    labCaloire.hidden = YES;
+    labComplete.hidden = YES;
+  } else {
+    labTitle.text = @"今日休息";
+    [ivPlanImage loadURL:[URL_IMAGEPATH stringByAppendingString:plan[@"cover"]]];
+    if (com) {
+      ivComplete.image = [UIImage imageNamed:@"icon_selected_yes"];
+      labComplete.text = @"今日已完成";
+    }
+    else {
+      ivComplete.image = [UIImage imageNamed:@"icon_fire"];
+      labComplete.text = @"今日未完成";
+    }
+    [ivComplete tintColor:RGB(0, 178, 255)];
+    labPlanTitle.text = plan[@"name"];
+    labLevel.text = [NSString stringWithFormat:@"%@ / %@", plan[@"level_name"], plan[@"tool"]];
+    labDuration.text = [NSString stringWithFormat:@"耗时：%@", plan[@"duration"]];
+    labCaloire.text = [NSString stringWithFormat:@"消耗热量：%@kcal", plan[@"calorie"]];
   }
 }
 
