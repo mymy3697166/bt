@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BTCurrentCourseCell : UITableViewCell
-
+- (void)setData:(NSArray *)plans userPlans:(NSArray *)userPlans;
 @end

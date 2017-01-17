@@ -12,7 +12,9 @@
 #import "BTCurrentCourseCell.h"
 
 @interface BTPlanHomeViewController () <UITableViewDataSource, UITableViewDelegate> {
+  __weak IBOutlet UITableView *tvTable;
   
+  NSDictionary *dataSource;
 }
 
 @end
@@ -25,13 +27,19 @@
     if (!data) return;
     if ([data[@"status"] isEqual:@0]) {
       User.token = data[@"data"][@"access_token"];
-      NSLog(@"%@", [URL_AVATARPATH stringByAppendingString:User.avatar]);
-      [Common cacheImage:[URL_AVATARPATH stringByAppendingString:User.avatar] completion:^(UIImage *image) {
-        UIImageView *btn = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
-        btn.clipsToBounds = YES;
-        btn.layer.cornerRadius = 18;
-        btn.image = image;
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+      UIImageView *btn = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
+      btn.clipsToBounds = YES;
+      btn.layer.cornerRadius = 18;
+      [btn loadURL:[URL_AVATARPATH stringByAppendingString:User.avatar]];
+      self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+      [Common asyncPost:URL_FETCHPLANHOME forms:@{@"weight": @1, @"article": @1, @"difference": @1, @"course": @1} completion:^(NSDictionary *data) {
+        if (!data) return;
+        if ([data[@"status"] isEqual:@0]) {
+          dataSource = data[@"data"];
+          [tvTable reloadData];
+        } else {
+          [Common info:data[@"description"]];
+        }
       }];
     } else {
       BTLoginNavigationController *lnc = [self.storyboard instantiateViewControllerWithIdentifier:@"BTLoginNavigationController"];
@@ -53,19 +61,19 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  if (indexPath.section == 0) {
-    BTWeightCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BTWeightCell" forIndexPath:indexPath];
-    if (!cell) {
-      
+  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+  if (!cell) {
+    if (indexPath.section == 0) {
+      cell = [tableView dequeueReusableCellWithIdentifier:@"BTWeightCell" forIndexPath:indexPath];
+      BTWeightCell *wCell = (BTWeightCell *)cell;
+      wCell.weight = User.weight;
+      wCell.diff = @0;
+    } else if (indexPath.section == 1) {
+      cell = [tableView dequeueReusableCellWithIdentifier:@"BTCurrentCourseCell" forIndexPath:indexPath];
+      BTCurrentCourseCell *ccCell = (BTCurrentCourseCell *)cell;
+      [ccCell setData:dataSource[@"course_plans"] userPlans:dataSource[@"user_plans"]];
     }
-    return cell;
-  } else {
-    BTCurrentCourseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BTCurrentCourseCell" forIndexPath:indexPath];
-    return cell;
   }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  [tableView deselectRowAtIndexPath:indexPath animated:NO];
+  return cell;
 }
 @end

@@ -10,5 +10,8 @@
 
 @interface NSDate(Extension)
 - (NSString *)toStringWithFormat:(NSString *)format;
-
+- (NSInteger)year;
+- (NSInteger)month;
+- (NSInteger)day;
+- (NSDate *)toDate;
 @end

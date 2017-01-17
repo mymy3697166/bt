@@ -12,4 +12,5 @@
 
 @interface UIImageView(Extension)
 - (void)loadURL:(NSString *)url;
+- (void)tintColor:(UIColor *)color;
 @end

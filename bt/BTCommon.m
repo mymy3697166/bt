@@ -169,7 +169,7 @@
       }
       NSURL *URL = [NSURL URLWithString:url];
       NSData *data = [NSData dataWithContentsOfURL:URL];
-      [fm createFileAtPath:fp contents:data attributes:nil];
+      if (data.length > 0) [fm createFileAtPath:fp contents:data attributes:nil];
     }
     dispatch_async(dispatch_get_main_queue(), ^{
       completion([UIImage imageWithContentsOfFile:fp]);

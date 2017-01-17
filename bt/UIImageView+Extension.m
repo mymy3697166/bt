@@ -22,4 +22,16 @@
     }];
   }];
 }
+
+- (void)tintColor:(UIColor *)color {
+  UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0);
+  [color setFill];
+  UIRectFill(self.bounds);
+  [self.image drawInRect:self.bounds blendMode:kCGBlendModeDestinationIn alpha:1];
+  
+  UIImage *tintedImage = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  
+  self.image = tintedImage;
+}
 @end
