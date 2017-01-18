@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,13 +22,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="训练" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLb-Ao-q1G">
-                    <rect key="frame" x="0.0" y="41.5" width="41" height="12"/>
+                    <rect key="frame" x="0.0" y="41.5" width="43" height="12"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_lock" translatesAutoresizingMaskIntoConstraints="NO" id="tLL-UB-rFG">
-                    <rect key="frame" x="29" y="17.5" width="12" height="12"/>
+                    <rect key="frame" x="31" y="17.5" width="12" height="12"/>
                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="12" id="B1g-4C-PkH"/>
@@ -42,7 +42,7 @@
                 <constraint firstItem="RLb-Ao-q1G" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="12" id="BnI-uB-GIh"/>
                 <constraint firstItem="RLb-Ao-q1G" firstAttribute="trailing" secondItem="tLL-UB-rFG" secondAttribute="trailing" id="L3Y-Cc-M5t"/>
                 <constraint firstItem="tLL-UB-rFG" firstAttribute="centerY" secondItem="3jh-wf-caW" secondAttribute="centerY" id="N3C-2u-ORC"/>
-                <constraint firstItem="tLL-UB-rFG" firstAttribute="leading" secondItem="3jh-wf-caW" secondAttribute="trailing" id="ZbD-wn-Dsk"/>
+                <constraint firstItem="tLL-UB-rFG" firstAttribute="leading" secondItem="3jh-wf-caW" secondAttribute="trailing" constant="2" id="ZbD-wn-Dsk"/>
                 <constraint firstItem="RLb-Ao-q1G" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eM3-HG-t7P"/>
                 <constraint firstItem="3jh-wf-caW" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-12" id="mWY-Fw-PIS"/>
             </constraints>

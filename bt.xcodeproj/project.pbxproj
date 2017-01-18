@@ -14,6 +14,8 @@
 		000540001E27CE1400067791 /* BTWeightPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00053FFF1E27CE1400067791 /* BTWeightPickerView.m */; };
 		000540021E27DA7C00067791 /* BTHeightPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 000540011E27DA7C00067791 /* BTHeightPickerView.xib */; };
 		006A3DFB1E29FD5C00BD4F10 /* BTConfirmCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A3DFA1E29FD5C00BD4F10 /* BTConfirmCourseViewController.m */; };
+		006B2A461E2F780D0002A484 /* BTNoCourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B2A451E2F780D0002A484 /* BTNoCourseCell.m */; };
+		006B2A491E2FBF8A0002A484 /* BTRecommendArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B2A481E2FBF8A0002A484 /* BTRecommendArticleCell.m */; };
 		006DF81C1E2D0DCE00169EB0 /* BTWeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 006DF81B1E2D0DCE00169EB0 /* BTWeightCell.m */; };
 		006DF81F1E2D1E9400169EB0 /* BTCurrentCourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 006DF81E1E2D1E9400169EB0 /* BTCurrentCourseCell.m */; };
 		007E561C1E1FCC6A001CFCD4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 007E561B1E1FCC6A001CFCD4 /* main.m */; };
@@ -61,6 +63,10 @@
 		000540011E27DA7C00067791 /* BTHeightPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTHeightPickerView.xib; sourceTree = "<group>"; };
 		006A3DF91E29FD5C00BD4F10 /* BTConfirmCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConfirmCourseViewController.h; sourceTree = "<group>"; };
 		006A3DFA1E29FD5C00BD4F10 /* BTConfirmCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTConfirmCourseViewController.m; sourceTree = "<group>"; };
+		006B2A441E2F780D0002A484 /* BTNoCourseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTNoCourseCell.h; sourceTree = "<group>"; };
+		006B2A451E2F780D0002A484 /* BTNoCourseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTNoCourseCell.m; sourceTree = "<group>"; };
+		006B2A471E2FBF8A0002A484 /* BTRecommendArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRecommendArticleCell.h; sourceTree = "<group>"; };
+		006B2A481E2FBF8A0002A484 /* BTRecommendArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRecommendArticleCell.m; sourceTree = "<group>"; };
 		006DF81A1E2D0DCE00169EB0 /* BTWeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWeightCell.h; sourceTree = "<group>"; };
 		006DF81B1E2D0DCE00169EB0 /* BTWeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWeightCell.m; sourceTree = "<group>"; };
 		006DF81D1E2D1E9400169EB0 /* BTCurrentCourseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCurrentCourseCell.h; sourceTree = "<group>"; };
@@ -265,6 +271,10 @@
 				5C4150891E2DC4C000046514 /* BTCourseHomeCalendarView.h */,
 				5C41508A1E2DC4C000046514 /* BTCourseHomeCalendarView.m */,
 				5C41508C1E2DC4D500046514 /* BTCourseHomeCalendarView.xib */,
+				006B2A441E2F780D0002A484 /* BTNoCourseCell.h */,
+				006B2A451E2F780D0002A484 /* BTNoCourseCell.m */,
+				006B2A471E2FBF8A0002A484 /* BTRecommendArticleCell.h */,
+				006B2A481E2FBF8A0002A484 /* BTRecommendArticleCell.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -367,6 +377,7 @@
 				00053FE01E210A0200067791 /* BTRegisterViewController.m in Sources */,
 				5C41508B1E2DC4C000046514 /* BTCourseHomeCalendarView.m in Sources */,
 				006A3DFB1E29FD5C00BD4F10 /* BTConfirmCourseViewController.m in Sources */,
+				006B2A491E2FBF8A0002A484 /* BTRecommendArticleCell.m in Sources */,
 				00053FEE1E22587900067791 /* BTCaptchaViewController.m in Sources */,
 				5CCE4BB01E24A4F20010DDA5 /* BTPwdViewController.m in Sources */,
 				000540001E27CE1400067791 /* BTWeightPickerView.m in Sources */,
@@ -378,6 +389,7 @@
 				006DF81C1E2D0DCE00169EB0 /* BTWeightCell.m in Sources */,
 				006DF81F1E2D1E9400169EB0 /* BTCurrentCourseCell.m in Sources */,
 				5C40302D1E2C98A400C25408 /* NSData+Extension.m in Sources */,
+				006B2A461E2F780D0002A484 /* BTNoCourseCell.m in Sources */,
 				007E563B1E1FE2F9001CFCD4 /* BTLoginNavigationController.m in Sources */,
 				5C41368D1E28C4B700A25AE6 /* BTTagCell.m in Sources */,
 				5C4150901E2DD05A00046514 /* NSArray+Extension.m in Sources */,
