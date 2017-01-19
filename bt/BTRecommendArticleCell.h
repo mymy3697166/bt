@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BTRecommendArticleCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
-
+- (void)setData:(NSArray *)data;
 @end

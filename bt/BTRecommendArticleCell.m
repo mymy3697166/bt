@@ -7,11 +7,20 @@
 //
 
 #import "BTRecommendArticleCell.h"
+#import "BTArticleCell.h"
 
-@implementation BTRecommendArticleCell
+@implementation BTRecommendArticleCell {
+  __weak IBOutlet UICollectionView *cvArticles;
+  NSArray *dataSource;
+}
 
 - (void)awakeFromNib {
   [super awakeFromNib];
+}
+
+- (void)setData:(NSArray *)data {
+  dataSource = data;
+  [cvArticles reloadData];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -23,10 +32,12 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  return 1;
+  return dataSource.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  return [[UICollectionViewCell alloc] init];
+  BTArticleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BTArticleCell" forIndexPath:indexPath];
+  [cell setData:dataSource[indexPath.row]];
+  return cell;
 }
 @end

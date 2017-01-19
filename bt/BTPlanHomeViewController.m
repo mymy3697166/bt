@@ -11,6 +11,7 @@
 #import "BTWeightCell.h"
 #import "BTCurrentCourseCell.h"
 #import "BTNoCourseCell.h"
+#import "BTRecommendArticleCell.h"
 
 @interface BTPlanHomeViewController () <UITableViewDataSource, UITableViewDelegate> {
   __weak IBOutlet UITableView *tvTable;
@@ -24,7 +25,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  tvTable.estimatedRowHeight = 80;
+  tvTable.estimatedRowHeight = 100;
   tvTable.rowHeight = UITableViewAutomaticDimension;
   [Common asyncPost:URL_ACCESSTOKENLOGIN forms:nil completion:^(NSDictionary *data) {
     if (!data) return;
@@ -56,7 +57,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {return 1;}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 2;
+  return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -81,6 +82,14 @@
         BTNoCourseCell *ncCell = (BTNoCourseCell *)cell;
         [ncCell setData:dataSource];
       }
+    } else if (indexPath.section == 2) {
+      cell = [tableView dequeueReusableCellWithIdentifier:@"BTRecommendArticleCell" forIndexPath:indexPath];
+      BTRecommendArticleCell *raCell = (BTRecommendArticleCell *)cell;
+      [raCell setData:dataSource[@"articles"]];
+    } else if (indexPath.section == 3) {
+      cell = [tableView dequeueReusableCellWithIdentifier:@"BTCourseDynamicTitleCell" forIndexPath:indexPath];
+      UILabel *lab = cell.contentView.subviews[0];
+      lab.text = [NSString stringWithFormat:@"有%@人也在执行（%@）", dataSource[@"course_execution_count"], dataSource[@"course_name"]];
     }
   }
   return cell;

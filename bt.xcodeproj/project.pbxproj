@@ -13,6 +13,7 @@
 		00053FF71E27AF4300067791 /* BTHeightPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00053FF61E27AF4300067791 /* BTHeightPickerView.m */; };
 		000540001E27CE1400067791 /* BTWeightPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00053FFF1E27CE1400067791 /* BTWeightPickerView.m */; };
 		000540021E27DA7C00067791 /* BTHeightPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 000540011E27DA7C00067791 /* BTHeightPickerView.xib */; };
+		004F59231E30E1A000A9E522 /* BTArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F59221E30E1A000A9E522 /* BTArticleCell.m */; };
 		006A3DFB1E29FD5C00BD4F10 /* BTConfirmCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A3DFA1E29FD5C00BD4F10 /* BTConfirmCourseViewController.m */; };
 		006B2A461E2F780D0002A484 /* BTNoCourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B2A451E2F780D0002A484 /* BTNoCourseCell.m */; };
 		006B2A491E2FBF8A0002A484 /* BTRecommendArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B2A481E2FBF8A0002A484 /* BTRecommendArticleCell.m */; };
@@ -61,6 +62,8 @@
 		00053FFE1E27CE1400067791 /* BTWeightPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWeightPickerView.h; sourceTree = "<group>"; };
 		00053FFF1E27CE1400067791 /* BTWeightPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWeightPickerView.m; sourceTree = "<group>"; };
 		000540011E27DA7C00067791 /* BTHeightPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTHeightPickerView.xib; sourceTree = "<group>"; };
+		004F59211E30E1A000A9E522 /* BTArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTArticleCell.h; sourceTree = "<group>"; };
+		004F59221E30E1A000A9E522 /* BTArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTArticleCell.m; sourceTree = "<group>"; };
 		006A3DF91E29FD5C00BD4F10 /* BTConfirmCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConfirmCourseViewController.h; sourceTree = "<group>"; };
 		006A3DFA1E29FD5C00BD4F10 /* BTConfirmCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTConfirmCourseViewController.m; sourceTree = "<group>"; };
 		006B2A441E2F780D0002A484 /* BTNoCourseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTNoCourseCell.h; sourceTree = "<group>"; };
@@ -275,6 +278,8 @@
 				006B2A451E2F780D0002A484 /* BTNoCourseCell.m */,
 				006B2A471E2FBF8A0002A484 /* BTRecommendArticleCell.h */,
 				006B2A481E2FBF8A0002A484 /* BTRecommendArticleCell.m */,
+				004F59211E30E1A000A9E522 /* BTArticleCell.h */,
+				004F59221E30E1A000A9E522 /* BTArticleCell.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -328,7 +333,7 @@
 				TargetAttributes = {
 					007E56161E1FCC6A001CFCD4 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 77Z6WQB2YV;
+						DevelopmentTeam = 5ZDM7H945X;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -373,6 +378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				004F59231E30E1A000A9E522 /* BTArticleCell.m in Sources */,
 				5CCE4BB31E24C6C60010DDA5 /* BTInfoViewController.m in Sources */,
 				00053FE01E210A0200067791 /* BTRegisterViewController.m in Sources */,
 				5C41508B1E2DC4C000046514 /* BTCourseHomeCalendarView.m in Sources */,
@@ -524,7 +530,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 77Z6WQB2YV;
+				DEVELOPMENT_TEAM = 5ZDM7H945X;
 				INFOPLIST_FILE = bt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.selfdoctor.bt;
@@ -537,7 +543,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 77Z6WQB2YV;
+				DEVELOPMENT_TEAM = 5ZDM7H945X;
 				INFOPLIST_FILE = bt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.selfdoctor.bt;
