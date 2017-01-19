@@ -19,7 +19,6 @@
   __weak IBOutlet UIImageView *ivAvatar;
   __weak IBOutlet UILabel *labNickname;
   
-  __weak IBOutlet UIView *vStartBg;
   __weak IBOutlet UIButton *btnStart;
   
   NSNumber *courseId;
@@ -57,13 +56,12 @@
 }
 
 - (void)initUI {
-  ivAvatar.clipsToBounds = YES;
+  ivAvatar.layer.masksToBounds = YES;
   ivAvatar.layer.cornerRadius = 16;
   
-  vStartBg.clipsToBounds = YES;
-  vStartBg.layer.cornerRadius = 20;
-  btnStart.clipsToBounds = YES;
-  btnStart.layer.cornerRadius = 19;
+  btnStart.layer.cornerRadius = 20;
+  btnStart.layer.borderWidth = 1;
+  btnStart.layer.borderColor = RGB(170, 170, 170).CGColor;
 }
 
 - (IBAction)startClick:(UIButton *)sender {

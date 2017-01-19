@@ -12,17 +12,9 @@
 #import "BTWeightPickerView.h"
 
 @interface BTInfoViewController () <BTDatePickerViewDelegate, BTHeightPickerViewDelegate, BTWeightPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
-  __weak IBOutlet UIView *avatarBgView;
   __weak IBOutlet UIButton *btnAvatar;
-  
-  __weak IBOutlet UIView *genderBgFView;
-  __weak IBOutlet UIView *genderFView;
   __weak IBOutlet UIButton *btnGenderF;
-  
-  __weak IBOutlet UIView *genderBgMView;
-  __weak IBOutlet UIView *genderMView;
   __weak IBOutlet UIButton *btnGenderM;
-  
   __weak IBOutlet UITextField *tbDob;
   __weak IBOutlet UITextField *tbNickname;
   __weak IBOutlet UITextField *tbHeight;
@@ -65,28 +57,24 @@
 - (void)initUI {
   self.navigationItem.hidesBackButton = YES;
   [self.view layoutIfNeeded];
-  avatarBgView.clipsToBounds = YES;
-  avatarBgView.layer.cornerRadius = avatarBgView.bounds.size.width / 2;
-  
-  genderBgFView.clipsToBounds = YES;
-  genderBgFView.layer.cornerRadius = 16;
-  genderFView.clipsToBounds = YES;
-  genderFView.layer.cornerRadius = 15;
-  
-  genderBgMView.clipsToBounds = YES;
-  genderBgMView.layer.cornerRadius = 16;
-  genderMView.clipsToBounds = YES;
-  genderMView.layer.cornerRadius = 15;
+  btnAvatar.layer.masksToBounds = YES;
+  btnAvatar.layer.cornerRadius = btnAvatar.bounds.size.width / 2;
+  btnGenderF.layer.cornerRadius = 15;
+  btnGenderF.layer.borderWidth = 1;
+  btnGenderF.layer.borderColor = RGB(236, 82, 72).CGColor;
+  btnGenderM.layer.cornerRadius = 15;
+  btnGenderM.layer.borderWidth = 1;
+  btnGenderM.layer.borderColor = RGB(170, 170, 170).CGColor;
 }
 
 - (IBAction)genderFClick:(UIButton *)sender {
   btnGenderF.titleLabel.textColor = RGB(236, 82, 72);
   [btnGenderF setTitleColor:RGB(236, 82, 72) forState:UIControlStateNormal];
-  genderBgFView.backgroundColor = RGB(236, 82, 72);
-  
-  btnGenderM.titleLabel.textColor = [UIColor lightGrayColor];
+  btnGenderF.layer.borderColor = RGB(236, 82, 72).CGColor;
+
+  btnGenderM.titleLabel.textColor = RGB(170, 170, 170);
   [btnGenderM setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-  genderBgMView.backgroundColor = [UIColor lightGrayColor];
+  btnGenderM.layer.borderColor = RGB(170, 170, 170).CGColor;
   
   gender = @"F";
 }
@@ -94,11 +82,11 @@
 - (IBAction)genderMClick:(UIButton *)sender {
   btnGenderM.titleLabel.textColor = RGB(0, 178, 255);
   [btnGenderM setTitleColor:RGB(0, 178, 255) forState:UIControlStateNormal];
-  genderBgMView.backgroundColor = RGB(0, 178, 255);
+  btnGenderM.layer.borderColor = RGB(0, 178, 255).CGColor;
   
-  btnGenderF.titleLabel.textColor = [UIColor lightGrayColor];
-  [btnGenderF setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-  genderBgFView.backgroundColor = [UIColor lightGrayColor];
+  btnGenderF.titleLabel.textColor = RGB(170, 170, 170);
+  [btnGenderF setTitleColor:RGB(170, 170, 170) forState:UIControlStateNormal];
+  btnGenderF.layer.borderColor = RGB(170, 170, 170).CGColor;
   
   gender = @"M";
 }

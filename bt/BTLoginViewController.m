@@ -18,7 +18,6 @@
 @implementation BTLoginViewController
 - (void)viewDidLoad {
   [super viewDidLoad];
-  btnLogin.clipsToBounds = YES;
   btnLogin.layer.cornerRadius = 23;
 }
 

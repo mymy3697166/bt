@@ -10,6 +10,7 @@
 #import "BTLoginNavigationController.h"
 #import "BTWeightCell.h"
 #import "BTCurrentCourseCell.h"
+#import "BTNoCourseCell.h"
 
 @interface BTPlanHomeViewController () <UITableViewDataSource, UITableViewDelegate> {
   __weak IBOutlet UITableView *tvTable;
@@ -71,9 +72,15 @@
       wCell.weight = User.weight;
       wCell.diff = @0;
     } else if (indexPath.section == 1) {
-      cell = [tableView dequeueReusableCellWithIdentifier:@"BTCurrentCourseCell" forIndexPath:indexPath];
-      BTCurrentCourseCell *ccCell = (BTCurrentCourseCell *)cell;
-      [ccCell setData:dataSource];
+      if (dataSource[@"start_time"]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"BTCurrentCourseCell" forIndexPath:indexPath];
+        BTCurrentCourseCell *ccCell = (BTCurrentCourseCell *)cell;
+        [ccCell setData:dataSource];
+      } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"BTNoCourseCell" forIndexPath:indexPath];
+        BTNoCourseCell *ncCell = (BTNoCourseCell *)cell;
+        [ncCell setData:dataSource];
+      }
     }
   }
   return cell;
