@@ -48,6 +48,7 @@
 #define URL_FETCHRECOMMENTCOURSE [URL_BASE stringByAppendingString:@"api_v2/health_course/fetch_recomment_course"]
 #define URL_JOINCOURSE [URL_BASE stringByAppendingString:@"api_v2/health_course/join_course"]
 #define URL_FETCHPLANHOME [URL_BASE stringByAppendingString:@"api_v2/health_course/fetch"]
+#define URL_FETCHDYNAMICS [URL_BASE stringByAppendingString:@"api_v2/health_dynamic/fetch_new_dynamics"]
 
 @interface BTCommon : NSObject
 /// 信息提示

@@ -26,7 +26,6 @@
 
 - (void)awakeFromNib {
   [super awakeFromNib];
-  btnCourse.clipsToBounds = YES;
   btnCourse.layer.cornerRadius = 16;
 }
 
@@ -55,8 +54,8 @@
   }];
   // 渲染日历
   NSMutableArray *dates = [NSMutableArray array];
-  for (int i = 0; i < 6; i++) {
-    CGFloat w = (vCalendar.bounds.size.width - 32) / 6;
+  for (int i = 0; i < 5; i++) {
+    CGFloat w = (vCalendar.bounds.size.width - 32) / 5;
     BTCourseHomeCalendarView *view = [[BTCourseHomeCalendarView alloc] init];
     [view.ivIcon tintColor:[UIColor lightGrayColor]];
     NSDate *date = [[[NSDate date] toDate] dateByAddingTimeInterval:86400 * i];

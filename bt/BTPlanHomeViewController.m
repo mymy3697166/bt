@@ -57,7 +57,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {return 1;}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 4;
+  return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -90,6 +90,8 @@
       cell = [tableView dequeueReusableCellWithIdentifier:@"BTCourseDynamicTitleCell" forIndexPath:indexPath];
       UILabel *lab = cell.contentView.subviews[0];
       lab.text = [NSString stringWithFormat:@"有%@人也在执行（%@）", dataSource[@"course_execution_count"], dataSource[@"course_name"]];
+    } else {
+      cell = [tableView dequeueReusableCellWithIdentifier:@"BTDynamicCell" forIndexPath:indexPath];
     }
   }
   return cell;
