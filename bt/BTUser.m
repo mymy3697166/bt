@@ -27,11 +27,7 @@
   [ud setObject:uid forKey:@"USER-UID"];
 }
 
-- (NSString *)token {
-  NSString *tk = [ud objectForKey:@"USER-TOKEN"];
-  if (tk != nil) return [ud objectForKey:@"USER-TOKEN"];
-  else return @"BBA8A2567B5095FEF4E316F532903571";
-}
+- (NSString *)token {return [ud objectForKey:@"USER-TOKEN"];}
 - (void)setToken:(NSString *)token {
   if (token == nil) {
     [ud removeObjectForKey:@"USER-TOKEN"];
@@ -122,10 +118,10 @@
     if (!data) return;
     if ([data[@"status"] isEqual:@0]) {
       User.token = data[@"data"][@"access_token"];
-      [N postNotificationName:@"NLOGINCOMPLETE" object:nil];
     } else {
       [self clearData];
     }
+    [N postNotificationName:@"NLOGINCOMPLETE" object:nil];
   }];
 }
 

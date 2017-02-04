@@ -16,9 +16,12 @@
 
 @interface BTPlanHomeViewController () <UITableViewDataSource, UITableViewDelegate> {
   __weak IBOutlet UITableView *tvTable;
+  __weak IBOutlet UIView *vNoLogin;
+  __weak IBOutlet UIButton *btnLogin;
   
   NSDictionary *dataSource;
   NSArray *dynamics;
+  UIImageView *btn;
 }
 
 @end
@@ -29,25 +32,30 @@
   [super viewDidLoad];
   tvTable.estimatedRowHeight = 100;
   tvTable.rowHeight = UITableViewAutomaticDimension;
+  btnLogin.layer.cornerRadius = 5;
   [N addObserver:self selector:@selector(loginComplete) name:@"NLOGINCOMPLETE" object:nil];
   
+  btn = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
+  btn.clipsToBounds = YES;
+  btn.layer.cornerRadius = 18;
+  btn.image = [UIImage imageNamed:@"info_avatar"];
+  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
 }
 
 - (void)loginComplete {
-  UIImageView *btn = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
-  btn.clipsToBounds = YES;
-  btn.layer.cornerRadius = 18;
-  [btn loadURL:[URL_AVATARPATH stringByAppendingString:User.avatar]];
-  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-  [Common asyncPost:URL_FETCHPLANHOME forms:@{@"weight": @1, @"article": @1, @"difference": @1, @"course": @1} completion:^(NSDictionary *data) {
-    if (!data) return;
-    if ([data[@"status"] isEqual:@0]) {
-      dataSource = data[@"data"];
-      [tvTable reloadData];
-    } else {
-      [Common info:data[@"description"]];
-    }
-  }];
+  if (User.avatar != nil)
+    [btn loadURL:[URL_AVATARPATH stringByAppendingString:User.avatar]];
+  if (User.uid != nil) {
+    [Common asyncPost:URL_FETCHPLANHOME forms:@{@"weight": @1, @"article": @1, @"difference": @1, @"course": @1} completion:^(NSDictionary *data) {
+      if (!data) return;
+      if ([data[@"status"] isEqual:@0]) {
+        dataSource = data[@"data"];
+        [tvTable reloadData];
+      } else {
+        [Common info:data[@"description"]];
+      }
+    }];
+  }
   [Common asyncPost:URL_FETCHDYNAMICS forms:@{@"course": @1} completion:^(NSDictionary *data) {
     if (!data) return;
     if ([data[@"status"] isEqual:@0]) {
@@ -105,5 +113,10 @@
     }
   }
   return cell;
+}
+
+- (IBAction)btnLoginClick:(UIButton *)sender {
+  BTLoginNavigationController *lnc = [self.storyboard instantiateViewControllerWithIdentifier:@"BTLoginNavigationController"];
+  [self presentViewController:lnc animated:YES completion:nil];
 }
 @end

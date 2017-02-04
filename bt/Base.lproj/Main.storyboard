@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5WH-py-XBv">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5WH-py-XBv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -728,10 +728,26 @@
                                             <constraint firstAttribute="width" constant="260" id="yW5-Rk-9Jn"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruh-kk-GKv">
+                                        <rect key="frame" x="60" y="405" width="255" height="40"/>
+                                        <color key="backgroundColor" red="0.1215686275" green="0.72549019609999998" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="tP1-56-8Ye"/>
+                                        </constraints>
+                                        <state key="normal" title="登陆">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnLoginClick:" destination="9QY-6N-VBO" eventType="touchUpInside" id="5VP-RF-RSS"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="aMf-Ov-cgI" secondAttribute="trailing" id="67M-df-7ob"/>
+                                    <constraint firstItem="ruh-kk-GKv" firstAttribute="top" secondItem="aMf-Ov-cgI" secondAttribute="bottom" constant="30" id="HLO-5j-LVe"/>
+                                    <constraint firstItem="ruh-kk-GKv" firstAttribute="leading" secondItem="dQF-qj-o8m" secondAttribute="leading" constant="60" id="HSX-07-iFX"/>
+                                    <constraint firstAttribute="trailing" secondItem="ruh-kk-GKv" secondAttribute="trailing" constant="60" id="N60-RI-hR2"/>
                                     <constraint firstItem="aMf-Ov-cgI" firstAttribute="leading" secondItem="dQF-qj-o8m" secondAttribute="leading" id="gnN-2X-obv"/>
                                     <constraint firstItem="aMf-Ov-cgI" firstAttribute="top" secondItem="dQF-qj-o8m" secondAttribute="top" id="nIm-n7-ub3"/>
                                     <constraint firstItem="CW9-7Y-yHW" firstAttribute="centerY" secondItem="aMf-Ov-cgI" secondAttribute="centerY" id="sdG-VX-8WQ"/>
@@ -759,7 +775,9 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1800"/>
                     <connections>
+                        <outlet property="btnLogin" destination="ruh-kk-GKv" id="BeP-Oh-VWw"/>
                         <outlet property="tvTable" destination="xVQ-0c-7UK" id="lPJ-Sx-Xip"/>
+                        <outlet property="vNoLogin" destination="dQF-qj-o8m" id="dku-82-965"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IzU-bY-WPV" userLabel="First Responder" sceneMemberID="firstResponder"/>

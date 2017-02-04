@@ -52,6 +52,7 @@
   request.timeoutInterval = 10;
   [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
   if (User.token != nil) [request setValue:User.token forHTTPHeaderField:@"mtoken"];
+  else [request setValue:@"BBA8A2567B5095FEF4E316F532903571" forHTTPHeaderField:@"mtoken"];
   NSError *error;
   if (forms) {
     request.HTTPBody = [NSJSONSerialization dataWithJSONObject:forms options:kNilOptions error:&error];
