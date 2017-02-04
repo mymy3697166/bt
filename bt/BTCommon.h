@@ -18,6 +18,7 @@
 
 #define Common [[BTCommon alloc] init]
 #define User [[BTUser alloc] init]
+#define N [NSNotificationCenter defaultCenter]
 
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1]
 #define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
@@ -28,8 +29,8 @@
 #define URL_BASE @"http://test.renjk.com/"
 #define URL_PATH @"http://testassets.renjk.com/"
 #else
-#define URL_BASE @"http://test.renjk.com/"
-#define URL_PATH @"http://testassets.renjk.com/"
+#define URL_BASE @"http://www.renjk.com/"
+#define URL_PATH @"http://assets.renjk.com/"
 #endif
 #define URL_TEST [URL_BASE stringByAppendingString:@"api_v2/mem/test"]
 #define URL_AVATARPATH [URL_PATH stringByAppendingString:@"mem/"]

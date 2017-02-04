@@ -12,11 +12,13 @@
 #import "BTCurrentCourseCell.h"
 #import "BTNoCourseCell.h"
 #import "BTRecommendArticleCell.h"
+#import "BTDynamicCell.h"
 
 @interface BTPlanHomeViewController () <UITableViewDataSource, UITableViewDelegate> {
   __weak IBOutlet UITableView *tvTable;
   
   NSDictionary *dataSource;
+  NSArray *dynamics;
 }
 
 @end
@@ -27,27 +29,33 @@
   [super viewDidLoad];
   tvTable.estimatedRowHeight = 100;
   tvTable.rowHeight = UITableViewAutomaticDimension;
-  [Common asyncPost:URL_ACCESSTOKENLOGIN forms:nil completion:^(NSDictionary *data) {
+  [N addObserver:self selector:@selector(loginComplete) name:@"NLOGINCOMPLETE" object:nil];
+  
+}
+
+- (void)loginComplete {
+  UIImageView *btn = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
+  btn.clipsToBounds = YES;
+  btn.layer.cornerRadius = 18;
+  [btn loadURL:[URL_AVATARPATH stringByAppendingString:User.avatar]];
+  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+  [Common asyncPost:URL_FETCHPLANHOME forms:@{@"weight": @1, @"article": @1, @"difference": @1, @"course": @1} completion:^(NSDictionary *data) {
     if (!data) return;
     if ([data[@"status"] isEqual:@0]) {
-      User.token = data[@"data"][@"access_token"];
-      UIImageView *btn = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
-      btn.clipsToBounds = YES;
-      btn.layer.cornerRadius = 18;
-      [btn loadURL:[URL_AVATARPATH stringByAppendingString:User.avatar]];
-      self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-      [Common asyncPost:URL_FETCHPLANHOME forms:@{@"weight": @1, @"article": @1, @"difference": @1, @"course": @1} completion:^(NSDictionary *data) {
-        if (!data) return;
-        if ([data[@"status"] isEqual:@0]) {
-          dataSource = data[@"data"];
-          [tvTable reloadData];
-        } else {
-          [Common info:data[@"description"]];
-        }
-      }];
+      dataSource = data[@"data"];
+      [tvTable reloadData];
     } else {
-      BTLoginNavigationController *lnc = [self.storyboard instantiateViewControllerWithIdentifier:@"BTLoginNavigationController"];
-      [self presentViewController:lnc animated:YES completion:nil];
+      [Common info:data[@"description"]];
+    }
+  }];
+  [Common asyncPost:URL_FETCHDYNAMICS forms:@{@"course": @1} completion:^(NSDictionary *data) {
+    if (!data) return;
+    if ([data[@"status"] isEqual:@0]) {
+      dynamics = data[@"data"];
+      NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:4];
+      [tvTable reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+    } else {
+      [Common info:data[@"description"]];
     }
   }];
 }
@@ -92,6 +100,8 @@
       lab.text = [NSString stringWithFormat:@"有%@人也在执行（%@）", dataSource[@"course_execution_count"], dataSource[@"course_name"]];
     } else {
       cell = [tableView dequeueReusableCellWithIdentifier:@"BTDynamicCell" forIndexPath:indexPath];
+      BTDynamicCell *dCell = (BTDynamicCell *)cell;
+      dCell.data = dynamics[indexPath.row];
     }
   }
   return cell;

@@ -19,6 +19,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   btnLogin.layer.cornerRadius = 23;
+  
+  [N addObserver:self selector:@selector(closeClick:) name:@"NLOGINCOMPLETE" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,25 +49,7 @@
     [Common info:@"请输入密码"];
     return;
   }
-  NSDictionary *forms = @{@"uid": tbUid.text, @"pwd": tbPwd.text, @"scope": @"description"};
-  [Common showLoading];
-  [Common asyncPost:URL_LOGIN forms:forms completion:^(NSDictionary *data) {
-    [Common hideLoading];
-    if (data == nil) return;
-    if ([data[@"status"] isEqual:@0]) {
-      User.uid = data[@"data"][@"mid"];
-      User.token = data[@"data"][@"access_token"];
-      if (![data[@"data"][@"nc"] null]) User.nickname = data[@"data"][@"nc"];
-      if (![data[@"data"][@"avatar"] null]) User.avatar = data[@"data"][@"avatar"];
-      if (![data[@"data"][@"gender"] null]) User.gender = data[@"data"][@"gender"];
-      if (![data[@"data"][@"dob"] null]) User.dob = [((NSString *)data[@"data"][@"dob"]) toDateWithFormat:@"yyyy-MM-dd"];
-      if (![data[@"data"][@"height"] null]) User.height = data[@"data"][@"height"];
-      if (![data[@"data"][@"weight"] null]) User.weight = data[@"data"][@"weight"];
-      [self closeClick:nil];
-    } else {
-      [Common info:data[@"description"]];
-    }
-  }];
+  [User login:tbUid.text pwd:tbPwd.text];
 }
 
 - (IBAction)closeClick:(UIButton *)sender {
