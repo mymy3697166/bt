@@ -20,8 +20,6 @@
   __weak IBOutlet UIButton *btnLogin;
   
   NSDictionary *dataSource;
-  NSArray *dynamics;
-  UIImageView *btn;
 }
 
 @end
@@ -34,12 +32,6 @@
   tvTable.rowHeight = UITableViewAutomaticDimension;
   btnLogin.layer.cornerRadius = 5;
   [N addObserver:self selector:@selector(loginComplete) name:@"NLOGINCOMPLETE" object:nil];
-  
-  btn = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
-  btn.clipsToBounds = YES;
-  btn.layer.cornerRadius = 18;
-  btn.image = [UIImage imageNamed:@"info_avatar"];
-  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
 }
 
 - (void)loginComplete {
@@ -68,16 +60,17 @@
   }];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {return 1;}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {return 0.0001;}
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {return 1;}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {return 0.0001;}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 5;
+  return dataSource.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return 1;
+  NSArray *ds = dataSource[]
+  return dataSource.allKeys[section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

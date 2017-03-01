@@ -15,18 +15,13 @@
   __weak IBOutlet UILabel *labDiff;
 }
 
-- (void)setWeight:(NSNumber *)weight {
-  _weight = weight;
-  labWeight.text = [weight stringValue];
-}
-
-- (void)setDiff:(NSNumber *)diff {
-  _diff = diff;
-  labDiff.text = [NSString stringWithFormat:@"已减轻%@kg", diff];
-}
-
 - (void)awakeFromNib {
   [super awakeFromNib];
+}
+
+- (void)setData:(NSDictionary *)data {
+  labWeight.text = [data[@"weight"] stringValue];
+  labDiff.text = [NSString stringWithFormat:@"已减轻%@kg", data[@"difference"]];
 }
 
 - (IBAction)editClick:(UIButton *)sender {

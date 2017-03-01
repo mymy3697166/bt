@@ -159,7 +159,7 @@
   dispatch_async(dispatch_queue_create(nil, nil), ^{
     NSFileManager *fm = [NSFileManager defaultManager];
     NSString *fn = [NSString stringWithFormat:@"%@.jpg", [url md5]];
-    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
     NSString *imagesPath = [docPath stringByAppendingPathComponent:@"images"];
     NSString *fp = [imagesPath stringByAppendingPathComponent:fn];
     if (![fm fileExistsAtPath:fp]) {

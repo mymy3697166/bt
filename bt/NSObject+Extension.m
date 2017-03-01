@@ -10,7 +10,6 @@
 
 @implementation NSObject(Extension)
 - (BOOL)null {
-  if (!self) return YES;
   if ([self isKindOfClass:[NSNull class]]) return YES;
   if ([self isKindOfClass:[NSString class]]) return [self isEqual:@""];
   if ([self isKindOfClass:[NSNumber class]]) return [self isEqual:@0];

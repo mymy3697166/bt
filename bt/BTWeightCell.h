@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BTWeightCell : UITableViewCell
-@property (strong, nonatomic) NSNumber *weight;
-@property (strong, nonatomic) NSNumber *diff;
+- (void)setData:(NSDictionary *)data;
 @end

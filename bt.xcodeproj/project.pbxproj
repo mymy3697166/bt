@@ -14,6 +14,7 @@
 		000540001E27CE1400067791 /* BTWeightPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00053FFF1E27CE1400067791 /* BTWeightPickerView.m */; };
 		000540021E27DA7C00067791 /* BTHeightPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 000540011E27DA7C00067791 /* BTHeightPickerView.xib */; };
 		004F59231E30E1A000A9E522 /* BTArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F59221E30E1A000A9E522 /* BTArticleCell.m */; };
+		0066B8751E66FE0D004169CB /* BTWeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0066B8741E66FE0D004169CB /* BTWeightCell.xib */; };
 		006A3DFB1E29FD5C00BD4F10 /* BTConfirmCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A3DFA1E29FD5C00BD4F10 /* BTConfirmCourseViewController.m */; };
 		006B2A461E2F780D0002A484 /* BTNoCourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B2A451E2F780D0002A484 /* BTNoCourseCell.m */; };
 		006B2A491E2FBF8A0002A484 /* BTRecommendArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B2A481E2FBF8A0002A484 /* BTRecommendArticleCell.m */; };
@@ -65,6 +66,7 @@
 		000540011E27DA7C00067791 /* BTHeightPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTHeightPickerView.xib; sourceTree = "<group>"; };
 		004F59211E30E1A000A9E522 /* BTArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTArticleCell.h; sourceTree = "<group>"; };
 		004F59221E30E1A000A9E522 /* BTArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTArticleCell.m; sourceTree = "<group>"; };
+		0066B8741E66FE0D004169CB /* BTWeightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTWeightCell.xib; sourceTree = "<group>"; };
 		006A3DF91E29FD5C00BD4F10 /* BTConfirmCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConfirmCourseViewController.h; sourceTree = "<group>"; };
 		006A3DFA1E29FD5C00BD4F10 /* BTConfirmCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTConfirmCourseViewController.m; sourceTree = "<group>"; };
 		006B2A441E2F780D0002A484 /* BTNoCourseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTNoCourseCell.h; sourceTree = "<group>"; };
@@ -175,6 +177,47 @@
 			name = libraries;
 			sourceTree = "<group>";
 		};
+		0066B8761E66FE1A004169CB /* login */ = {
+			isa = PBXGroup;
+			children = (
+				5C3F7F8B1E25C0C50057D831 /* BTDatePickerView.h */,
+				5C3F7F8C1E25C0C50057D831 /* BTDatePickerView.m */,
+				5C3F7F8E1E25C1410057D831 /* BTDatePickerView.xib */,
+				00053FF51E27AF4300067791 /* BTHeightPickerView.h */,
+				00053FF61E27AF4300067791 /* BTHeightPickerView.m */,
+				000540011E27DA7C00067791 /* BTHeightPickerView.xib */,
+				00053FFE1E27CE1400067791 /* BTWeightPickerView.h */,
+				00053FFF1E27CE1400067791 /* BTWeightPickerView.m */,
+				5C4136861E285F5000A25AE6 /* BTWeightPickerView.xib */,
+				5C41368B1E28C4B700A25AE6 /* BTTagCell.h */,
+				5C41368C1E28C4B700A25AE6 /* BTTagCell.m */,
+			);
+			name = login;
+			sourceTree = "<group>";
+		};
+		0066B8771E66FE21004169CB /* plan */ = {
+			isa = PBXGroup;
+			children = (
+				006DF81A1E2D0DCE00169EB0 /* BTWeightCell.h */,
+				006DF81B1E2D0DCE00169EB0 /* BTWeightCell.m */,
+				0066B8741E66FE0D004169CB /* BTWeightCell.xib */,
+				006DF81D1E2D1E9400169EB0 /* BTCurrentCourseCell.h */,
+				006DF81E1E2D1E9400169EB0 /* BTCurrentCourseCell.m */,
+				5C4150891E2DC4C000046514 /* BTCourseHomeCalendarView.h */,
+				5C41508A1E2DC4C000046514 /* BTCourseHomeCalendarView.m */,
+				5C41508C1E2DC4D500046514 /* BTCourseHomeCalendarView.xib */,
+				006B2A441E2F780D0002A484 /* BTNoCourseCell.h */,
+				006B2A451E2F780D0002A484 /* BTNoCourseCell.m */,
+				006B2A471E2FBF8A0002A484 /* BTRecommendArticleCell.h */,
+				006B2A481E2FBF8A0002A484 /* BTRecommendArticleCell.m */,
+				004F59211E30E1A000A9E522 /* BTArticleCell.h */,
+				004F59221E30E1A000A9E522 /* BTArticleCell.m */,
+				5C9A8EEF1E3450540014D736 /* BTDynamicCell.h */,
+				5C9A8EF01E3450540014D736 /* BTDynamicCell.m */,
+			);
+			name = plan;
+			sourceTree = "<group>";
+		};
 		007E560E1E1FCC6A001CFCD4 = {
 			isa = PBXGroup;
 			children = (
@@ -259,32 +302,8 @@
 		5C3F7F8A1E25BFBD0057D831 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				5C3F7F8B1E25C0C50057D831 /* BTDatePickerView.h */,
-				5C3F7F8C1E25C0C50057D831 /* BTDatePickerView.m */,
-				5C3F7F8E1E25C1410057D831 /* BTDatePickerView.xib */,
-				00053FF51E27AF4300067791 /* BTHeightPickerView.h */,
-				00053FF61E27AF4300067791 /* BTHeightPickerView.m */,
-				000540011E27DA7C00067791 /* BTHeightPickerView.xib */,
-				00053FFE1E27CE1400067791 /* BTWeightPickerView.h */,
-				00053FFF1E27CE1400067791 /* BTWeightPickerView.m */,
-				5C4136861E285F5000A25AE6 /* BTWeightPickerView.xib */,
-				5C41368B1E28C4B700A25AE6 /* BTTagCell.h */,
-				5C41368C1E28C4B700A25AE6 /* BTTagCell.m */,
-				006DF81A1E2D0DCE00169EB0 /* BTWeightCell.h */,
-				006DF81B1E2D0DCE00169EB0 /* BTWeightCell.m */,
-				006DF81D1E2D1E9400169EB0 /* BTCurrentCourseCell.h */,
-				006DF81E1E2D1E9400169EB0 /* BTCurrentCourseCell.m */,
-				5C4150891E2DC4C000046514 /* BTCourseHomeCalendarView.h */,
-				5C41508A1E2DC4C000046514 /* BTCourseHomeCalendarView.m */,
-				5C41508C1E2DC4D500046514 /* BTCourseHomeCalendarView.xib */,
-				006B2A441E2F780D0002A484 /* BTNoCourseCell.h */,
-				006B2A451E2F780D0002A484 /* BTNoCourseCell.m */,
-				006B2A471E2FBF8A0002A484 /* BTRecommendArticleCell.h */,
-				006B2A481E2FBF8A0002A484 /* BTRecommendArticleCell.m */,
-				004F59211E30E1A000A9E522 /* BTArticleCell.h */,
-				004F59221E30E1A000A9E522 /* BTArticleCell.m */,
-				5C9A8EEF1E3450540014D736 /* BTDynamicCell.h */,
-				5C9A8EF01E3450540014D736 /* BTDynamicCell.m */,
+				0066B8761E66FE1A004169CB /* login */,
+				0066B8771E66FE21004169CB /* plan */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -373,6 +392,7 @@
 				5C3F7F8F1E25C1410057D831 /* BTDatePickerView.xib in Resources */,
 				007E56251E1FCC6A001CFCD4 /* Main.storyboard in Resources */,
 				5C41508D1E2DC4D500046514 /* BTCourseHomeCalendarView.xib in Resources */,
+				0066B8751E66FE0D004169CB /* BTWeightCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

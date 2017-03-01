@@ -10,16 +10,8 @@
 
 @implementation UIImageView(Extension)
 - (void)loadURL:(NSString *)url {
-  UIView *dView = [[UIView alloc] initWithFrame:self.frame];
-  dView.backgroundColor = [UIColor lightGrayColor];
-  [self.superview addSubview:dView];
   [Common cacheImage:url completion:^(UIImage *image) {
     self.image = image;
-    [UIView animateWithDuration:0.1 animations:^{
-      dView.alpha = 0;
-    } completion:^(BOOL finished) {
-      [dView removeFromSuperview];
-    }];
   }];
 }
 
