@@ -19,6 +19,6 @@
 @property (strong, nonatomic) NSNumber *height;
 /// 登录
 - (void)login:(NSString *)uid pwd:(NSString *)pwd;
-/// 自动登录
+/// 自动登录··
 - (void)autoLogin;
 @end
