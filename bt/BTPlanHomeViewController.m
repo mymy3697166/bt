@@ -27,6 +27,7 @@
 @implementation BTPlanHomeViewController
 
 - (void)viewDidLoad {
+  
   [super viewDidLoad];
   tvTable.estimatedRowHeight = 100;
   tvTable.rowHeight = UITableViewAutomaticDimension;
