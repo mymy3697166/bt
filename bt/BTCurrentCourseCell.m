@@ -21,7 +21,8 @@
   __weak IBOutlet UILabel *labDuration;
   __weak IBOutlet UILabel *labCaloire;
   __weak IBOutlet UILabel *labComplete;
-  __weak IBOutlet UILabel *labRestDesc;
+  __weak IBOutlet UIView *vCourse;
+  __weak IBOutlet UIView *vRest;
 }
 
 - (void)awakeFromNib {
@@ -105,13 +106,7 @@
   BOOL rest = [plan[@"id"] isEqual:@0];
   if (rest) {
     labTitle.text = @"今日休息";
-    ivPlanImage.image = [UIImage imageNamed:@"rest_day"];
-    ivComplete.hidden = YES;
-    labPlanTitle.hidden = YES;
-    labLevel.hidden = YES;
-    labDuration.hidden = YES;
-    labCaloire.hidden = YES;
-    labComplete.hidden = YES;
+    vRest.hidden = NO;
   } else {
     labTitle.text = @"今日训练";
     [ivPlanImage loadURL:[URL_IMAGEPATH stringByAppendingString:plan[@"cover"]]];
@@ -129,7 +124,6 @@
     labLevel.text = [NSString stringWithFormat:@"%@ / %@", plan[@"level_name"], plan[@"tool"]];
     labDuration.text = [NSString stringWithFormat:@"耗时：%@", plan[@"duration"]];
     labCaloire.text = [NSString stringWithFormat:@"消耗热量：%@kcal", plan[@"calorie"]];
-    labRestDesc.hidden = YES;
   }
 }
 

@@ -49,7 +49,7 @@
     [Common info:@"请输入密码"];
     return;
   }
-  [User login:tbUid.text pwd:tbPwd.text];
+  [BTUser loginWithMobilePhone:tbUid.text andPwd:tbPwd.text];
 }
 
 - (IBAction)closeClick:(UIButton *)sender {

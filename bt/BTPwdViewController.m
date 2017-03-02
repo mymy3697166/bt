@@ -37,8 +37,8 @@
     [Common hideLoading];
     if (data == nil) return;
     if ([data[@"status"] isEqual:@0]) {
-      User.uid = data[@"data"][@"mid"];
-      User.token = data[@"data"][@"access_token"];
+      U.mid = data[@"data"][@"mid"];
+      U.token = data[@"data"][@"access_token"];
       [self performSegueWithIdentifier:@"pwd_info" sender:nil];
     } else [Common info:data[@"description"]];
   }];

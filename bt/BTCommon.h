@@ -17,7 +17,8 @@
 #import "NSArray+Extension.h"
 
 #define Common [[BTCommon alloc] init]
-#define User [[BTUser alloc] init]
+#define R [RLMRealm defaultRealm]
+#define U [BTUser currentUser]
 #define N [NSNotificationCenter defaultCenter]
 
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1]

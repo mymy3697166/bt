@@ -47,10 +47,27 @@
 		5C4150901E2DD05A00046514 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C41508F1E2DD05A00046514 /* NSArray+Extension.m */; };
 		5C4389A51E2329E5009C7C75 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4389A41E2329E5009C7C75 /* MBProgressHUD.m */; };
 		5C4389A91E232F40009C7C75 /* BTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4389A81E232F40009C7C75 /* BTUser.m */; };
+		5C50523C1E67BB9E009DBA33 /* BTCurrentCourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C50523B1E67BB9E009DBA33 /* BTCurrentCourseCell.xib */; };
+		5C5052441E67ED6F009DBA33 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5052431E67ED6F009DBA33 /* Realm.framework */; };
+		5C5052451E67ED6F009DBA33 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5052431E67ED6F009DBA33 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5C9A8EF11E3450540014D736 /* BTDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9A8EF01E3450540014D736 /* BTDynamicCell.m */; };
 		5CCE4BB01E24A4F20010DDA5 /* BTPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCE4BAF1E24A4F20010DDA5 /* BTPwdViewController.m */; };
 		5CCE4BB31E24C6C60010DDA5 /* BTInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCE4BB21E24C6C60010DDA5 /* BTInfoViewController.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5C5052461E67ED6F009DBA33 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5C5052451E67ED6F009DBA33 /* Realm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00053FDE1E210A0200067791 /* BTRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRegisterViewController.h; sourceTree = "<group>"; };
@@ -126,6 +143,8 @@
 		5C4389A41E2329E5009C7C75 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		5C4389A71E232F40009C7C75 /* BTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUser.h; sourceTree = "<group>"; };
 		5C4389A81E232F40009C7C75 /* BTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTUser.m; sourceTree = "<group>"; };
+		5C50523B1E67BB9E009DBA33 /* BTCurrentCourseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTCurrentCourseCell.xib; sourceTree = "<group>"; };
+		5C5052431E67ED6F009DBA33 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		5C9A8EEF1E3450540014D736 /* BTDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDynamicCell.h; sourceTree = "<group>"; };
 		5C9A8EF01E3450540014D736 /* BTDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDynamicCell.m; sourceTree = "<group>"; };
 		5CCE4BAE1E24A4F20010DDA5 /* BTPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTPwdViewController.h; sourceTree = "<group>"; };
@@ -139,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C5052441E67ED6F009DBA33 /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,11 +221,12 @@
 				006DF81A1E2D0DCE00169EB0 /* BTWeightCell.h */,
 				006DF81B1E2D0DCE00169EB0 /* BTWeightCell.m */,
 				0066B8741E66FE0D004169CB /* BTWeightCell.xib */,
-				006DF81D1E2D1E9400169EB0 /* BTCurrentCourseCell.h */,
-				006DF81E1E2D1E9400169EB0 /* BTCurrentCourseCell.m */,
 				5C4150891E2DC4C000046514 /* BTCourseHomeCalendarView.h */,
 				5C41508A1E2DC4C000046514 /* BTCourseHomeCalendarView.m */,
 				5C41508C1E2DC4D500046514 /* BTCourseHomeCalendarView.xib */,
+				006DF81D1E2D1E9400169EB0 /* BTCurrentCourseCell.h */,
+				006DF81E1E2D1E9400169EB0 /* BTCurrentCourseCell.m */,
+				5C50523B1E67BB9E009DBA33 /* BTCurrentCourseCell.xib */,
 				006B2A441E2F780D0002A484 /* BTNoCourseCell.h */,
 				006B2A451E2F780D0002A484 /* BTNoCourseCell.m */,
 				006B2A471E2FBF8A0002A484 /* BTRecommendArticleCell.h */,
@@ -221,6 +242,7 @@
 		007E560E1E1FCC6A001CFCD4 = {
 			isa = PBXGroup;
 			children = (
+				5C5052431E67ED6F009DBA33 /* Realm.framework */,
 				007E56191E1FCC6A001CFCD4 /* bt */,
 				007E56181E1FCC6A001CFCD4 /* Products */,
 			);
@@ -336,6 +358,8 @@
 				007E56131E1FCC6A001CFCD4 /* Sources */,
 				007E56141E1FCC6A001CFCD4 /* Frameworks */,
 				007E56151E1FCC6A001CFCD4 /* Resources */,
+				5C5052401E67EB1E009DBA33 /* ShellScript */,
+				5C5052461E67ED6F009DBA33 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -357,7 +381,7 @@
 				TargetAttributes = {
 					007E56161E1FCC6A001CFCD4 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 5ZDM7H945X;
+						DevelopmentTeam = 77Z6WQB2YV;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -388,6 +412,7 @@
 				000540021E27DA7C00067791 /* BTHeightPickerView.xib in Resources */,
 				007E562A1E1FCC6A001CFCD4 /* LaunchScreen.storyboard in Resources */,
 				5C4136871E285F5000A25AE6 /* BTWeightPickerView.xib in Resources */,
+				5C50523C1E67BB9E009DBA33 /* BTCurrentCourseCell.xib in Resources */,
 				007E56271E1FCC6A001CFCD4 /* Assets.xcassets in Resources */,
 				5C3F7F8F1E25C1410057D831 /* BTDatePickerView.xib in Resources */,
 				007E56251E1FCC6A001CFCD4 /* Main.storyboard in Resources */,
@@ -397,6 +422,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5C5052401E67EB1E009DBA33 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"/Users/zjz/Desktop/Projects/IOS/bt/Realm.framework/strip-frameworks.sh\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		007E56131E1FCC6A001CFCD4 /* Sources */ = {
@@ -556,7 +597,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5ZDM7H945X;
+				DEVELOPMENT_TEAM = 77Z6WQB2YV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = bt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.selfdoctor.bt;
@@ -569,7 +614,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5ZDM7H945X;
+				DEVELOPMENT_TEAM = 77Z6WQB2YV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = bt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.selfdoctor.bt;
