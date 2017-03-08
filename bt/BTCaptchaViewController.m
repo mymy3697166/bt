@@ -51,11 +51,9 @@
 }
 
 - (IBAction)fetchClick:(UIButton *)sender {
-  [Common asyncPost:URL_REGISTERCODE forms:@{@"mobile_no": self.uid} completion:^(NSDictionary *data) {
-    if (data == nil) return;
-    if ([data[@"status"] isEqual:@0]) {
-      [self startCount];
-    } else [Common info:data[@"description"]];
+  [BTUser sendRegisterVerifyCodeToMobilePhone:self.uid andBlock:^(NSError *error) {
+    if (error) [self showError:error];
+    else [self startCount];
   }];
 }
 
@@ -65,12 +63,10 @@
     return;
   }
   [Common showLoading];
-  [Common asyncPost:URL_VALIDATECODE forms:@{@"mobile_no": self.uid, @"code": tbCaptcha.text} completion:^(NSDictionary *data) {
+  [BTUser validateVerifyCodeForMobilePhone:self.uid andVerifyCode:tbCaptcha.text andBlock:^(NSError *error) {
     [Common hideLoading];
-    if (data == nil) return;
-    if ([data[@"status"] isEqual:@0]) {
-      [self performSegueWithIdentifier:@"captcha_pwd" sender:nil];
-    } else [Common info:data[@"description"]];
+    if (error) [self showError:error];
+    else [self performSegueWithIdentifier:@"captcha_pwd" sender:nil];
   }];
 }
 

@@ -29,39 +29,41 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   dataSource = [NSMutableArray array];
-  if (U.mid) {
-    NSDictionary *weightInfo = @{@"data": @[@{@"weight": U.weights.lastObject.height, @"difference": @0}], @"rowHeight": @158, @"key": @"BTWeightCell"};
+  if (U) {
+    BTWeightRecord *first = U.weights.firstObject;
+    BTWeightRecord *last = U.weights.lastObject;
+    NSNumber *diff = [NSNumber numberWithInt:[first.weight intValue] - [last.weight intValue]];
+    NSDictionary *weightInfo = @{@"data": @[@{@"weight": last.weight, @"difference": diff}], @"rowHeight": @158, @"key": @"BTWeightCell"};
     [dataSource addObject:weightInfo];
   }
-  
   btnLogin.layer.cornerRadius = 5;
-  [N addObserver:self selector:@selector(loginComplete) name:@"N_LOGINCOMPLETE" object:nil];
+  [N addObserver:self selector:@selector(loginComplete) name:@"N_LOGIN_SUCCESS" object:nil];
 }
 
 - (void)loginComplete {
-  if (U.mid) {
-    [Common asyncPost:URL_FETCHPLANHOME forms:@{@"weight": @1, @"article": @1, @"difference": @1, @"course": @1} completion:^(NSDictionary *data) {
-      if (!data) return;
-      if ([data[@"status"] isEqual:@0]) {
-        User.weight = data[@"weight"];
-        User.difference = data[@"difference"];
-        dataSource = data[@"data"];
-        [tvTable reloadData];
-      } else {
-        [Common info:data[@"description"]];
-      }
-    }];
-  }
-  [Common asyncPost:URL_FETCHDYNAMICS forms:@{@"course": @1} completion:^(NSDictionary *data) {
-    if (!data) return;
-    if ([data[@"status"] isEqual:@0]) {
-      //dynamics = data[@"data"];
-      NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:4];
-      [tvTable reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
-    } else {
-      [Common info:data[@"description"]];
-    }
-  }];
+//  if (U.mid) {
+//    [Common asyncPost:URL_FETCHPLANHOME forms:@{@"weight": @1, @"article": @1, @"difference": @1, @"course": @1} completion:^(NSDictionary *data, NSError *error) {
+//      if (!data) return;
+//      if ([data[@"status"] isEqual:@0]) {
+//        U.weights = data[@"weight"];
+//        U.difference = data[@"difference"];
+//        dataSource = data[@"data"];
+//        [tvTable reloadData];
+//      } else {
+//        [Common info:data[@"description"]];
+//      }
+//    }];
+//  }
+//  [Common asyncPost:URL_FETCHDYNAMICS forms:@{@"course": @1} completion:^(NSDictionary *data, NSError *error) {
+//    if (!data) return;
+//    if ([data[@"status"] isEqual:@0]) {
+//      //dynamics = data[@"data"];
+//      NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:4];
+//      [tvTable reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+//    } else {
+//      [Common info:data[@"description"]];
+//    }
+//  }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {return 0.0001;}

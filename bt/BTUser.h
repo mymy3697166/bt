@@ -12,44 +12,46 @@
 @class BTUser;
 /// 体重记录
 @interface BTWeightRecord : RLMObject
-@property NSNumber *dataId;
+@property NSNumber<RLMInt> *dataId;
 @property BTUser *user;
-@property NSNumber *weight;
+@property NSNumber<RLMFloat> *weight;
 @property NSDate *createdAt;
 @end
 RLM_ARRAY_TYPE(BTWeightRecord)
-@implementation BTWeightRecord @end
 /// 身高记录
 @interface BTHeightRecord : RLMObject
-@property NSNumber *dataId;
+@property NSNumber<RLMInt> *dataId;
 @property BTUser *user;
-@property NSNumber *height;
+@property NSNumber<RLMFloat> *height;
 @property NSDate *createdAt;
 @end
 RLM_ARRAY_TYPE(BTHeightRecord)
-@implementation BTHeightRecord @end
 /// 用户
 @interface BTUser : RLMObject
-@property NSNumber *mid;
+@property NSNumber<RLMInt> *mid;
 @property NSString *token;
 @property NSString *nickname;
 @property NSString *avatar;
 @property NSString *gender;
 @property NSDate *dob;
-@property NSNumber *fansCount;
-@property NSNumber *followCount;
-@property NSNumber *dynamicCount;
-@property NSString *isCoach;
+@property NSNumber<RLMInt> *fansCount;
+@property NSNumber<RLMInt> *followCount;
+@property NSNumber<RLMInt> *dynamicCount;
+@property NSNumber<RLMBool> *isCoach;
 @property RLMArray<BTWeightRecord> *weights;
 @property RLMArray<BTHeightRecord> *heights;
-@property NSString *isLogin;
+@property NSNumber<RLMBool> *isLogin;
 /// 当前用户
 + (instancetype)currentUser;
-/// 登录
-+ (void)loginWithMobilePhone:(NSString *)mobilePhone andPwd:(NSString *)pwd;
+/// 使用手机号和密码登录
++ (void)loginWithMobilePhone:(NSString *)mobilePhone andPwd:(NSString *)pwd andBlock:(void(^)(NSError *error))block;
 /// 注册
-+ (void)registerWithMobilePhone:(NSString *)mobilePhone andPwd:(NSString *)pwd andVerifyCode:(NSString *)verifyCode;
-/// 保持用户数据
++ (void)registerWithMobilePhone:(NSString *)mobilePhone andPwd:(NSString *)pwd andVerifyCode:(NSString *)verifyCode andBlock:(void(^)(NSError *error))block;
+/// 发送注册验证码
++ (void)sendRegisterVerifyCodeToMobilePhone:(NSString *)mobilePhone andBlock:(void(^)(NSError *error))block;
+/// 验证验证码的有效性
++ (void)validateVerifyCodeForMobilePhone:(NSString *)mobilePhone andVerifyCode:(NSString *)code andBlock:(void(^)(NSError *error))block;
+/// 保存用户数据
 - (void)saveInfoWithBlock:(void(^)(NSError *error))block;
 @end
 RLM_ARRAY_TYPE(BTUser)

@@ -19,4 +19,12 @@
   temporaryBarButtonItem.title = @"";
   self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
 }
+
+- (void)showError:(NSError *)error {
+  if ([error.domain isEqualToString:@"BTLOGICERROR"]) {
+    [Common info:error.userInfo[@"description"]];
+    return;
+  }
+  [Common info:@"网络不给力，请稍后重试"];
+}
 @end

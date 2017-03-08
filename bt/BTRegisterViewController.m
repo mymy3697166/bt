@@ -35,12 +35,12 @@
     return;
   }
   [Common showLoading];
-  [Common asyncPost:URL_REGISTERCODE forms:@{@"mobile_no": tbUid.text} completion:^(NSDictionary *data) {
+  [BTUser sendRegisterVerifyCodeToMobilePhone:tbUid.text andBlock:^(NSError *error) {
     [Common hideLoading];
-    if (data == nil) return;
-    if ([data[@"status"] isEqual:@0]) {
+    if (error) [self showError:error];
+    else {
       [self performSegueWithIdentifier:@"register_captcha" sender:self];
-    } else [Common info:data[@"description"]];
+    }
   }];
 }
 

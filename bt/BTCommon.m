@@ -45,75 +45,55 @@
   else dispatch_async(dispatch_get_main_queue(), exe);
 }
 
-- (NSDictionary *)syncPost:(NSString *)url forms:(NSDictionary *)forms {
+- (NSDictionary *)syncPost:(NSString *)url forms:(NSDictionary *)forms error:(NSError **)error {
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
   request.HTTPMethod = @"POST";
   request.HTTPShouldHandleCookies = NO;
   request.timeoutInterval = 10;
   [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-  if (User.token != nil) [request setValue:User.token forHTTPHeaderField:@"mtoken"];
+  if (U && U.token != nil) [request setValue:U.token forHTTPHeaderField:@"mtoken"];
+  else [request setValue:@"BBA8A2567B5095FEF4E316F532903571" forHTTPHeaderField:@"mtoken"];
+  if (forms) request.HTTPBody = [NSJSONSerialization dataWithJSONObject:forms options:kNilOptions error:error];
+  if (error) return nil;
+  NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:error];
+  if (error) return nil;
+  NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:error];
+  if (error) return nil;
+  return json;
+}
+
+- (void)asyncPost:(NSString *)url forms:(NSDictionary *)forms completion:(void (^)(NSDictionary *, NSError *))completion {
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+  request.HTTPMethod = @"POST";
+  request.HTTPShouldHandleCookies = NO;
+  request.timeoutInterval = 10;
+  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+  if (U && U.token != nil) [request setValue:U.token forHTTPHeaderField:@"mtoken"];
   else [request setValue:@"BBA8A2567B5095FEF4E316F532903571" forHTTPHeaderField:@"mtoken"];
   NSError *error;
   if (forms) {
     request.HTTPBody = [NSJSONSerialization dataWithJSONObject:forms options:kNilOptions error:&error];
   }
   if (error) {
-    NSLog(@"%@", error);
-    [self info:@"网络不给力，请稍后重试"];
-    return nil;
-  }
-  NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
-  if (error) {
-    NSLog(@"%@", error);
-    [self info:@"网络不给力，请稍后重试"];
-    return nil;
-  }
-  NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-  if (error) {
-    NSLog(@"%@", error);
-    [self info:@"网络不给力，请稍后重试"];
-    return nil;
-  }
-  return json;
-}
-
-- (void)asyncPost:(NSString *)url forms:(NSDictionary *)forms completion:(void (^)(NSDictionary *))completion {
-  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-  request.HTTPMethod = @"POST";
-  request.HTTPShouldHandleCookies = NO;
-  request.timeoutInterval = 10;
-  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-  if (User.token != nil) [request setValue:User.token forHTTPHeaderField:@"mtoken"];
-  NSError *error;
-  if (forms) {
-    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:forms options:kNilOptions error:&error];
-  }
-  if (error) {
-    NSLog(@"%@", error);
-    [self info:@"网络不给力，请稍后重试"];
-    if ([NSThread isMainThread]) completion(nil);
-    else dispatch_async(dispatch_get_main_queue(), ^{completion(nil);});
+    if ([NSThread isMainThread]) completion(nil, error);
+    else dispatch_async(dispatch_get_main_queue(), ^{completion(nil, error);});
     return;
   }
   NSURLSession *session = [NSURLSession sharedSession];
   NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
     if (error) {
-      NSLog(@"%@", error);
-      [self info:@"网络不给力，请稍后重试"];
-      if ([NSThread isMainThread]) completion(nil);
-      else dispatch_async(dispatch_get_main_queue(), ^{completion(nil);});
+      if ([NSThread isMainThread]) completion(nil, error);
+      else dispatch_async(dispatch_get_main_queue(), ^{completion(nil, error);});
       return;
     }
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     if (error) {
-      NSLog(@"%@", error);
-      [self info:@"网络不给力，请稍后重试"];
-      if ([NSThread isMainThread]) completion(nil);
-      else dispatch_async(dispatch_get_main_queue(), ^{completion(nil);});
+      if ([NSThread isMainThread]) completion(nil, error);
+      else dispatch_async(dispatch_get_main_queue(), ^{completion(nil, error);});
       return;
     }
-    if ([NSThread isMainThread]) completion(json);
-    else dispatch_async(dispatch_get_main_queue(), ^{completion(json);});
+    if ([NSThread isMainThread]) completion(json, nil);
+    else dispatch_async(dispatch_get_main_queue(), ^{completion(json, nil);});
   }];
   [task resume];
 }
@@ -156,22 +136,19 @@
 }
 
 - (void)cacheImage:(NSString *)url completion:(void(^)(UIImage *image))completion {
+  NSFileManager *fm = [NSFileManager defaultManager];
+  NSString *fn = [NSString stringWithFormat:@"%@.jpg", [url md5]];
+  NSString *docPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+  NSString *imagesPath = [docPath stringByAppendingPathComponent:@"images"];
+  NSString *fp = [imagesPath stringByAppendingPathComponent:fn];
+  if ([fm fileExistsAtPath:fp] && completion) {
+    completion([UIImage imageWithContentsOfFile:fp]);
+    return;
+  }
+  if (![fm fileExistsAtPath:imagesPath]) [fm createDirectoryAtPath:imagesPath withIntermediateDirectories:YES attributes:nil error:nil];
   dispatch_async(dispatch_queue_create(nil, nil), ^{
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *fn = [NSString stringWithFormat:@"%@.jpg", [url md5]];
-    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *imagesPath = [docPath stringByAppendingPathComponent:@"images"];
-    NSString *fp = [imagesPath stringByAppendingPathComponent:fn];
-    if (![fm fileExistsAtPath:fp]) {
-      if (![fm fileExistsAtPath:imagesPath]) {
-        NSError *error;
-        [fm createDirectoryAtPath:imagesPath withIntermediateDirectories:YES attributes:nil error:&error];
-        NSLog(@"%@", error);
-      }
-      NSURL *URL = [NSURL URLWithString:url];
-      NSData *data = [NSData dataWithContentsOfURL:URL];
-      if (data.length > 0) [fm createFileAtPath:fp contents:data attributes:nil];
-    }
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+    if (data.length > 0) [fm createFileAtPath:fp contents:data attributes:nil];
     dispatch_async(dispatch_get_main_queue(), ^{
       completion([UIImage imageWithContentsOfFile:fp]);
     });

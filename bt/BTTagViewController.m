@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   dataSource = @[];
-  [Common asyncPost:URL_FETCHTAGS forms:nil completion:^(NSDictionary *data) {
+  [Common asyncPost:URL_FETCHTAGS forms:nil completion:^(NSDictionary *data, NSError *error) {
     dataSource = data[@"data"];
     [tvTags reloadData];
   }];

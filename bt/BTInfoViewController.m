@@ -99,15 +99,15 @@
   UIImage *image = info[UIImagePickerControllerEditedImage];
   NSData *data = [Common compressAvatar:image];
   [Common showLoading];
-  [Common asyncPost:URL_UPLOADAVATAR forms:@{@"images": @[[data toBase64String]]} completion:^(NSDictionary *data) {
+  [Common asyncPost:URL_UPLOADAVATAR forms:@{@"images": @[[data toBase64String]]} completion:^(NSDictionary *data, NSError *error) {
     [Common hideLoading];
-    if (!data) return;
-    if ([data[@"status"] isEqual:@0]) {
-      avatar = data[@"data"][0];
-      [Common cacheImage:[URL_AVATARPATH stringByAppendingString:avatar] completion:^(UIImage *image) {
-        [btnAvatar setBackgroundImage:image forState:UIControlStateNormal];
-      }];
+    if (error) {
+      [self showError:error];
+      return;
     }
+    avatar = data[@"data"][0];
+    [btnAvatar setBackgroundImage:image forState:UIControlStateNormal];
+    [Common cacheImage:[URL_AVATARPATH stringByAppendingString:avatar] completion:nil];
   }];
   [ipc dismissViewControllerAnimated:YES completion:nil];
   
@@ -178,27 +178,28 @@
     [Common info:@"请输入体重"];
     return;
   }
-  [Common showLoading];
-  [Common requestQueue:^{
-    NSDate *dob = [tbDob.text toDateWithFormat:@"yyyy年MM月dd日"];
-    NSString *dobString = [dob toStringWithFormat:@"yyyy-MM-dd"];
-    NSDictionary *params = @{@"avatar": avatar, @"nc": tbNickname.text, @"gender": gender, @"dob": dobString};
-    NSDictionary *data = [Common syncPost:URL_UPDATEUSERINFO forms:params];
-    if ([data[@"status"] isEqual:@1]) {
-      [Common info:data[@"description"]];
-      return;
-    }
-    data = [Common syncPost:URL_UPDATEHEIGHT forms:@{@"height": @([tbHeight.text intValue])}];
-    data = [Common syncPost:URL_UPDATEWEIGHT forms:@{@"weight": @([tbWeight.text intValue])}];
-    [Common hideLoading];
-    User.avatar = avatar;
-    User.nickname = tbNickname.text;
-    User.gender = gender;
-    User.height = @([tbHeight.text intValue]);
-    User.weight = @([tbWeight.text floatValue]);
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [self performSegueWithIdentifier:@"info_tag" sender:nil];
-    });
-  }];
+  
+//  [Common showLoading];
+//  [Common requestQueue:^{
+//    NSDate *dob = [tbDob.text toDateWithFormat:@"yyyy年MM月dd日"];
+//    NSString *dobString = [dob toStringWithFormat:@"yyyy-MM-dd"];
+//    NSDictionary *params = @{@"avatar": avatar, @"nc": tbNickname.text, @"gender": gender, @"dob": dobString};
+//    NSDictionary *data = [Common syncPost:URL_UPDATEUSERINFO forms:params];
+//    if ([data[@"status"] isEqual:@1]) {
+//      [Common info:data[@"description"]];
+//      return;
+//    }
+//    data = [Common syncPost:URL_UPDATEHEIGHT forms:@{@"height": @([tbHeight.text intValue])}];
+//    data = [Common syncPost:URL_UPDATEWEIGHT forms:@{@"weight": @([tbWeight.text intValue])}];
+//    [Common hideLoading];
+//    U.avatar = avatar;
+//    U.nickname = tbNickname.text;
+//    U.gender = gender;
+//    U.height = @([tbHeight.text intValue]);
+//    U.weight = @([tbWeight.text floatValue]);
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//      [self performSegueWithIdentifier:@"info_tag" sender:nil];
+//    });
+//  }];
 }
 @end

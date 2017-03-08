@@ -60,9 +60,9 @@
 /// 隐藏加载状态
 - (void)hideLoading;
 /// 同步发送post请求
-- (NSDictionary *)syncPost:(NSString *)url forms:(NSDictionary *)forms;
+- (NSDictionary *)syncPost:(NSString *)url forms:(NSDictionary *)forms error:(NSError **)error;
 /// 异步发送post请求
-- (void)asyncPost:(NSString *)url forms:(NSDictionary *)forms completion:(void(^)(NSDictionary *data))completion;
+- (void)asyncPost:(NSString *)url forms:(NSDictionary *)forms completion:(void(^)(NSDictionary *data, NSError *error))completion;
 /// 开启请求队列
 - (void)requestQueue:(void(^)())block;
 /// 从日期对象中获取年月日时分秒信息

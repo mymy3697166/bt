@@ -47,22 +47,23 @@
 		5C4150901E2DD05A00046514 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C41508F1E2DD05A00046514 /* NSArray+Extension.m */; };
 		5C4389A51E2329E5009C7C75 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4389A41E2329E5009C7C75 /* MBProgressHUD.m */; };
 		5C4389A91E232F40009C7C75 /* BTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4389A81E232F40009C7C75 /* BTUser.m */; };
+		5C4606441E6FFDA6009B0F52 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5052431E67ED6F009DBA33 /* Realm.framework */; };
+		5C4606451E6FFDA6009B0F52 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5052431E67ED6F009DBA33 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5C4606491E700836009B0F52 /* BTCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4606481E700836009B0F52 /* BTCourse.m */; };
 		5C50523C1E67BB9E009DBA33 /* BTCurrentCourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C50523B1E67BB9E009DBA33 /* BTCurrentCourseCell.xib */; };
-		5C5052441E67ED6F009DBA33 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5052431E67ED6F009DBA33 /* Realm.framework */; };
-		5C5052451E67ED6F009DBA33 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5052431E67ED6F009DBA33 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5C9A8EF11E3450540014D736 /* BTDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9A8EF01E3450540014D736 /* BTDynamicCell.m */; };
 		5CCE4BB01E24A4F20010DDA5 /* BTPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCE4BAF1E24A4F20010DDA5 /* BTPwdViewController.m */; };
 		5CCE4BB31E24C6C60010DDA5 /* BTInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCE4BB21E24C6C60010DDA5 /* BTInfoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		5C5052461E67ED6F009DBA33 /* Embed Frameworks */ = {
+		5C4606461E6FFDA6009B0F52 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5C5052451E67ED6F009DBA33 /* Realm.framework in Embed Frameworks */,
+				5C4606451E6FFDA6009B0F52 /* Realm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +144,8 @@
 		5C4389A41E2329E5009C7C75 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		5C4389A71E232F40009C7C75 /* BTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUser.h; sourceTree = "<group>"; };
 		5C4389A81E232F40009C7C75 /* BTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTUser.m; sourceTree = "<group>"; };
+		5C4606471E700836009B0F52 /* BTCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCourse.h; sourceTree = "<group>"; };
+		5C4606481E700836009B0F52 /* BTCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCourse.m; sourceTree = "<group>"; };
 		5C50523B1E67BB9E009DBA33 /* BTCurrentCourseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTCurrentCourseCell.xib; sourceTree = "<group>"; };
 		5C5052431E67ED6F009DBA33 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		5C9A8EEF1E3450540014D736 /* BTDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDynamicCell.h; sourceTree = "<group>"; };
@@ -158,7 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C5052441E67ED6F009DBA33 /* Realm.framework in Frameworks */,
+				5C4606441E6FFDA6009B0F52 /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,9 +245,9 @@
 		007E560E1E1FCC6A001CFCD4 = {
 			isa = PBXGroup;
 			children = (
-				5C5052431E67ED6F009DBA33 /* Realm.framework */,
 				007E56191E1FCC6A001CFCD4 /* bt */,
 				007E56181E1FCC6A001CFCD4 /* Products */,
+				5C4606431E6FD998009B0F52 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -344,8 +347,18 @@
 			children = (
 				5C4389A71E232F40009C7C75 /* BTUser.h */,
 				5C4389A81E232F40009C7C75 /* BTUser.m */,
+				5C4606471E700836009B0F52 /* BTCourse.h */,
+				5C4606481E700836009B0F52 /* BTCourse.m */,
 			);
 			name = models;
+			sourceTree = "<group>";
+		};
+		5C4606431E6FD998009B0F52 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5C5052431E67ED6F009DBA33 /* Realm.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,8 +371,8 @@
 				007E56131E1FCC6A001CFCD4 /* Sources */,
 				007E56141E1FCC6A001CFCD4 /* Frameworks */,
 				007E56151E1FCC6A001CFCD4 /* Resources */,
-				5C5052401E67EB1E009DBA33 /* ShellScript */,
-				5C5052461E67ED6F009DBA33 /* Embed Frameworks */,
+				5C4606461E6FFDA6009B0F52 /* Embed Frameworks */,
+				5C5052401E67EB1E009DBA33 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -424,18 +437,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5C5052401E67EB1E009DBA33 /* ShellScript */ = {
+		5C5052401E67EB1E009DBA33 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "bash \"/Users/zjz/Desktop/Projects/IOS/bt/Realm.framework/strip-frameworks.sh\"";
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -452,6 +466,7 @@
 				006B2A491E2FBF8A0002A484 /* BTRecommendArticleCell.m in Sources */,
 				00053FEE1E22587900067791 /* BTCaptchaViewController.m in Sources */,
 				5CCE4BB01E24A4F20010DDA5 /* BTPwdViewController.m in Sources */,
+				5C4606491E700836009B0F52 /* BTCourse.m in Sources */,
 				000540001E27CE1400067791 /* BTWeightPickerView.m in Sources */,
 				5C4030341E2CD3C200C25408 /* BTPlanHomeViewController.m in Sources */,
 				5C4030301E2CC72C00C25408 /* UIImageView+Extension.m in Sources */,

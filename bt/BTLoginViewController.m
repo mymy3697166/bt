@@ -49,7 +49,15 @@
     [Common info:@"请输入密码"];
     return;
   }
-  [BTUser loginWithMobilePhone:tbUid.text andPwd:tbPwd.text];
+  [Common showLoading];
+  [BTUser loginWithMobilePhone:tbUid.text andPwd:tbPwd.text andBlock:^(NSError *error) {
+    [Common hideLoading];
+    if (error) [self showError:error];
+    else {
+      [N postNotificationName:@"N_LOGIN_SUCCESS" object:nil];
+      [self dismissViewControllerAnimated:YES completion:nil];
+    }
+  }];
 }
 
 - (IBAction)closeClick:(UIButton *)sender {

@@ -29,9 +29,9 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   [self initUI];
-  labHeight.text = [NSString stringWithFormat:@"%@cm", User.height];
-  labWeight.text = [NSString stringWithFormat:@"%@kg", User.weight];
-  float bmi = [Common bmiWithHeight:[User.height floatValue] andWeight:[User.weight floatValue]];
+  labHeight.text = [NSString stringWithFormat:@"%@cm", U.heights.lastObject[@"height"]];
+  labWeight.text = [NSString stringWithFormat:@"%@kg", U.weights.lastObject[@"weight"]];
+  float bmi = [Common bmiWithHeight:[U.heights.lastObject[@"height"] floatValue] andWeight:[U.weights.lastObject[@"weight"] floatValue]];
   labBMI.text = [NSString stringWithFormat:@"%1.f", bmi];
   NSString *body;
   if (bmi < 18.5) body = @"过轻";
@@ -40,7 +40,7 @@
   else if (bmi >= 28 && bmi < 32) body = @"肥胖";
   else body = @"非常肥胖";
   labBody.text = body;
-  [Common asyncPost:URL_FETCHRECOMMENTCOURSE forms:@{@"tags": self.tags} completion:^(NSDictionary *data) {
+  [Common asyncPost:URL_FETCHRECOMMENTCOURSE forms:@{@"tags": self.tags} completion:^(NSDictionary *data, NSError *error) {
     if (!data) return;
     if ([data[@"status"] isEqual:@0]) {
       courseId = data[@"data"][@"id"];
@@ -66,7 +66,7 @@
 
 - (IBAction)startClick:(UIButton *)sender {
   [Common showLoading];
-  [Common asyncPost:URL_JOINCOURSE forms:@{@"id": courseId} completion:^(NSDictionary *data) {
+  [Common asyncPost:URL_JOINCOURSE forms:@{@"id": courseId} completion:^(NSDictionary *data, NSError *error) {
     [Common hideLoading];
     if (!data) return;
     if ([data[@"status"] isEqual:@0]) {

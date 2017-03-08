@@ -10,4 +10,5 @@
 #import "BTCommon.h"
 
 @interface BTViewController : UIViewController
+- (void)showError:(NSError *)error;
 @end
