@@ -7,24 +7,33 @@
 //
 
 #import <Realm/Realm.h>
+
 @class BTCourse;
 @class BTPlan;
 
 @interface BTAction : RLMObject
 @property BTPlan *plan;
-
+@property NSNumber<RLMInt> *dataId;
+@property NSString *name;
+@property NSString *category;
+@property NSString *cover;
+@property NSString *video;
+@property NSNumber<RLMInt> *size;
+@property NSNumber<RLMInt> *times;
 @end
 RLM_ARRAY_TYPE(BTAction)
 
 @interface BTPlan : RLMObject
 @property BTCourse *course;
+@property NSNumber<RLMInt> *dataId;
 @property NSString *name;
 @property NSString *cover;
-@property NSString *category;
-@property NSString *video;
-@property NSNumber<RLMDouble> *size;
+@property NSString *levelName;
+@property NSString *tool;
+@property NSNumber<RLMInt> *duration;
+@property NSNumber<RLMInt> *calorie;
 @property NSNumber<RLMInt> *times;
-@property NSArray<BTAction> *actions;
+@property RLMArray<BTAction> *actions;
 @end
 RLM_ARRAY_TYPE(BTPlan)
 
@@ -37,5 +46,9 @@ RLM_ARRAY_TYPE(BTPlan)
 @property NSString *coachName;
 @property NSString *coachAvatar;
 @property RLMArray<BTPlan> *plans;
+@property NSNumber<RLMBool> *isJoin;
+
++ (instancetype)currentCourse;
++ (void)fetchCourseWithBlock:(void(^)(NSError *error))block;
 @end
 RLM_ARRAY_TYPE(BTCourse)

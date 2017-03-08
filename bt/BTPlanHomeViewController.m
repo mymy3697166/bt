@@ -36,6 +36,11 @@
     NSDictionary *weightInfo = @{@"data": @[@{@"weight": last.weight, @"difference": diff}], @"rowHeight": @158, @"key": @"BTWeightCell"};
     [dataSource addObject:weightInfo];
   }
+  if (!Course) {
+    [BTCourse fetchCourseWithBlock:^(NSError *error) {
+      NSLog(@"%@", error);
+    }];
+  }
   btnLogin.layer.cornerRadius = 5;
   [N addObserver:self selector:@selector(loginComplete) name:@"N_LOGIN_SUCCESS" object:nil];
 }

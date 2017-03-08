@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "BTUser.h"
+#import "BTCourse.h"
 #import "NSObject+Extension.h"
 #import "NSDate+Extension.h"
 #import "NSString+Extension.h"
@@ -19,6 +20,7 @@
 #define Common [[BTCommon alloc] init]
 #define R [RLMRealm defaultRealm]
 #define U [BTUser currentUser]
+#define Course [BTCourse currentCourse]
 #define N [NSNotificationCenter defaultCenter]
 
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1]
