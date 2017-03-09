@@ -37,55 +37,58 @@ static BTCourse *currentCourse;
       block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
       return;
     }
-    if (currentCourse) {
-      [R deleteObjects:[BTAction allObjects]];
-      [R deleteObjects:[BTPlan allObjects]];
-      [R deleteObjects:[BTCourse allObjects]];
-    }
-    NSDictionary *courseDic = data[@"data"];
-    BTCourse *course = [[BTCourse alloc] init];
-    course.dataId = courseDic[@"course_id"];
-    course.name = courseDic[@"course_name"];
-    course.cover = courseDic[@"course_cover"];
-    course.executionCount = courseDic[@"course_execution_count"];
-    course.coachId = courseDic[@"course_coach_id"];
-    course.coachName = courseDic[@"course_coach_name"];
-    course.coachAvatar = courseDic[@"course_coach_avatar"];
-    course.isJoin = courseDic[@"start_time"] ? @1 : @0;
-    [R transactionWithBlock:^{
-      NSArray *planArray = courseDic[@"course_plans"];
-      [planArray enumerateObjectsUsingBlock:^(id planDic, NSUInteger planIdx, BOOL *planStop) {
-        BTPlan *plan = [[BTPlan alloc] init];
-        plan.course = course;
-        plan.dataId = planDic[@"id"];
-        if (![planDic[@"id"] isEqual:@0]) {
-          plan.name = planDic[@"name"];
-          plan.cover = planDic[@"cover"];
-          plan.levelName = planDic[@"level_name"];
-          plan.tool = planDic[@"tool"];
-          plan.duration = planDic[@"duration"];
-          plan.calorie = planDic[@"calorie"];
-          NSArray *actionArray = planDic[@"actions"];
-          [actionArray enumerateObjectsUsingBlock:^(id actionDic, NSUInteger actionIdx, BOOL *actionStop) {
-            BTAction *action = [[BTAction alloc] init];
-            action.plan = plan;
-            action.dataId = actionDic[@"id"];
-            action.category = actionDic[@"category"];
-            if (![actionDic[@"id"] isEqual:@0]) {
-              action.name = actionDic[@"name"];
-              action.cover = actionDic[@"cover"];
-              action.video = actionDic[@"video"];
-              action.size = actionDic[@"size"];
-              action.times = actionDic[@"times"];
-            }
-            [plan.actions addObject:action];
-          }];
-        }
-        [course.plans addObject:plan];
-      }];
-      [R addObject:course];
-    }];
+    [BTCourse updateCourseWithData:data[@"data"]];
     block(nil);
+  }];
+}
+
++ (void)updateCourseWithData:(NSDictionary *)data {
+  if (currentCourse) {
+    [Realm deleteObjects:[BTAction allObjects]];
+    [Realm deleteObjects:[BTPlan allObjects]];
+    [Realm deleteObjects:[BTCourse allObjects]];
+  }
+  currentCourse = [[BTCourse alloc] init];
+  currentCourse.dataId = data[@"course_id"];
+  currentCourse.name = data[@"course_name"];
+  currentCourse.cover = data[@"course_cover"];
+  currentCourse.executionCount = data[@"course_execution_count"];
+  currentCourse.coachId = data[@"course_coach_id"];
+  currentCourse.coachName = data[@"course_coach_name"];
+  currentCourse.coachAvatar = data[@"course_coach_avatar"];
+  currentCourse.isJoin = data[@"start_time"] ? @1 : @0;
+  [Realm transactionWithBlock:^{
+    NSArray *planArray = data[@"course_plans"];
+    [planArray enumerateObjectsUsingBlock:^(id planDic, NSUInteger planIdx, BOOL *planStop) {
+      BTPlan *plan = [[BTPlan alloc] init];
+      plan.course = currentCourse;
+      plan.dataId = planDic[@"id"];
+      if (![planDic[@"id"] isEqual:@0]) {
+        plan.name = planDic[@"name"];
+        plan.cover = planDic[@"cover"];
+        plan.levelName = planDic[@"level_name"];
+        plan.tool = planDic[@"tool"];
+        plan.duration = planDic[@"duration"];
+        plan.calorie = planDic[@"calorie"];
+        NSArray *actionArray = planDic[@"actions"];
+        [actionArray enumerateObjectsUsingBlock:^(id actionDic, NSUInteger actionIdx, BOOL *actionStop) {
+          BTAction *action = [[BTAction alloc] init];
+          action.plan = plan;
+          action.dataId = actionDic[@"id"];
+          action.category = actionDic[@"category"];
+          if (![actionDic[@"id"] isEqual:@0]) {
+            action.name = actionDic[@"name"];
+            action.cover = actionDic[@"cover"];
+            action.video = actionDic[@"video"];
+            action.size = actionDic[@"size"];
+            action.times = actionDic[@"times"];
+          }
+          [plan.actions addObject:action];
+        }];
+      }
+      [currentCourse.plans addObject:plan];
+    }];
+    [Realm addObject:currentCourse];
   }];
 }
 @end

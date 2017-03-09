@@ -59,19 +59,19 @@ static BTUser *currentUser;
     if (![info[@"follow_count"] null]) currentUser.followCount = data[@"data"][@"fans_count"];
     if (![info[@"dynamic_count"] null]) currentUser.dynamicCount = data[@"data"][@"dynamic_count"];
     currentUser.isLogin = @1;
-    [R transactionWithBlock:^{
+    [Realm transactionWithBlock:^{
       if (![info[@"weights"] null]) {
         NSArray *weights = info[@"weights"];
         [weights enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
           BTWeightRecord *weight = [[BTWeightRecord alloc] init];
           weight.dataId = obj[@"id"];
-          weight.user = U;
+          weight.user = User;
           weight.weight = obj[@"weight"];
           weight.createdAt = [NSDate dateWithTimeIntervalSince1970:[obj[@"created_at"] integerValue]];
           [currentUser.weights addObject:weight];
         }];
       }
-      [R addOrUpdateObject:currentUser];
+      [Realm addOrUpdateObject:currentUser];
     }];
     block(nil);
   }];
@@ -91,8 +91,8 @@ static BTUser *currentUser;
     currentUser.mid = data[@"data"][@"mid"];
     currentUser.token = data[@"data"][@"access_token"];
     currentUser.isLogin = @1;
-    [R transactionWithBlock:^{
-      [R addOrUpdateObject:currentUser];
+    [Realm transactionWithBlock:^{
+      [Realm addOrUpdateObject:currentUser];
     }];
     block(nil);
   }];
@@ -132,7 +132,7 @@ static BTUser *currentUser;
 
 - (void)updateWeight:(NSNumber *)weight withBlock:(void(^)())block {
   BTWeightRecord *wr = [[BTWeightRecord alloc] init];
-  wr.user = U;
+  wr.user = User;
   wr.weight = weight;
   [Common asyncPost:URL_UPDATEWEIGHT forms:@{@"weight": weight} completion:^(NSDictionary *data, NSError *error) {
     if (error) {
@@ -145,8 +145,8 @@ static BTUser *currentUser;
     }
     wr.dataId = data[@"data"][@"id"];
     wr.createdAt = [NSDate dateWithTimeIntervalSince1970:[data[@"data"][@"created_at"] integerValue]];
-    [R transactionWithBlock:^{
-      [R addObject:wr];
+    [Realm transactionWithBlock:^{
+      [Realm addObject:wr];
     }];
     block(nil);
   }];

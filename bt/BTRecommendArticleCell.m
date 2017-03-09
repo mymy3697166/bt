@@ -16,6 +16,8 @@
 
 - (void)awakeFromNib {
   [super awakeFromNib];
+  UINib *articleNib = [UINib nibWithNibName:@"BTArticleCell" bundle:nil];
+  [cvArticles registerNib:articleNib forCellWithReuseIdentifier:@"BTArticleCell"];
 }
 
 - (void)setData:(NSArray *)data {
@@ -33,6 +35,10 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
   return dataSource.count;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+  return CGSizeMake(240, 152);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

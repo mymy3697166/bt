@@ -10,7 +10,6 @@
 #import "BTCommon.h"
 
 @implementation BTNoCourseCell {
-
   __weak IBOutlet UIImageView *ivCourseImage;
   __weak IBOutlet UILabel *labCourseName;
   __weak IBOutlet UILabel *labCourseCoach;
@@ -22,16 +21,14 @@
   [super awakeFromNib];
   btnMore.layer.cornerRadius = 5;
   btnMore.layer.borderWidth = 1;
-  btnMore.layer.borderColor = [UIColor lightGrayColor].CGColor;
+  btnMore.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
-- (void)setData:(NSDictionary *)data {
-  if (!data) return;
-  [ivCourseImage loadURL:[URL_IMAGEPATH stringByAppendingString:data[@"course_cover"]]];
-  labCourseName.text = data[@"course_name"];
-  labCourseCoach.text = [@"课程教练：" stringByAppendingString:data[@"course_coach_name"]];
-  NSArray *plans = data[@"course_plans"];
-  labDuration.text = [NSString stringWithFormat:@"时需：%ld天", (long)plans.count];
+- (void)setData:(BTCourse *)course {
+  [ivCourseImage loadURL:[URL_IMAGEPATH stringByAppendingString:course.cover]];
+  labCourseName.text = course.name;
+  labCourseCoach.text = [@"课程教练：" stringByAppendingString:course.coachName];
+  labDuration.text = [NSString stringWithFormat:@"时需：%ld天", (long)course.plans.count];
 }
 
 - (IBAction)moreClick:(UIButton *)sender {

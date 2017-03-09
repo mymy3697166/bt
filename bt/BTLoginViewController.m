@@ -20,7 +20,7 @@
   [super viewDidLoad];
   btnLogin.layer.cornerRadius = 23;
   
-  [N addObserver:self selector:@selector(closeClick:) name:@"NLOGINCOMPLETE" object:nil];
+  [Notif addObserver:self selector:@selector(closeClick:) name:@"NLOGINCOMPLETE" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,7 +54,7 @@
     [Common hideLoading];
     if (error) [self showError:error];
     else {
-      [N postNotificationName:@"N_LOGIN_SUCCESS" object:nil];
+      [Notif postNotificationName:@"N_LOGIN_SUCCESS" object:nil];
       [self dismissViewControllerAnimated:YES completion:nil];
     }
   }];

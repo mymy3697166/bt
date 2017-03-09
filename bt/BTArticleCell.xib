@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Mze-zT-8FM" customClass="BTArticleCell">
+            <rect key="frame" x="0.0" y="0.0" width="240" height="153"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="240" height="153"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9pR-3h-grv">
+                        <rect key="frame" x="0.0" y="-8" width="240" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="120" id="E3V-Zb-Xr4"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7个腿部动作，还你力量美！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3r-vt-Txr">
+                        <rect key="frame" x="0.0" y="119" width="240" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="eVD-Vx-hTt"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="T3r-vt-Txr" secondAttribute="bottom" constant="16" id="6iI-NE-hAn"/>
+                <constraint firstAttribute="trailing" secondItem="T3r-vt-Txr" secondAttribute="trailing" id="7bi-tw-fbR"/>
+                <constraint firstAttribute="trailing" secondItem="9pR-3h-grv" secondAttribute="trailing" id="8Hv-4I-yhf"/>
+                <constraint firstItem="T3r-vt-Txr" firstAttribute="leading" secondItem="Mze-zT-8FM" secondAttribute="leading" id="NfM-VT-d3v"/>
+                <constraint firstItem="9pR-3h-grv" firstAttribute="top" secondItem="Mze-zT-8FM" secondAttribute="top" constant="-8" id="kOv-3P-GVi"/>
+                <constraint firstItem="9pR-3h-grv" firstAttribute="leading" secondItem="Mze-zT-8FM" secondAttribute="leading" id="nhm-6L-htw"/>
+            </constraints>
+            <size key="customSize" width="240" height="153"/>
+            <connections>
+                <outlet property="ivImage" destination="9pR-3h-grv" id="wYj-lp-r3D"/>
+                <outlet property="labName" destination="T3r-vt-Txr" id="F0a-Z6-N4I"/>
+            </connections>
+            <point key="canvasLocation" x="-14" y="121.5"/>
+        </collectionViewCell>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+    </objects>
+</document>

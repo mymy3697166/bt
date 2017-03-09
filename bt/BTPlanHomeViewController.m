@@ -12,6 +12,7 @@
 #import "BTCurrentCourseCell.h"
 #import "BTNoCourseCell.h"
 #import "BTRecommendArticleCell.h"
+#import "BTDynamicTitleCell.h"
 #import "BTDynamicCell.h"
 
 @interface BTPlanHomeViewController () <UITableViewDataSource, UITableViewDelegate> {
@@ -29,55 +30,110 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   dataSource = [NSMutableArray array];
-  if (U) {
-    BTWeightRecord *first = U.weights.firstObject;
-    BTWeightRecord *last = U.weights.lastObject;
-    NSNumber *diff = [NSNumber numberWithInt:[first.weight intValue] - [last.weight intValue]];
-    NSDictionary *weightInfo = @{@"data": @[@{@"weight": last.weight, @"difference": diff}], @"rowHeight": @158, @"key": @"BTWeightCell"};
-    [dataSource addObject:weightInfo];
+  btnLogin.layer.cornerRadius = 5;
+  tvTable.estimatedRowHeight = 100;
+  tvTable.rowHeight = UITableViewAutomaticDimension;
+  [Notif addObserver:self selector:@selector(loginComplete) name:@"N_LOGIN_SUCCESS" object:nil];
+  [self loadLocalData];
+  [self loadRemoteData];
+}
+
+- (void)loadLocalData {
+  if (User) {
+    NSDictionary *weightInfo;
+    if (User.weights.count == 0) {
+      weightInfo = @{@"data": @[@{@"weight": @0, @"difference": @0}], @"key": @"BTWeightCell"};
+    }
+    else {
+      BTWeightRecord *first = User.weights.firstObject;
+      BTWeightRecord *last = User.weights.lastObject;
+      NSNumber *diff = [NSNumber numberWithInt:[first.weight intValue] - [last.weight intValue]];
+      weightInfo = @{@"data": @[@{@"weight": last.weight, @"difference": diff}], @"key": @"BTWeightCell"};
+      [dataSource addObject:weightInfo];
+    }
+    if (Course) {
+      NSString *key;
+      if ([Course.isJoin isEqualToNumber:@1]) key = @"BTCurrentCourseCell";
+      else key = @"BTNoCourseCell";
+      [dataSource addObject:@{@"data": @[Course], @"key": key}];
+      if ([Course.isJoin isEqualToNumber:@0]) {
+        NSArray *articles = [BTDataCache getValueForKey:@"PLAN_HOME_ARTICLES"];
+        if (articles) {
+          [dataSource addObject:@{@"data": @[articles], @"key": @"BTRecommendArticleCell"}];
+        }
+      }
+      [dataSource addObject:@{@"data": @[Course], @"key": @"BTDynamicTitleCell"}];
+    }
   }
-  if (!Course) {
-    [BTCourse fetchCourseWithBlock:^(NSError *error) {
-      NSLog(@"%@", error);
+}
+
+- (void)loadRemoteData {
+  if (User) {
+    [Common requestQueue:^{
+      NSError *error;
+      NSDictionary *res = [Common syncPost:URL_FETCHPLANHOME forms:@{@"article": @1, @"course": @1} error:&error];
+      NSLog(@"%@", res);
+      if (error) {
+        [self showError:error];
+        return;
+      }
+      [BTCourse updateCourseWithData:res[@"data"]];
+      NSString *key;
+      if ([Course.isJoin isEqualToNumber:@1]) key = @"BTCurrentCourseCell";
+      else key = @"BTNoCourseCell";
+      NSDictionary *courseInfo = @{@"data": @[Course], @"key": key};
+      [self insertItem:courseInfo];
+      if ([Course.isJoin isEqualToNumber:@0]) {
+        [BTDataCache setValue:res[@"data"][@"articles"] forKey:@"PLAN_HOME_ARTICLES"];
+        [self insertItem:@{@"data": @[res[@"data"][@"articles"]], @"key": @"BTRecommendArticleCell"}];
+      }
+      [self insertItem:@{@"data": @[Course], @"key": @"BTDynamicTitleCell"}];
+      [tvTable reloadData];
     }];
   }
-  btnLogin.layer.cornerRadius = 5;
-  [N addObserver:self selector:@selector(loginComplete) name:@"N_LOGIN_SUCCESS" object:nil];
+}
+
+- (void)insertItem:(NSDictionary *)item {
+  NSInteger index = [self getDataSourceIndexForKey:item[@"key"]];
+  if (index != -1) {
+    [dataSource replaceObjectAtIndex:index withObject:item];
+    return;
+  }
+  if ([item[@"key"] isEqualToString:@"BTCurrentCourseCell"] || [item[@"key"] isEqualToString:@"BTNoCourseCell"]) {
+    if (dataSource.count < 2) [dataSource addObject:item];
+    else [dataSource insertObject:item atIndex:1];
+  }
+  if ([item[@"key"] isEqualToString:@"BTRecommendArticleCell"]) {
+    if (dataSource.count < 3) [dataSource addObject:item];
+    else [dataSource insertObject:item atIndex:2];
+  }
+  if ([item[@"key"] isEqualToString:@"BTDynamicTitleCell"]) {
+    NSInteger articleIndex = [self getDataSourceIndexForKey:@"BTRecommendArticleCell"];
+    if (articleIndex == -1) {
+      if (dataSource.count < 3) [dataSource addObject:item];
+      else [dataSource insertObject:item atIndex:2];
+    } else {
+      if (dataSource.count < 4) [dataSource addObject:item];
+      else [dataSource insertObject:item atIndex:3];
+    }
+  }
+}
+
+- (NSInteger)getDataSourceIndexForKey:(NSString *)key {
+  for (int i = 0; i < dataSource.count; i++) {
+    if ([key isEqualToString:dataSource[i][@"key"]]) return i;
+  }
+  return -1;
 }
 
 - (void)loginComplete {
-//  if (U.mid) {
-//    [Common asyncPost:URL_FETCHPLANHOME forms:@{@"weight": @1, @"article": @1, @"difference": @1, @"course": @1} completion:^(NSDictionary *data, NSError *error) {
-//      if (!data) return;
-//      if ([data[@"status"] isEqual:@0]) {
-//        U.weights = data[@"weight"];
-//        U.difference = data[@"difference"];
-//        dataSource = data[@"data"];
-//        [tvTable reloadData];
-//      } else {
-//        [Common info:data[@"description"]];
-//      }
-//    }];
-//  }
-//  [Common asyncPost:URL_FETCHDYNAMICS forms:@{@"course": @1} completion:^(NSDictionary *data, NSError *error) {
-//    if (!data) return;
-//    if ([data[@"status"] isEqual:@0]) {
-//      //dynamics = data[@"data"];
-//      NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:4];
-//      [tvTable reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
-//    } else {
-//      [Common info:data[@"description"]];
-//    }
-//  }];
+  [self loadLocalData];
+  [tvTable reloadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {return 0.0001;}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {return 0.0001;}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return [dataSource[indexPath.section][@"rowHeight"] floatValue];
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return dataSource.count;
@@ -89,13 +145,26 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  BTWeightCell *cell = [tableView dequeueReusableCellWithIdentifier:dataSource[indexPath.section][@"key"]];
+  NSDictionary *sectionData = dataSource[indexPath.section];
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:dataSource[indexPath.section][@"key"]];
   if (!cell) {
-    UINib *guideNib = [UINib nibWithNibName:@"BTWeightCell" bundle:nil];
-    [tableView registerNib:guideNib forCellReuseIdentifier:@"BTWeightCell"];
-    cell = [tableView dequeueReusableCellWithIdentifier:@"BTWeightCell"];
+    UINib *weightNib = [UINib nibWithNibName:sectionData[@"key"] bundle:nil];
+    [tableView registerNib:weightNib forCellReuseIdentifier:sectionData[@"key"]];
+    cell = [tableView dequeueReusableCellWithIdentifier:sectionData[@"key"]];
   }
-  [cell setData:dataSource[indexPath.section][@"data"][indexPath.row]];
+  if ([sectionData[@"key"] isEqualToString:@"BTWeightCell"]) {
+    BTWeightCell *wc = (BTWeightCell *)cell;
+    [wc setData:sectionData[@"data"][indexPath.row]];
+  } else if ([sectionData[@"key"] isEqualToString:@"BTNoCourseCell"]) {
+    BTNoCourseCell *ncc = (BTNoCourseCell *)cell;
+    [ncc setData:sectionData[@"data"][indexPath.row]];
+  } else if ([sectionData[@"key"] isEqualToString:@"BTRecommendArticleCell"]) {
+    BTRecommendArticleCell *rac = (BTRecommendArticleCell *)cell;
+    [rac setData:sectionData[@"data"][indexPath.row]];
+  } else if ([sectionData[@"key"] isEqualToString:@"BTDynamicTitleCell"]) {
+    BTDynamicTitleCell *dtc = (BTDynamicTitleCell *)cell;
+    [dtc setData:sectionData[@"data"][indexPath.row]];
+  }
   return cell;
 }
 

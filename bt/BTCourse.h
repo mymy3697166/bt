@@ -50,5 +50,6 @@ RLM_ARRAY_TYPE(BTPlan)
 
 + (instancetype)currentCourse;
 + (void)fetchCourseWithBlock:(void(^)(NSError *error))block;
++ (void)updateCourseWithData:(NSDictionary *)data;
 @end
 RLM_ARRAY_TYPE(BTCourse)

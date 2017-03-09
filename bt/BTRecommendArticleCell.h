@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BTRecommendArticleCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface BTRecommendArticleCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 - (void)setData:(NSArray *)data;
 @end

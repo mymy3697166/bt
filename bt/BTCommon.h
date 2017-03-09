@@ -16,12 +16,13 @@
 #import "NSData+Extension.h"
 #import "UIImageView+Extension.h"
 #import "NSArray+Extension.h"
+#import "BTDataCache.h"
 
 #define Common [[BTCommon alloc] init]
-#define R [RLMRealm defaultRealm]
-#define U [BTUser currentUser]
+#define Realm [RLMRealm defaultRealm]
+#define User [BTUser currentUser]
 #define Course [BTCourse currentCourse]
-#define N [NSNotificationCenter defaultCenter]
+#define Notif [NSNotificationCenter defaultCenter]
 
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1]
 #define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]

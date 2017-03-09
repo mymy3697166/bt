@@ -47,6 +47,13 @@
 		5C4150901E2DD05A00046514 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C41508F1E2DD05A00046514 /* NSArray+Extension.m */; };
 		5C4389A51E2329E5009C7C75 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4389A41E2329E5009C7C75 /* MBProgressHUD.m */; };
 		5C4389A91E232F40009C7C75 /* BTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4389A81E232F40009C7C75 /* BTUser.m */; };
+		5C439DC51E70F183008DD770 /* BTNoCourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C439DC41E70F183008DD770 /* BTNoCourseCell.xib */; };
+		5C439DC71E710027008DD770 /* BTRecommendArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C439DC61E710027008DD770 /* BTRecommendArticleCell.xib */; };
+		5C439DC91E71079C008DD770 /* BTArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C439DC81E71079C008DD770 /* BTArticleCell.xib */; };
+		5C439DCC1E71250A008DD770 /* BTDynamicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C439DCB1E712509008DD770 /* BTDynamicCell.xib */; };
+		5C439DD01E712852008DD770 /* BTDynamicTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C439DCE1E712852008DD770 /* BTDynamicTitleCell.m */; };
+		5C439DD11E712852008DD770 /* BTDynamicTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C439DCF1E712852008DD770 /* BTDynamicTitleCell.xib */; };
+		5C439DD41E71313F008DD770 /* BTDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C439DD31E71313F008DD770 /* BTDataCache.m */; };
 		5C4606441E6FFDA6009B0F52 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5052431E67ED6F009DBA33 /* Realm.framework */; };
 		5C4606451E6FFDA6009B0F52 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5052431E67ED6F009DBA33 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5C4606491E700836009B0F52 /* BTCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4606481E700836009B0F52 /* BTCourse.m */; };
@@ -144,6 +151,15 @@
 		5C4389A41E2329E5009C7C75 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		5C4389A71E232F40009C7C75 /* BTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUser.h; sourceTree = "<group>"; };
 		5C4389A81E232F40009C7C75 /* BTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTUser.m; sourceTree = "<group>"; };
+		5C439DC41E70F183008DD770 /* BTNoCourseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTNoCourseCell.xib; sourceTree = "<group>"; };
+		5C439DC61E710027008DD770 /* BTRecommendArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTRecommendArticleCell.xib; sourceTree = "<group>"; };
+		5C439DC81E71079C008DD770 /* BTArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTArticleCell.xib; sourceTree = "<group>"; };
+		5C439DCB1E712509008DD770 /* BTDynamicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTDynamicCell.xib; sourceTree = "<group>"; };
+		5C439DCD1E712852008DD770 /* BTDynamicTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDynamicTitleCell.h; sourceTree = "<group>"; };
+		5C439DCE1E712852008DD770 /* BTDynamicTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDynamicTitleCell.m; sourceTree = "<group>"; };
+		5C439DCF1E712852008DD770 /* BTDynamicTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTDynamicTitleCell.xib; sourceTree = "<group>"; };
+		5C439DD21E71313F008DD770 /* BTDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDataCache.h; sourceTree = "<group>"; };
+		5C439DD31E71313F008DD770 /* BTDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDataCache.m; sourceTree = "<group>"; };
 		5C4606471E700836009B0F52 /* BTCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCourse.h; sourceTree = "<group>"; };
 		5C4606481E700836009B0F52 /* BTCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCourse.m; sourceTree = "<group>"; };
 		5C50523B1E67BB9E009DBA33 /* BTCurrentCourseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTCurrentCourseCell.xib; sourceTree = "<group>"; };
@@ -224,20 +240,24 @@
 				006DF81A1E2D0DCE00169EB0 /* BTWeightCell.h */,
 				006DF81B1E2D0DCE00169EB0 /* BTWeightCell.m */,
 				0066B8741E66FE0D004169CB /* BTWeightCell.xib */,
-				5C4150891E2DC4C000046514 /* BTCourseHomeCalendarView.h */,
-				5C41508A1E2DC4C000046514 /* BTCourseHomeCalendarView.m */,
-				5C41508C1E2DC4D500046514 /* BTCourseHomeCalendarView.xib */,
 				006DF81D1E2D1E9400169EB0 /* BTCurrentCourseCell.h */,
 				006DF81E1E2D1E9400169EB0 /* BTCurrentCourseCell.m */,
 				5C50523B1E67BB9E009DBA33 /* BTCurrentCourseCell.xib */,
+				5C4150891E2DC4C000046514 /* BTCourseHomeCalendarView.h */,
+				5C41508A1E2DC4C000046514 /* BTCourseHomeCalendarView.m */,
+				5C41508C1E2DC4D500046514 /* BTCourseHomeCalendarView.xib */,
 				006B2A441E2F780D0002A484 /* BTNoCourseCell.h */,
 				006B2A451E2F780D0002A484 /* BTNoCourseCell.m */,
+				5C439DC41E70F183008DD770 /* BTNoCourseCell.xib */,
 				006B2A471E2FBF8A0002A484 /* BTRecommendArticleCell.h */,
 				006B2A481E2FBF8A0002A484 /* BTRecommendArticleCell.m */,
+				5C439DC61E710027008DD770 /* BTRecommendArticleCell.xib */,
 				004F59211E30E1A000A9E522 /* BTArticleCell.h */,
 				004F59221E30E1A000A9E522 /* BTArticleCell.m */,
-				5C9A8EEF1E3450540014D736 /* BTDynamicCell.h */,
-				5C9A8EF01E3450540014D736 /* BTDynamicCell.m */,
+				5C439DC81E71079C008DD770 /* BTArticleCell.xib */,
+				5C439DCD1E712852008DD770 /* BTDynamicTitleCell.h */,
+				5C439DCE1E712852008DD770 /* BTDynamicTitleCell.m */,
+				5C439DCF1E712852008DD770 /* BTDynamicTitleCell.xib */,
 			);
 			name = plan;
 			sourceTree = "<group>";
@@ -329,6 +349,7 @@
 			children = (
 				0066B8761E66FE1A004169CB /* login */,
 				0066B8771E66FE21004169CB /* plan */,
+				5C439DCA1E7124D1008DD770 /* dynamic */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -349,8 +370,20 @@
 				5C4389A81E232F40009C7C75 /* BTUser.m */,
 				5C4606471E700836009B0F52 /* BTCourse.h */,
 				5C4606481E700836009B0F52 /* BTCourse.m */,
+				5C439DD21E71313F008DD770 /* BTDataCache.h */,
+				5C439DD31E71313F008DD770 /* BTDataCache.m */,
 			);
 			name = models;
+			sourceTree = "<group>";
+		};
+		5C439DCA1E7124D1008DD770 /* dynamic */ = {
+			isa = PBXGroup;
+			children = (
+				5C9A8EEF1E3450540014D736 /* BTDynamicCell.h */,
+				5C9A8EF01E3450540014D736 /* BTDynamicCell.m */,
+				5C439DCB1E712509008DD770 /* BTDynamicCell.xib */,
+			);
+			name = dynamic;
 			sourceTree = "<group>";
 		};
 		5C4606431E6FD998009B0F52 /* Frameworks */ = {
@@ -394,7 +427,7 @@
 				TargetAttributes = {
 					007E56161E1FCC6A001CFCD4 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 5ZDM7H945X;
+						DevelopmentTeam = 77Z6WQB2YV;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -422,12 +455,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C439DC91E71079C008DD770 /* BTArticleCell.xib in Resources */,
 				000540021E27DA7C00067791 /* BTHeightPickerView.xib in Resources */,
+				5C439DCC1E71250A008DD770 /* BTDynamicCell.xib in Resources */,
 				007E562A1E1FCC6A001CFCD4 /* LaunchScreen.storyboard in Resources */,
 				5C4136871E285F5000A25AE6 /* BTWeightPickerView.xib in Resources */,
 				5C50523C1E67BB9E009DBA33 /* BTCurrentCourseCell.xib in Resources */,
 				007E56271E1FCC6A001CFCD4 /* Assets.xcassets in Resources */,
+				5C439DC51E70F183008DD770 /* BTNoCourseCell.xib in Resources */,
 				5C3F7F8F1E25C1410057D831 /* BTDatePickerView.xib in Resources */,
+				5C439DC71E710027008DD770 /* BTRecommendArticleCell.xib in Resources */,
+				5C439DD11E712852008DD770 /* BTDynamicTitleCell.xib in Resources */,
 				007E56251E1FCC6A001CFCD4 /* Main.storyboard in Resources */,
 				5C41508D1E2DC4D500046514 /* BTCourseHomeCalendarView.xib in Resources */,
 				0066B8751E66FE0D004169CB /* BTWeightCell.xib in Resources */,
@@ -470,6 +508,7 @@
 				000540001E27CE1400067791 /* BTWeightPickerView.m in Sources */,
 				5C4030341E2CD3C200C25408 /* BTPlanHomeViewController.m in Sources */,
 				5C4030301E2CC72C00C25408 /* UIImageView+Extension.m in Sources */,
+				5C439DD41E71313F008DD770 /* BTDataCache.m in Sources */,
 				007E56411E1FF224001CFCD4 /* BTLoginViewController.m in Sources */,
 				5C40302A1E2C97B400C25408 /* NSString+Extension.m in Sources */,
 				007E56221E1FCC6A001CFCD4 /* ViewController.m in Sources */,
@@ -483,6 +522,7 @@
 				5C4030271E2C94E700C25408 /* NSDate+Extension.m in Sources */,
 				007E561F1E1FCC6A001CFCD4 /* AppDelegate.m in Sources */,
 				007E56351E1FE05D001CFCD4 /* BTTabBarController.m in Sources */,
+				5C439DD01E712852008DD770 /* BTDynamicTitleCell.m in Sources */,
 				007E56381E1FE1B6001CFCD4 /* BTNavigationController.m in Sources */,
 				5C3F7F8D1E25C0C50057D831 /* BTDatePickerView.m in Sources */,
 				00053FF71E27AF4300067791 /* BTHeightPickerView.m in Sources */,
@@ -612,7 +652,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5ZDM7H945X;
+				DEVELOPMENT_TEAM = 77Z6WQB2YV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -629,7 +669,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5ZDM7H945X;
+				DEVELOPMENT_TEAM = 77Z6WQB2YV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

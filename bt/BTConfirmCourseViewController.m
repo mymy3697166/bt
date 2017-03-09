@@ -29,9 +29,9 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   [self initUI];
-  labHeight.text = [NSString stringWithFormat:@"%@cm", U.heights.lastObject[@"height"]];
-  labWeight.text = [NSString stringWithFormat:@"%@kg", U.weights.lastObject[@"weight"]];
-  float bmi = [Common bmiWithHeight:[U.heights.lastObject[@"height"] floatValue] andWeight:[U.weights.lastObject[@"weight"] floatValue]];
+  labHeight.text = [NSString stringWithFormat:@"%@cm", User.heights.lastObject[@"height"]];
+  labWeight.text = [NSString stringWithFormat:@"%@kg", User.weights.lastObject[@"weight"]];
+  float bmi = [Common bmiWithHeight:[User.heights.lastObject[@"height"] floatValue] andWeight:[User.weights.lastObject[@"weight"] floatValue]];
   labBMI.text = [NSString stringWithFormat:@"%1.f", bmi];
   NSString *body;
   if (bmi < 18.5) body = @"过轻";

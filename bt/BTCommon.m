@@ -51,14 +51,14 @@
   request.HTTPShouldHandleCookies = NO;
   request.timeoutInterval = 10;
   [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-  if (U && U.token != nil) [request setValue:U.token forHTTPHeaderField:@"mtoken"];
+  if (User && User.token != nil) [request setValue:User.token forHTTPHeaderField:@"mtoken"];
   else [request setValue:@"BBA8A2567B5095FEF4E316F532903571" forHTTPHeaderField:@"mtoken"];
   if (forms) request.HTTPBody = [NSJSONSerialization dataWithJSONObject:forms options:kNilOptions error:error];
-  if (error) return nil;
+  if (*error) return nil;
   NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:error];
-  if (error) return nil;
+  if (*error) return nil;
   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:error];
-  if (error) return nil;
+  if (*error) return nil;
   return json;
 }
 
@@ -68,7 +68,7 @@
   request.HTTPShouldHandleCookies = NO;
   request.timeoutInterval = 10;
   [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-  if (U && U.token != nil) [request setValue:U.token forHTTPHeaderField:@"mtoken"];
+  if (User && User.token != nil) [request setValue:User.token forHTTPHeaderField:@"mtoken"];
   else [request setValue:@"BBA8A2567B5095FEF4E316F532903571" forHTTPHeaderField:@"mtoken"];
   NSError *error;
   if (forms) {
@@ -99,8 +99,8 @@
 }
 
 - (void)requestQueue:(void(^)())block {
-  dispatch_queue_t queue = dispatch_queue_create("requestQueue", nil);
-  dispatch_async(queue, block);
+  //dispatch_queue_t queue = dispatch_queue_create("requestQueue", nil);
+  dispatch_async(dispatch_get_main_queue(), block);
 }
 
 - (NSInteger)getInfoFromDate:(NSDate *)date byFormat:(NSString *)format {
