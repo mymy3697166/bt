@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BTDynamicCell : UITableViewCell
-@property (strong, nonatomic) NSDictionary *data;
+- (void)setData:(NSDictionary *)data;
 @end

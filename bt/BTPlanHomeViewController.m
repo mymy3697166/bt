@@ -34,63 +34,72 @@
   tvTable.estimatedRowHeight = 100;
   tvTable.rowHeight = UITableViewAutomaticDimension;
   [Notif addObserver:self selector:@selector(loginComplete) name:@"N_LOGIN_SUCCESS" object:nil];
-  [self loadLocalData];
-  [self loadRemoteData];
+  if (User) {
+    vNoLogin.hidden = YES;
+    [self loadLocalData];
+    [self loadRemoteData];
+  }
 }
 
 - (void)loadLocalData {
-  if (User) {
-    NSDictionary *weightInfo;
-    if (User.weights.count == 0) {
-      weightInfo = @{@"data": @[@{@"weight": @0, @"difference": @0}], @"key": @"BTWeightCell"};
-    }
-    else {
-      BTWeightRecord *first = User.weights.firstObject;
-      BTWeightRecord *last = User.weights.lastObject;
-      NSNumber *diff = [NSNumber numberWithInt:[first.weight intValue] - [last.weight intValue]];
-      weightInfo = @{@"data": @[@{@"weight": last.weight, @"difference": diff}], @"key": @"BTWeightCell"};
-      [dataSource addObject:weightInfo];
-    }
-    if (Course) {
-      NSString *key;
-      if ([Course.isJoin isEqualToNumber:@1]) key = @"BTCurrentCourseCell";
-      else key = @"BTNoCourseCell";
-      [dataSource addObject:@{@"data": @[Course], @"key": key}];
-      if ([Course.isJoin isEqualToNumber:@0]) {
-        NSArray *articles = [BTDataCache getValueForKey:@"PLAN_HOME_ARTICLES"];
-        if (articles) {
-          [dataSource addObject:@{@"data": @[articles], @"key": @"BTRecommendArticleCell"}];
-        }
+  NSDictionary *weightInfo;
+  if (User.weights.count == 0) {
+    weightInfo = @{@"data": @[@{@"weight": @0, @"difference": @0}], @"key": @"BTWeightCell"};
+  }
+  else {
+    BTWeightRecord *first = User.weights.firstObject;
+    BTWeightRecord *last = User.weights.lastObject;
+    NSNumber *diff = [NSNumber numberWithInt:[first.weight intValue] - [last.weight intValue]];
+    weightInfo = @{@"data": @[@{@"weight": last.weight, @"difference": diff}], @"key": @"BTWeightCell"};
+    [dataSource addObject:weightInfo];
+  }
+  if (Course) {
+    NSString *key;
+    if ([Course.isJoin isEqualToNumber:@1]) key = @"BTCurrentCourseCell";
+    else key = @"BTNoCourseCell";
+    [dataSource addObject:@{@"data": @[Course], @"key": key}];
+    if ([Course.isJoin isEqualToNumber:@0]) {
+      NSArray *articles = [BTDataCache getValueForKey:@"PLAN_HOME_ARTICLES"];
+      if (articles) {
+        [dataSource addObject:@{@"data": @[articles], @"key": @"BTRecommendArticleCell"}];
       }
-      [dataSource addObject:@{@"data": @[Course], @"key": @"BTDynamicTitleCell"}];
     }
+    [dataSource addObject:@{@"data": @[Course], @"key": @"BTDynamicTitleCell"}];
   }
 }
 
 - (void)loadRemoteData {
-  if (User) {
-    [Common requestQueue:^{
-      NSError *error;
-      NSDictionary *res = [Common syncPost:URL_FETCHPLANHOME forms:@{@"article": @1, @"course": @1} error:&error];
-      NSLog(@"%@", res);
-      if (error) {
-        [self showError:error];
-        return;
-      }
-      [BTCourse updateCourseWithData:res[@"data"]];
-      NSString *key;
-      if ([Course.isJoin isEqualToNumber:@1]) key = @"BTCurrentCourseCell";
-      else key = @"BTNoCourseCell";
-      NSDictionary *courseInfo = @{@"data": @[Course], @"key": key};
-      [self insertItem:courseInfo];
-      if ([Course.isJoin isEqualToNumber:@0]) {
-        [BTDataCache setValue:res[@"data"][@"articles"] forKey:@"PLAN_HOME_ARTICLES"];
-        [self insertItem:@{@"data": @[res[@"data"][@"articles"]], @"key": @"BTRecommendArticleCell"}];
-      }
-      [self insertItem:@{@"data": @[Course], @"key": @"BTDynamicTitleCell"}];
-      [tvTable reloadData];
-    }];
-  }
+  [Common requestQueue:^{
+    NSError *error;
+    NSDictionary *res = [Common syncPost:URL_FETCHPLANHOME forms:@{@"article": @1, @"course": @1} error:&error];
+    if (error) {
+      [self showError:error];
+      return;
+    }
+    // 更新课程信息
+    [BTCourse updateCourseWithData:res[@"data"]];
+    // 向数据源加入课程数据
+    NSString *key;
+    if ([Course.isJoin isEqualToNumber:@1]) key = @"BTCurrentCourseCell";
+    else key = @"BTNoCourseCell";
+    NSDictionary *courseInfo = @{@"data": @[Course], @"key": key};
+    [self insertItem:courseInfo];
+    if ([Course.isJoin isEqualToNumber:@0]) {
+      [BTDataCache setValue:res[@"data"][@"articles"] forKey:@"PLAN_HOME_ARTICLES"];
+      [self insertItem:@{@"data": @[res[@"data"][@"articles"]], @"key": @"BTRecommendArticleCell"}];
+    }
+    // 向数据源加入课程动态标题数据
+    [self insertItem:@{@"data": @[Course], @"key": @"BTDynamicTitleCell"}];
+    // 拉去课程动态数据
+    res = [Common syncPost:URL_FETCHDYNAMICS forms:@{@"course": Course.dataId, @"rows": @30} error:&error];
+    if (error) {
+      [self showError:error];
+      return;
+    }
+    [BTDataCache setValue:res[@"data"] forKey:@"PLAN_HOME_DYNAMICS"];
+    [self insertItem:@{@"data": res[@"data"], @"key": @"BTDynamicCell"}];
+    [tvTable reloadData];
+  }];
 }
 
 - (void)insertItem:(NSDictionary *)item {
@@ -117,6 +126,9 @@
       else [dataSource insertObject:item atIndex:3];
     }
   }
+  if ([item[@"key"] isEqualToString:@"BTDynamicCell"]) {
+    [dataSource addObject:item];
+  }
 }
 
 - (NSInteger)getDataSourceIndexForKey:(NSString *)key {
@@ -127,8 +139,10 @@
 }
 
 - (void)loginComplete {
+  vNoLogin.hidden = YES;
   [self loadLocalData];
   [tvTable reloadData];
+  [self loadRemoteData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {return 0.0001;}
@@ -164,6 +178,9 @@
   } else if ([sectionData[@"key"] isEqualToString:@"BTDynamicTitleCell"]) {
     BTDynamicTitleCell *dtc = (BTDynamicTitleCell *)cell;
     [dtc setData:sectionData[@"data"][indexPath.row]];
+  } else {
+    BTDynamicCell *dc = (BTDynamicCell *)cell;
+    [dc setData:sectionData[@"data"][indexPath.row]];
   }
   return cell;
 }
