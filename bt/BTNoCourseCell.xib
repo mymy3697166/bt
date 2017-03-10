@@ -25,31 +25,31 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐您参加这个训练课程" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lt-UV-UU4">
-                        <rect key="frame" x="16" y="15" width="202" height="22"/>
+                        <rect key="frame" x="10" y="15" width="202" height="22"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="家庭燃脂方案" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeT-oK-gkm">
-                        <rect key="frame" x="16" y="53" width="80" height="16"/>
+                        <rect key="frame" x="10" y="53" width="80" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="课程教练：小猪侠" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ed-Tm-sp1">
-                        <rect key="frame" x="16" y="167" width="107" height="16"/>
+                        <rect key="frame" x="10" y="167" width="107" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时需：32天" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwX-n0-2B4">
-                        <rect key="frame" x="139" y="167" width="69" height="16"/>
+                        <rect key="frame" x="133" y="167" width="69" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tN4-wq-5ah">
-                        <rect key="frame" x="279" y="160" width="80" height="30"/>
+                        <rect key="frame" x="285" y="160" width="80" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="tas-fN-uCl"/>
                             <constraint firstAttribute="width" constant="80" id="x0s-Jl-4P1"/>
@@ -79,25 +79,25 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="eu1-qJ-hGI" firstAttribute="leading" secondItem="rRi-IZ-apI" secondAttribute="leading" id="097-rC-XAU"/>
-                    <constraint firstItem="VeT-oK-gkm" firstAttribute="leading" secondItem="rRi-IZ-apI" secondAttribute="leading" constant="16" id="0ym-IF-bSI"/>
+                    <constraint firstItem="VeT-oK-gkm" firstAttribute="leading" secondItem="rRi-IZ-apI" secondAttribute="leading" constant="10" id="0ym-IF-bSI"/>
                     <constraint firstItem="VeT-oK-gkm" firstAttribute="top" secondItem="8lt-UV-UU4" secondAttribute="bottom" constant="16" id="38S-l4-fda"/>
                     <constraint firstItem="tN4-wq-5ah" firstAttribute="centerY" secondItem="cwX-n0-2B4" secondAttribute="centerY" id="883-gu-vSI"/>
                     <constraint firstItem="8lt-UV-UU4" firstAttribute="top" secondItem="rRi-IZ-apI" secondAttribute="top" constant="15" id="CxH-9J-sax"/>
                     <constraint firstAttribute="trailing" secondItem="a7H-MZ-lk5" secondAttribute="trailing" id="CxU-FG-VOa"/>
                     <constraint firstItem="eu1-qJ-hGI" firstAttribute="top" secondItem="a7H-MZ-lk5" secondAttribute="bottom" id="GLQ-Yr-pGZ"/>
                     <constraint firstAttribute="trailing" secondItem="5Iq-jP-kOz" secondAttribute="trailing" id="IAt-vM-QHf"/>
-                    <constraint firstItem="8lt-UV-UU4" firstAttribute="leading" secondItem="rRi-IZ-apI" secondAttribute="leading" constant="16" id="NU3-AG-VVf"/>
+                    <constraint firstItem="8lt-UV-UU4" firstAttribute="leading" secondItem="rRi-IZ-apI" secondAttribute="leading" constant="10" id="NU3-AG-VVf"/>
                     <constraint firstAttribute="trailing" secondItem="eu1-qJ-hGI" secondAttribute="trailing" id="Tzx-te-sdJ"/>
                     <constraint firstItem="5Iq-jP-kOz" firstAttribute="leading" secondItem="rRi-IZ-apI" secondAttribute="leading" id="VHI-9x-jPj"/>
                     <constraint firstItem="5Iq-jP-kOz" firstAttribute="top" secondItem="rRi-IZ-apI" secondAttribute="top" constant="-1" id="Vsp-ib-PDe"/>
                     <constraint firstItem="a7H-MZ-lk5" firstAttribute="top" secondItem="5Iq-jP-kOz" secondAttribute="bottom" id="WFE-5a-9fE"/>
                     <constraint firstItem="cwX-n0-2B4" firstAttribute="bottom" secondItem="5Iq-jP-kOz" secondAttribute="bottom" constant="-16" id="WwB-kw-2Uj"/>
                     <constraint firstItem="5Ed-Tm-sp1" firstAttribute="bottom" secondItem="5Iq-jP-kOz" secondAttribute="bottom" constant="-16" id="Xci-zs-CO1"/>
-                    <constraint firstItem="5Ed-Tm-sp1" firstAttribute="leading" secondItem="rRi-IZ-apI" secondAttribute="leading" constant="16" id="YYw-DR-CvO"/>
+                    <constraint firstItem="5Ed-Tm-sp1" firstAttribute="leading" secondItem="rRi-IZ-apI" secondAttribute="leading" constant="10" id="YYw-DR-CvO"/>
                     <constraint firstAttribute="bottom" secondItem="eu1-qJ-hGI" secondAttribute="bottom" id="bdR-Xe-Vhf"/>
                     <constraint firstItem="cwX-n0-2B4" firstAttribute="leading" secondItem="5Ed-Tm-sp1" secondAttribute="trailing" constant="16" id="mWR-Uv-PWM"/>
                     <constraint firstItem="a7H-MZ-lk5" firstAttribute="leading" secondItem="rRi-IZ-apI" secondAttribute="leading" id="xEn-Qp-AUa"/>
-                    <constraint firstAttribute="trailing" secondItem="tN4-wq-5ah" secondAttribute="trailing" constant="16" id="yHa-IU-CJm"/>
+                    <constraint firstAttribute="trailing" secondItem="tN4-wq-5ah" secondAttribute="trailing" constant="10" id="yHa-IU-CJm"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

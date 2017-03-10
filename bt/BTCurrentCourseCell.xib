@@ -43,7 +43,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日训练" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCJ-2j-A86">
-                    <rect key="frame" x="16" y="87" width="62" height="18"/>
+                    <rect key="frame" x="10" y="87" width="62" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="xKB-3e-wuP"/>
                     </constraints>
@@ -164,7 +164,7 @@
                 <constraint firstItem="S1b-vc-sh6" firstAttribute="top" secondItem="f8T-Q2-bLu" secondAttribute="bottom" id="Fnl-WN-fqV"/>
                 <constraint firstAttribute="trailing" secondItem="MsJ-Y3-403" secondAttribute="trailing" id="NPc-fs-1re"/>
                 <constraint firstItem="f8T-Q2-bLu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Nix-Sn-koI"/>
-                <constraint firstItem="zCJ-2j-A86" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="PPv-Y1-tHb"/>
+                <constraint firstItem="zCJ-2j-A86" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="PPv-Y1-tHb"/>
                 <constraint firstItem="vNa-LE-p6y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QVE-kz-kul"/>
                 <constraint firstItem="MsJ-Y3-403" firstAttribute="top" secondItem="vNa-LE-p6y" secondAttribute="bottom" id="S5P-Y8-6OL"/>
                 <constraint firstItem="9KU-WH-dCQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="TXI-hg-jz9"/>

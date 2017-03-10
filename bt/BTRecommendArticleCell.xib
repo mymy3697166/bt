@@ -15,11 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vWF-1Z-p2D" id="mAn-b2-MJp">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="209.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="209"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐文章" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CNJ-UF-onP">
-                        <rect key="frame" x="16" y="16" width="62" height="17"/>
+                        <rect key="frame" x="10" y="16" width="62" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -65,7 +65,7 @@
                     <constraint firstItem="g3H-Xh-K2Q" firstAttribute="leading" secondItem="mAn-b2-MJp" secondAttribute="leading" id="Jnt-YJ-mHg"/>
                     <constraint firstItem="g3H-Xh-K2Q" firstAttribute="top" secondItem="CNJ-UF-onP" secondAttribute="bottom" constant="16" id="OPo-6F-Azx"/>
                     <constraint firstItem="vTW-oL-202" firstAttribute="top" secondItem="gsA-uS-npe" secondAttribute="bottom" id="RxJ-9i-UNb"/>
-                    <constraint firstItem="CNJ-UF-onP" firstAttribute="leading" secondItem="mAn-b2-MJp" secondAttribute="leading" constant="16" id="Sop-2X-nQm"/>
+                    <constraint firstItem="CNJ-UF-onP" firstAttribute="leading" secondItem="mAn-b2-MJp" secondAttribute="leading" constant="10" id="Sop-2X-nQm"/>
                     <constraint firstAttribute="trailing" secondItem="g3H-Xh-K2Q" secondAttribute="trailing" id="Yce-lK-oyO"/>
                     <constraint firstItem="CNJ-UF-onP" firstAttribute="top" secondItem="mAn-b2-MJp" secondAttribute="top" constant="16" id="if6-g8-JOg"/>
                     <constraint firstItem="vTW-oL-202" firstAttribute="leading" secondItem="mAn-b2-MJp" secondAttribute="leading" id="kVm-jg-et9"/>

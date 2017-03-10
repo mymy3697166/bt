@@ -14,6 +14,7 @@
 #import "BTRecommendArticleCell.h"
 #import "BTDynamicTitleCell.h"
 #import "BTDynamicCell.h"
+#import "BTListBottomCell.h"
 
 @interface BTPlanHomeViewController () <UITableViewDataSource, UITableViewDelegate> {
   __weak IBOutlet UITableView *tvTable;
@@ -31,8 +32,10 @@
   [super viewDidLoad];
   dataSource = [NSMutableArray array];
   btnLogin.layer.cornerRadius = 5;
+  // 设置预测表格单元格高度
   tvTable.estimatedRowHeight = 100;
   tvTable.rowHeight = UITableViewAutomaticDimension;
+  
   [Notif addObserver:self selector:@selector(loginComplete) name:@"N_LOGIN_SUCCESS" object:nil];
   if (User) {
     vNoLogin.hidden = YES;
@@ -42,6 +45,8 @@
 }
 
 - (void)loadLocalData {
+  [dataSource removeAllObjects];
+  // 向数据源加入体重数据
   NSDictionary *weightInfo;
   if (User.weights.count == 0) {
     weightInfo = @{@"data": @[@{@"weight": @0, @"difference": @0}], @"key": @"BTWeightCell"};
@@ -54,17 +59,19 @@
     [dataSource addObject:weightInfo];
   }
   if (Course) {
-    NSString *key;
-    if ([Course.isJoin isEqualToNumber:@1]) key = @"BTCurrentCourseCell";
-    else key = @"BTNoCourseCell";
-    [dataSource addObject:@{@"data": @[Course], @"key": key}];
+    [dataSource addObject:@{@"data": @[Course], @"key": [Course.isJoin isEqualToNumber:@1] ? @"BTCurrentCourseCell" : @"BTNoCourseCell"}];
     if ([Course.isJoin isEqualToNumber:@0]) {
       NSArray *articles = [BTDataCache getValueForKey:@"PLAN_HOME_ARTICLES"];
-      if (articles) {
-        [dataSource addObject:@{@"data": @[articles], @"key": @"BTRecommendArticleCell"}];
-      }
+      if (![articles null]) [dataSource addObject:@{@"data": @[articles], @"key": @"BTRecommendArticleCell"}];
     }
     [dataSource addObject:@{@"data": @[Course], @"key": @"BTDynamicTitleCell"}];
+    NSMutableArray *dynamics = [NSMutableArray arrayWithArray:[BTDataCache getValueForKey:@"PLAN_HOME_DYNAMICS"]];
+    NSInteger count = dynamics.count;
+    if (count == 31) [dynamics removeObjectAtIndex:30];
+    [dataSource addObject:@{@"data": dynamics, @"key": @"BTDynamicCell"}];
+    if (count == 0) [dataSource addObject:@{@"data": @[@"还没有任何动态"], @"key": @"BTListBottomCell"}];
+    else if (count == 31) [dataSource addObject:@{@"data": @[@"查看更多动态"], @"key": @"BTListBottomCell"}];
+    else [dataSource addObject:@{@"data": @[@"没有更多了"], @"key": @"BTListBottomCell"}];
   }
 }
 
@@ -76,66 +83,35 @@
       [self showError:error];
       return;
     }
+    [dataSource removeAllObjects];
     // 更新课程信息
     [BTCourse updateCourseWithData:res[@"data"]];
     // 向数据源加入课程数据
-    NSString *key;
-    if ([Course.isJoin isEqualToNumber:@1]) key = @"BTCurrentCourseCell";
-    else key = @"BTNoCourseCell";
-    NSDictionary *courseInfo = @{@"data": @[Course], @"key": key};
-    [self insertItem:courseInfo];
+    [dataSource addObject:@{@"data": @[Course], @"key": [Course.isJoin isEqualToNumber:@1] ? @"BTCurrentCourseCell" : @"BTNoCourseCell"}];
+    // 缓存文章数据并加入数据源
     if ([Course.isJoin isEqualToNumber:@0]) {
       [BTDataCache setValue:res[@"data"][@"articles"] forKey:@"PLAN_HOME_ARTICLES"];
-      [self insertItem:@{@"data": @[res[@"data"][@"articles"]], @"key": @"BTRecommendArticleCell"}];
+      [dataSource addObject:@{@"data": @[res[@"data"][@"articles"]], @"key": @"BTRecommendArticleCell"}];
     }
     // 向数据源加入课程动态标题数据
-    [self insertItem:@{@"data": @[Course], @"key": @"BTDynamicTitleCell"}];
-    // 拉去课程动态数据
-    res = [Common syncPost:URL_FETCHDYNAMICS forms:@{@"course": Course.dataId, @"rows": @30} error:&error];
+    [dataSource addObject:@{@"data": @[Course], @"key": @"BTDynamicTitleCell"}];
+    // 拉取课程动态数据
+    res = [Common syncPost:URL_FETCHDYNAMICS forms:@{@"course": Course.dataId, @"rows": @31} error:&error];
     if (error) {
       [self showError:error];
       return;
     }
+    // 缓存动态数据并加入数据源
     [BTDataCache setValue:res[@"data"] forKey:@"PLAN_HOME_DYNAMICS"];
-    [self insertItem:@{@"data": res[@"data"], @"key": @"BTDynamicCell"}];
+    NSMutableArray *dynamics = [NSMutableArray arrayWithArray:res[@"data"]];
+    NSInteger count = dynamics.count;
+    if (count == 31) [dynamics removeObjectAtIndex:30];
+    [dataSource addObject:@{@"data": dynamics, @"key": @"BTDynamicCell"}];
+    if (count == 0) [dataSource addObject:@{@"data": @[@"还没有任何动态"], @"key": @"BTListBottomCell"}];
+    else if (count == 31) [dataSource addObject:@{@"data": @[@"查看更多动态"], @"key": @"BTListBottomCell"}];
+    else [dataSource addObject:@{@"data": @[@"没有更多了"], @"key": @"BTListBottomCell"}];
     [tvTable reloadData];
   }];
-}
-
-- (void)insertItem:(NSDictionary *)item {
-  NSInteger index = [self getDataSourceIndexForKey:item[@"key"]];
-  if (index != -1) {
-    [dataSource replaceObjectAtIndex:index withObject:item];
-    return;
-  }
-  if ([item[@"key"] isEqualToString:@"BTCurrentCourseCell"] || [item[@"key"] isEqualToString:@"BTNoCourseCell"]) {
-    if (dataSource.count < 2) [dataSource addObject:item];
-    else [dataSource insertObject:item atIndex:1];
-  }
-  if ([item[@"key"] isEqualToString:@"BTRecommendArticleCell"]) {
-    if (dataSource.count < 3) [dataSource addObject:item];
-    else [dataSource insertObject:item atIndex:2];
-  }
-  if ([item[@"key"] isEqualToString:@"BTDynamicTitleCell"]) {
-    NSInteger articleIndex = [self getDataSourceIndexForKey:@"BTRecommendArticleCell"];
-    if (articleIndex == -1) {
-      if (dataSource.count < 3) [dataSource addObject:item];
-      else [dataSource insertObject:item atIndex:2];
-    } else {
-      if (dataSource.count < 4) [dataSource addObject:item];
-      else [dataSource insertObject:item atIndex:3];
-    }
-  }
-  if ([item[@"key"] isEqualToString:@"BTDynamicCell"]) {
-    [dataSource addObject:item];
-  }
-}
-
-- (NSInteger)getDataSourceIndexForKey:(NSString *)key {
-  for (int i = 0; i < dataSource.count; i++) {
-    if ([key isEqualToString:dataSource[i][@"key"]]) return i;
-  }
-  return -1;
 }
 
 - (void)loginComplete {
@@ -178,9 +154,17 @@
   } else if ([sectionData[@"key"] isEqualToString:@"BTDynamicTitleCell"]) {
     BTDynamicTitleCell *dtc = (BTDynamicTitleCell *)cell;
     [dtc setData:sectionData[@"data"][indexPath.row]];
-  } else {
+  } else if ([sectionData[@"key"] isEqualToString:@"BTDynamicCell"]) {
     BTDynamicCell *dc = (BTDynamicCell *)cell;
     [dc setData:sectionData[@"data"][indexPath.row]];
+  } else {
+    BTListBottomCell *lbc = (BTListBottomCell *)cell;
+    lbc.height = 52;
+    if ([sectionData[@"data"][indexPath.row] isEqualToString:@"查看更多动态"])
+      [lbc setTitle:sectionData[@"data"][indexPath.row] block:^{
+        NSLog(@"go le");
+      }];
+    else [lbc setTitle:sectionData[@"data"][indexPath.row] block:nil];
   }
   return cell;
 }

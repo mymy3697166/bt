@@ -54,6 +54,8 @@
 		5C439DD01E712852008DD770 /* BTDynamicTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C439DCE1E712852008DD770 /* BTDynamicTitleCell.m */; };
 		5C439DD11E712852008DD770 /* BTDynamicTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C439DCF1E712852008DD770 /* BTDynamicTitleCell.xib */; };
 		5C439DD41E71313F008DD770 /* BTDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C439DD31E71313F008DD770 /* BTDataCache.m */; };
+		5C45389E1E72A5E80025D983 /* BTListBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C45389C1E72A5E80025D983 /* BTListBottomCell.m */; };
+		5C45389F1E72A5E80025D983 /* BTListBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45389D1E72A5E80025D983 /* BTListBottomCell.xib */; };
 		5C4606441E6FFDA6009B0F52 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5052431E67ED6F009DBA33 /* Realm.framework */; };
 		5C4606451E6FFDA6009B0F52 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5052431E67ED6F009DBA33 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5C4606491E700836009B0F52 /* BTCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4606481E700836009B0F52 /* BTCourse.m */; };
@@ -160,6 +162,9 @@
 		5C439DCF1E712852008DD770 /* BTDynamicTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTDynamicTitleCell.xib; sourceTree = "<group>"; };
 		5C439DD21E71313F008DD770 /* BTDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDataCache.h; sourceTree = "<group>"; };
 		5C439DD31E71313F008DD770 /* BTDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDataCache.m; sourceTree = "<group>"; };
+		5C45389B1E72A5E80025D983 /* BTListBottomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTListBottomCell.h; sourceTree = "<group>"; };
+		5C45389C1E72A5E80025D983 /* BTListBottomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTListBottomCell.m; sourceTree = "<group>"; };
+		5C45389D1E72A5E80025D983 /* BTListBottomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTListBottomCell.xib; sourceTree = "<group>"; };
 		5C4606471E700836009B0F52 /* BTCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCourse.h; sourceTree = "<group>"; };
 		5C4606481E700836009B0F52 /* BTCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCourse.m; sourceTree = "<group>"; };
 		5C50523B1E67BB9E009DBA33 /* BTCurrentCourseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTCurrentCourseCell.xib; sourceTree = "<group>"; };
@@ -347,6 +352,9 @@
 		5C3F7F8A1E25BFBD0057D831 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				5C45389B1E72A5E80025D983 /* BTListBottomCell.h */,
+				5C45389C1E72A5E80025D983 /* BTListBottomCell.m */,
+				5C45389D1E72A5E80025D983 /* BTListBottomCell.xib */,
 				0066B8761E66FE1A004169CB /* login */,
 				0066B8771E66FE21004169CB /* plan */,
 				5C439DCA1E7124D1008DD770 /* dynamic */,
@@ -427,7 +435,7 @@
 				TargetAttributes = {
 					007E56161E1FCC6A001CFCD4 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 5ZDM7H945X;
+						DevelopmentTeam = 77Z6WQB2YV;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -464,6 +472,7 @@
 				007E56271E1FCC6A001CFCD4 /* Assets.xcassets in Resources */,
 				5C439DC51E70F183008DD770 /* BTNoCourseCell.xib in Resources */,
 				5C3F7F8F1E25C1410057D831 /* BTDatePickerView.xib in Resources */,
+				5C45389F1E72A5E80025D983 /* BTListBottomCell.xib in Resources */,
 				5C439DC71E710027008DD770 /* BTRecommendArticleCell.xib in Resources */,
 				5C439DD11E712852008DD770 /* BTDynamicTitleCell.xib in Resources */,
 				007E56251E1FCC6A001CFCD4 /* Main.storyboard in Resources */,
@@ -513,6 +522,7 @@
 				5C40302A1E2C97B400C25408 /* NSString+Extension.m in Sources */,
 				007E56221E1FCC6A001CFCD4 /* ViewController.m in Sources */,
 				006DF81C1E2D0DCE00169EB0 /* BTWeightCell.m in Sources */,
+				5C45389E1E72A5E80025D983 /* BTListBottomCell.m in Sources */,
 				006DF81F1E2D1E9400169EB0 /* BTCurrentCourseCell.m in Sources */,
 				5C40302D1E2C98A400C25408 /* NSData+Extension.m in Sources */,
 				006B2A461E2F780D0002A484 /* BTNoCourseCell.m in Sources */,
@@ -652,7 +662,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5ZDM7H945X;
+				DEVELOPMENT_TEAM = 77Z6WQB2YV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -669,7 +679,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5ZDM7H945X;
+				DEVELOPMENT_TEAM = 77Z6WQB2YV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
