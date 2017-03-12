@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5WH-py-XBv">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5WH-py-XBv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -36,9 +36,10 @@
             <objects>
                 <navigationController id="Hrf-74-bvJ" userLabel="BTCourseNavigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="计划" image="tab_plan" id="SZR-XF-sjE"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" backIndicatorImage="icon_back" backIndicatorTransitionMaskImage="icon_back" id="pZ6-Wb-mel">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" backIndicatorImage="icon_back" backIndicatorTransitionMaskImage="icon_back" id="pZ6-Wb-mel">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.36862745099999999" green="0.36862745099999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <color key="textColor" red="0.36862745099999999" green="0.36862745099999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -64,15 +65,6 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="159" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="xVQ-0c-7UK">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <sections/>
-                                <connections>
-                                    <outlet property="dataSource" destination="9QY-6N-VBO" id="NVh-TF-lXp"/>
-                                    <outlet property="delegate" destination="9QY-6N-VBO" id="nba-Oq-imG"/>
-                                </connections>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQF-qj-o8m">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <subviews>
@@ -149,14 +141,23 @@
                                     <constraint firstItem="CW9-7Y-yHW" firstAttribute="centerX" secondItem="aMf-Ov-cgI" secondAttribute="centerX" id="yzL-dK-U8Q"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="159" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="xVQ-0c-7UK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="9QY-6N-VBO" id="NVh-TF-lXp"/>
+                                    <outlet property="delegate" destination="9QY-6N-VBO" id="nba-Oq-imG"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mxR-EE-0Lm" firstAttribute="top" secondItem="xVQ-0c-7UK" secondAttribute="bottom" id="AuB-Lo-4Qh"/>
                             <constraint firstItem="dQF-qj-o8m" firstAttribute="top" secondItem="EDs-ZB-tCz" secondAttribute="bottom" id="DtC-f2-Iz5"/>
-                            <constraint firstItem="xVQ-0c-7UK" firstAttribute="top" secondItem="EDs-ZB-tCz" secondAttribute="bottom" id="M0w-jg-IFl"/>
                             <constraint firstItem="dQF-qj-o8m" firstAttribute="leading" secondItem="Mex-e9-0I8" secondAttribute="leading" id="MIx-jH-zEo"/>
                             <constraint firstItem="mxR-EE-0Lm" firstAttribute="top" secondItem="dQF-qj-o8m" secondAttribute="bottom" id="Q6c-1Z-n7o"/>
+                            <constraint firstItem="xVQ-0c-7UK" firstAttribute="top" secondItem="EDs-ZB-tCz" secondAttribute="bottom" id="gmG-rX-rkp"/>
                             <constraint firstItem="xVQ-0c-7UK" firstAttribute="leading" secondItem="Mex-e9-0I8" secondAttribute="leading" id="if9-6k-9yO"/>
                             <constraint firstAttribute="trailing" secondItem="dQF-qj-o8m" secondAttribute="trailing" id="lLW-7o-exE"/>
                             <constraint firstAttribute="trailing" secondItem="xVQ-0c-7UK" secondAttribute="trailing" id="rZR-et-DnM"/>
@@ -174,19 +175,39 @@
                         <outlet property="btnLogin" destination="ruh-kk-GKv" id="BeP-Oh-VWw"/>
                         <outlet property="tvTable" destination="xVQ-0c-7UK" id="lPJ-Sx-Xip"/>
                         <outlet property="vNoLogin" destination="dQF-qj-o8m" id="dku-82-965"/>
+                        <segue destination="s0R-j7-3kQ" kind="show" identifier="planhome_updateweight" id="4WU-hT-Q5r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IzU-bY-WPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="913" y="-1010"/>
+            <point key="canvasLocation" x="912.79999999999995" y="-1010.6446776611695"/>
+        </scene>
+        <!--Update Weight View Controller-->
+        <scene sceneID="ZsS-cz-OUR">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="s0R-j7-3kQ" customClass="BTUpdateWeightViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C0Q-bM-dkX"/>
+                        <viewControllerLayoutGuide type="bottom" id="5hq-Wc-QNo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Hxa-xt-kjK">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k3F-zi-UPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1726" y="-1011"/>
         </scene>
         <!--登陆导航-->
         <scene sceneID="yHM-AS-R0v">
             <objects>
                 <navigationController storyboardIdentifier="BTLoginNavigationController" title="登陆导航" id="idb-9u-zqO" userLabel="登陆导航" customClass="BTLoginNavigationController" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" backIndicatorImage="icon_back" backIndicatorTransitionMaskImage="icon_back" id="WN0-Zk-bLL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" backIndicatorImage="icon_back" backIndicatorTransitionMaskImage="icon_back" id="WN0-Zk-bLL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.36862745099999999" green="0.36862745099999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <color key="textColor" red="0.36862745099999999" green="0.36862745099999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>

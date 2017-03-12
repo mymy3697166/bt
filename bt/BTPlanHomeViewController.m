@@ -15,6 +15,8 @@
 #import "BTDynamicTitleCell.h"
 #import "BTDynamicCell.h"
 #import "BTListBottomCell.h"
+#import "MJRefresh.h"
+#import "MJRefreshStateHeader.h"
 
 @interface BTPlanHomeViewController () <UITableViewDataSource, UITableViewDelegate> {
   __weak IBOutlet UITableView *tvTable;
@@ -23,11 +25,9 @@
   
   NSMutableArray *dataSource;
 }
-
 @end
 
 @implementation BTPlanHomeViewController
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   dataSource = [NSMutableArray array];
@@ -37,10 +37,19 @@
   tvTable.rowHeight = UITableViewAutomaticDimension;
   
   [Notif addObserver:self selector:@selector(loginComplete) name:@"N_LOGIN_SUCCESS" object:nil];
+  
+  MJRefreshNormalHeader *mjHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    [self loadRemoteDataWithBlock:^{
+      [tvTable.mj_header endRefreshing];
+    }];
+  }];
+  mjHeader.lastUpdatedTimeLabel.hidden = YES;
+  tvTable.mj_header = mjHeader;
+  
   if (User) {
     vNoLogin.hidden = YES;
     [self loadLocalData];
-    [self loadRemoteData];
+    [self loadRemoteDataWithBlock:nil];
   }
 }
 
@@ -75,7 +84,7 @@
   }
 }
 
-- (void)loadRemoteData {
+- (void)loadRemoteDataWithBlock:(void(^)())block {
   [Common requestQueue:^{
     NSError *error;
     NSDictionary *res = [Common syncPost:URL_FETCHPLANHOME forms:@{@"article": @1, @"course": @1} error:&error];
@@ -83,7 +92,9 @@
       [self showError:error];
       return;
     }
-    [dataSource removeAllObjects];
+    while (dataSource.count > 1) {
+      [dataSource removeLastObject];
+    }
     // 更新课程信息
     [BTCourse updateCourseWithData:res[@"data"]];
     // 向数据源加入课程数据
@@ -111,6 +122,7 @@
     else if (count == 31) [dataSource addObject:@{@"data": @[@"查看更多动态"], @"key": @"BTListBottomCell"}];
     else [dataSource addObject:@{@"data": @[@"没有更多了"], @"key": @"BTListBottomCell"}];
     [tvTable reloadData];
+    if (block) dispatch_async(dispatch_get_main_queue(), ^{block();});
   }];
 }
 
@@ -118,7 +130,7 @@
   vNoLogin.hidden = YES;
   [self loadLocalData];
   [tvTable reloadData];
-  [self loadRemoteData];
+  [self loadRemoteDataWithBlock:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {return 0.0001;}

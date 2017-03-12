@@ -25,10 +25,20 @@
 }
 
 - (IBAction)editClick:(UIButton *)sender {
-  [Common info:@"asdf"];
+  [[self viewController] performSegueWithIdentifier:@"planhome_updateweight" sender:nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
   [super setSelected:selected animated:animated];
+}
+
+- (UIViewController*)viewController {
+  for (UIView* next = [self superview]; next; next = next.superview) {
+    UIResponder* nextResponder = [next nextResponder];
+    if ([nextResponder isKindOfClass:[UIViewController class]]) {
+      return (UIViewController*)nextResponder;
+    }
+  }
+  return nil;
 }
 @end

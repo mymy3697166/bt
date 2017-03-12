@@ -44,9 +44,11 @@ static BTCourse *currentCourse;
 
 + (void)updateCourseWithData:(NSDictionary *)data {
   if (currentCourse) {
-    [Realm deleteObjects:[BTAction allObjects]];
-    [Realm deleteObjects:[BTPlan allObjects]];
-    [Realm deleteObjects:[BTCourse allObjects]];
+    [Realm transactionWithBlock:^{
+      [Realm deleteObjects:[BTAction allObjects]];
+      [Realm deleteObjects:[BTPlan allObjects]];
+      [Realm deleteObjects:[BTCourse allObjects]];
+    }];
   }
   currentCourse = [[BTCourse alloc] init];
   currentCourse.dataId = data[@"course_id"];

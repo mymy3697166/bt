@@ -16,6 +16,5 @@
 @implementation BTLoginNavigationController
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.navigationBar.tintColor = RGB(94, 94, 94);
 }
 @end
