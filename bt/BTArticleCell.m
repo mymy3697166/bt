@@ -12,8 +12,11 @@
 @implementation BTArticleCell {
   __weak IBOutlet UIImageView *ivImage;
   __weak IBOutlet UILabel *labName;
+  
+  UIViewController *viewController;
 }
-- (void)setData:(NSDictionary *)data {
+- (void)setData:(NSDictionary *)data inController:(UIViewController *)controller {
+  viewController = controller;
   [ivImage loadURL:[URL_IMAGEPATH stringByAppendingString:data[@"cover"]]];
   labName.text = data[@"title"];
 }

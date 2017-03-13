@@ -10,6 +10,7 @@
 #import <Realm/Realm.h>
 
 @class BTUser;
+@class BTPlan;
 /// 体重记录
 @interface BTWeightRecord : RLMObject
 @property NSNumber<RLMInt> *dataId;
@@ -26,6 +27,12 @@ RLM_ARRAY_TYPE(BTWeightRecord)
 @property NSDate *createdAt;
 @end
 RLM_ARRAY_TYPE(BTHeightRecord)
+/// 训练记录
+@interface BTPlanRecord : RLMObject
+@property BTUser *user;
+@property BTPlan *plan;
+@property NSDate *completeTime;
+@end
 /// 用户
 @interface BTUser : RLMObject
 @property NSNumber<RLMInt> *mid;
@@ -53,6 +60,8 @@ RLM_ARRAY_TYPE(BTHeightRecord)
 + (void)validateVerifyCodeForMobilePhone:(NSString *)mobilePhone andVerifyCode:(NSString *)code andBlock:(void(^)(NSError *error))block;
 /// 保存用户数据
 - (void)saveInfoWithBlock:(void(^)(NSError *error))block;
+/// 更新体重数据
+- (void)updateWeight:(NSNumber *)weight withBlock:(void(^)(NSError *error))block;
 @end
 RLM_ARRAY_TYPE(BTUser)
 

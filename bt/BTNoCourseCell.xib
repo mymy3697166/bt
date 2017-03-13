@@ -18,8 +18,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="208"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Iq-jP-kOz">
+                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Iq-jP-kOz">
                         <rect key="frame" x="0.0" y="-1" width="375" height="200"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="height" constant="200" id="xMp-aV-cuL"/>
                         </constraints>
@@ -100,6 +101,7 @@
                     <constraint firstAttribute="trailing" secondItem="tN4-wq-5ah" secondAttribute="trailing" constant="10" id="yHa-IU-CJm"/>
                 </constraints>
             </tableViewCellContentView>
+            <gestureRecognizers/>
             <connections>
                 <outlet property="btnMore" destination="tN4-wq-5ah" id="Emk-2o-t4d"/>
                 <outlet property="ivCourseImage" destination="5Iq-jP-kOz" id="fhG-jb-HxE"/>

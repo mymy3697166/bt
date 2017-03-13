@@ -10,12 +10,15 @@
 
 @implementation BTDynamicTitleCell {
   __weak IBOutlet UILabel *labTitle;
+  
+  UIViewController *viewController;
 }
 - (void)awakeFromNib {
   [super awakeFromNib];
 }
 
-- (void)setData:(BTCourse *)course {
+- (void)setData:(BTCourse *)course inController:(UIViewController *)controller {
+  viewController = controller;
   NSString *title = [NSString stringWithFormat:@"有%@人也在执行（%@）", course.executionCount, course.name];
   labTitle.text = title;
 }

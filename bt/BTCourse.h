@@ -47,6 +47,7 @@ RLM_ARRAY_TYPE(BTPlan)
 @property NSString *coachAvatar;
 @property RLMArray<BTPlan> *plans;
 @property NSNumber<RLMBool> *isJoin;
+@property NSDate *startTime;
 
 + (instancetype)currentCourse;
 + (void)fetchCourseWithBlock:(void(^)(NSError *error))block;

@@ -10,35 +10,27 @@
 #import "BTCommon.h"
 
 @implementation BTWeightCell {
-
   __weak IBOutlet UILabel *labWeight;
   __weak IBOutlet UILabel *labDiff;
+  
+  UIViewController *viewController;
 }
 
 - (void)awakeFromNib {
   [super awakeFromNib];
 }
 
-- (void)setData:(NSDictionary *)data {
-  labWeight.text = [data[@"weight"] stringValue];
-  labDiff.text = [NSString stringWithFormat:@"已减轻%@kg", data[@"difference"]];
+- (void)setData:(NSDictionary *)data inController:(UIViewController *)controller {
+  viewController = controller;
+  labWeight.text = [NSString stringWithFormat:@"%.1f", [data[@"weight"] floatValue]];
+  labDiff.text = [NSString stringWithFormat:@"已减轻%.1fkg", [data[@"difference"] floatValue]];
 }
 
 - (IBAction)editClick:(UIButton *)sender {
-  [[self viewController] performSegueWithIdentifier:@"planhome_updateweight" sender:nil];
+  [viewController performSegueWithIdentifier:@"planhome_updateweight" sender:nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
   [super setSelected:selected animated:animated];
-}
-
-- (UIViewController*)viewController {
-  for (UIView* next = [self superview]; next; next = next.superview) {
-    UIResponder* nextResponder = [next nextResponder];
-    if ([nextResponder isKindOfClass:[UIViewController class]]) {
-      return (UIViewController*)nextResponder;
-    }
-  }
-  return nil;
 }
 @end

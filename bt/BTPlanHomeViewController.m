@@ -36,7 +36,8 @@
   tvTable.estimatedRowHeight = 100;
   tvTable.rowHeight = UITableViewAutomaticDimension;
   
-  [Notif addObserver:self selector:@selector(loginComplete) name:@"N_LOGIN_SUCCESS" object:nil];
+  [Notif addObserver:self selector:@selector(loginSuccess) name:@"N_LOGIN_SUCCESS" object:nil];
+  [Notif addObserver:self selector:@selector(updateWeightSuccess) name:@"N_UPDATE_WEIGHT_SUCCESS" object:nil];
   
   MJRefreshNormalHeader *mjHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
     [self loadRemoteDataWithBlock:^{
@@ -63,7 +64,7 @@
   else {
     BTWeightRecord *first = User.weights.firstObject;
     BTWeightRecord *last = User.weights.lastObject;
-    NSNumber *diff = [NSNumber numberWithInt:[first.weight intValue] - [last.weight intValue]];
+    NSNumber *diff = [NSNumber numberWithFloat:[first.weight floatValue] - [last.weight floatValue]];
     weightInfo = @{@"data": @[@{@"weight": last.weight, @"difference": diff}], @"key": @"BTWeightCell"};
     [dataSource addObject:weightInfo];
   }
@@ -126,11 +127,19 @@
   }];
 }
 
-- (void)loginComplete {
+- (void)loginSuccess {
   vNoLogin.hidden = YES;
   [self loadLocalData];
   [tvTable reloadData];
   [self loadRemoteDataWithBlock:nil];
+}
+
+- (void)updateWeightSuccess {
+  BTWeightRecord *first = User.weights.firstObject;
+  BTWeightRecord *last = User.weights.lastObject;
+  NSNumber *diff = [NSNumber numberWithFloat:[first.weight floatValue] - [last.weight floatValue]];
+  [dataSource replaceObjectAtIndex:0 withObject:@{@"data": @[@{@"weight": last.weight, @"difference": diff}], @"key": @"BTWeightCell"}];
+  [tvTable reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {return 0.0001;}
@@ -150,22 +159,22 @@
   NSDictionary *sectionData = dataSource[indexPath.section];
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:dataSource[indexPath.section][@"key"]];
   if (!cell) {
-    UINib *weightNib = [UINib nibWithNibName:sectionData[@"key"] bundle:nil];
-    [tableView registerNib:weightNib forCellReuseIdentifier:sectionData[@"key"]];
+    UINib *nib = [UINib nibWithNibName:sectionData[@"key"] bundle:nil];
+    [tableView registerNib:nib forCellReuseIdentifier:sectionData[@"key"]];
     cell = [tableView dequeueReusableCellWithIdentifier:sectionData[@"key"]];
   }
   if ([sectionData[@"key"] isEqualToString:@"BTWeightCell"]) {
     BTWeightCell *wc = (BTWeightCell *)cell;
-    [wc setData:sectionData[@"data"][indexPath.row]];
+    [wc setData:sectionData[@"data"][indexPath.row] inController:self];
   } else if ([sectionData[@"key"] isEqualToString:@"BTNoCourseCell"]) {
     BTNoCourseCell *ncc = (BTNoCourseCell *)cell;
-    [ncc setData:sectionData[@"data"][indexPath.row]];
+    [ncc setData:sectionData[@"data"][indexPath.row] inController:self];
   } else if ([sectionData[@"key"] isEqualToString:@"BTRecommendArticleCell"]) {
     BTRecommendArticleCell *rac = (BTRecommendArticleCell *)cell;
-    [rac setData:sectionData[@"data"][indexPath.row]];
+    [rac setData:sectionData[@"data"][indexPath.row] inController:self];
   } else if ([sectionData[@"key"] isEqualToString:@"BTDynamicTitleCell"]) {
     BTDynamicTitleCell *dtc = (BTDynamicTitleCell *)cell;
-    [dtc setData:sectionData[@"data"][indexPath.row]];
+    [dtc setData:sectionData[@"data"][indexPath.row] inController:self];
   } else if ([sectionData[@"key"] isEqualToString:@"BTDynamicCell"]) {
     BTDynamicCell *dc = (BTDynamicCell *)cell;
     [dc setData:sectionData[@"data"][indexPath.row]];

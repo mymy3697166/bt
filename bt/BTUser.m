@@ -130,7 +130,7 @@ static BTUser *currentUser;
   
 }
 
-- (void)updateWeight:(NSNumber *)weight withBlock:(void(^)())block {
+- (void)updateWeight:(NSNumber *)weight withBlock:(void(^)(NSError *))block {
   BTWeightRecord *wr = [[BTWeightRecord alloc] init];
   wr.user = User;
   wr.weight = weight;
@@ -146,9 +146,25 @@ static BTUser *currentUser;
     wr.dataId = data[@"data"][@"id"];
     wr.createdAt = [NSDate dateWithTimeIntervalSince1970:[data[@"data"][@"created_at"] integerValue]];
     [Realm transactionWithBlock:^{
-      [Realm addObject:wr];
+      [self.weights addObject:wr];
     }];
     block(nil);
+  }];
+}
+
+- (void)joinCourseWithBlock:(void(^)(NSError *))block {
+  [Common asyncPost:URL_JOINCOURSE forms:@{@"id": Course.dataId} completion:^(NSDictionary *data, NSError *error) {
+    if (error) {
+      block(error);
+      return;
+    }
+    if (![data[@"status"] isEqual:@0]) {
+      block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
+      return;
+    }
+    [Realm transactionWithBlock:^{
+      
+    }];
   }];
 }
 @end

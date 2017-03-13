@@ -12,6 +12,7 @@
 @implementation BTRecommendArticleCell {
   __weak IBOutlet UICollectionView *cvArticles;
   NSArray *dataSource;
+  UIViewController *viewController;
 }
 
 - (void)awakeFromNib {
@@ -20,7 +21,8 @@
   [cvArticles registerNib:articleNib forCellWithReuseIdentifier:@"BTArticleCell"];
 }
 
-- (void)setData:(NSArray *)data {
+- (void)setData:(NSArray *)data inController:(UIViewController *)controller {
+  viewController = controller;
   dataSource = data;
   [cvArticles reloadData];
 }
@@ -43,7 +45,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   BTArticleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BTArticleCell" forIndexPath:indexPath];
-  [cell setData:dataSource[indexPath.row]];
+  [cell setData:dataSource[indexPath.row] inController:viewController];
   return cell;
 }
 @end

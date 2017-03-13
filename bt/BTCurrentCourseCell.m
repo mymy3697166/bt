@@ -23,6 +23,8 @@
   __weak IBOutlet UILabel *labComplete;
   __weak IBOutlet UIView *vCourse;
   __weak IBOutlet UIView *vRest;
+  
+  UIViewController *viewController;
 }
 
 - (void)awakeFromNib {
@@ -30,8 +32,9 @@
   btnCourse.layer.cornerRadius = 16;
 }
 
-- (void)setData:(NSDictionary *)data {
+- (void)setData:(NSDictionary *)data inController:(UIViewController *)controller {
   if (!data) return;
+  viewController = controller;
   NSArray *plans = data[@"course_plans"];
   NSArray *userPlans = data[@"user_plans"];
   // 去重用户训练

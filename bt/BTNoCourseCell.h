@@ -10,5 +10,5 @@
 #import "BTCommon.h"
 
 @interface BTNoCourseCell : UITableViewCell
-- (void)setData:(BTCourse *)course;
+- (void)setData:(BTCourse *)course inController:(UIViewController *)controller;
 @end

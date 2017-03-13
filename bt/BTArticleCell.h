@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BTArticleCell : UICollectionViewCell
-- (void)setData:(NSDictionary *)data;
+- (void)setData:(NSDictionary *)data inController:(UIViewController *)controller;
 @end

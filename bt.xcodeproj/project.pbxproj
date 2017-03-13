@@ -85,6 +85,7 @@
 		5C9A8EF11E3450540014D736 /* BTDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9A8EF01E3450540014D736 /* BTDynamicCell.m */; };
 		5CCE4BB01E24A4F20010DDA5 /* BTPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCE4BAF1E24A4F20010DDA5 /* BTPwdViewController.m */; };
 		5CCE4BB31E24C6C60010DDA5 /* BTInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCE4BB21E24C6C60010DDA5 /* BTInfoViewController.m */; };
+		5CF1554C1E76771400DBC086 /* BTCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1554B1E76771400DBC086 /* BTCourseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -241,6 +242,8 @@
 		5CCE4BAF1E24A4F20010DDA5 /* BTPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTPwdViewController.m; sourceTree = "<group>"; };
 		5CCE4BB11E24C6C60010DDA5 /* BTInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTInfoViewController.h; sourceTree = "<group>"; };
 		5CCE4BB21E24C6C60010DDA5 /* BTInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTInfoViewController.m; sourceTree = "<group>"; };
+		5CF1554A1E76771400DBC086 /* BTCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCourseViewController.h; sourceTree = "<group>"; };
+		5CF1554B1E76771400DBC086 /* BTCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCourseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -485,6 +488,8 @@
 				5C4030331E2CD3C200C25408 /* BTPlanHomeViewController.m */,
 				00A0D1EA1E758EE200E03F8C /* BTUpdateWeightViewController.h */,
 				00A0D1EB1E758EE200E03F8C /* BTUpdateWeightViewController.m */,
+				5CF1554A1E76771400DBC086 /* BTCourseViewController.h */,
+				5CF1554B1E76771400DBC086 /* BTCourseViewController.m */,
 			);
 			name = plan;
 			sourceTree = "<group>";
@@ -656,6 +661,7 @@
 				006DF81F1E2D1E9400169EB0 /* BTCurrentCourseCell.m in Sources */,
 				0066D76A1E758472006DB0D4 /* UIScrollView+MJExtension.m in Sources */,
 				5C40302D1E2C98A400C25408 /* NSData+Extension.m in Sources */,
+				5CF1554C1E76771400DBC086 /* BTCourseViewController.m in Sources */,
 				0066D7631E758472006DB0D4 /* MJRefreshConst.m in Sources */,
 				006B2A461E2F780D0002A484 /* BTNoCourseCell.m in Sources */,
 				007E563B1E1FE2F9001CFCD4 /* BTLoginNavigationController.m in Sources */,
