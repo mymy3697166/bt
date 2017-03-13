@@ -19,6 +19,10 @@ static BTUser *currentUser;
 + (NSString *)primaryKey {return @"dataId";}
 @end
 
+@implementation BTPlanRecord
+
+@end
+
 @implementation BTUser
 + (NSString *)primaryKey {
   return @"mid";
@@ -163,8 +167,29 @@ static BTUser *currentUser;
       return;
     }
     [Realm transactionWithBlock:^{
-      
+      Course.isJoin = @1;
+      Course.startTime = [NSDate date];
     }];
+    block(nil);
+  }];
+}
+
+- (void)quitCourseWithBlock:(void (^)(NSError *))block {
+  [Common asyncPost:URL_QUITCOURSE forms:@{@"id": Course.dataId} completion:^(NSDictionary *data, NSError *error) {
+    if (error) {
+      block(error);
+      return;
+    }
+    if (![data[@"status"] isEqual:@0]) {
+      block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
+      return;
+    }
+    [Realm transactionWithBlock:^{
+      Course.isJoin = @0;
+      Course.startTime = nil;
+      [User.planRecords removeAllObjects];
+    }];
+    block(nil);
   }];
 }
 @end

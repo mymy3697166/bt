@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BTCurrentCourseCell : UITableViewCell
-- (void)setData:(NSDictionary *)data inController:(UIViewController *)controller;
+- (void)setData:(BTCourse *)course inController:(UIViewController *)controller;
 @end

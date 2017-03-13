@@ -37,16 +37,31 @@
   labTime.text = [NSString stringWithFormat:@"总%lu天/约%lu节", (unsigned long)Course.plans.count, (unsigned long)results.count];
 }
 
+- (void)refreshStatus {
+  [btnJoin setTitle:([Course.isJoin isEqual:@1] ? @"退出课程" : @"加入课程") forState:UIControlStateNormal];
+}
+
 - (IBAction)btnMoreClick:(UIBarButtonItem *)sender {
-  vMenuBg.hidden = NO;
-  lcMenuHeight.constant = 80;
+  vMenuBg.hidden = !vMenuBg.hidden;
+  lcMenuHeight.constant = lcMenuHeight.constant == 0 ? 80 : 0;
   [UIView animateWithDuration:0.25 animations:^{
     [self.view layoutIfNeeded];
   }];
 }
 
 - (IBAction)btnJoinClick:(UIButton *)sender {
-  
+  void(^successBlock)(NSError *) = ^(NSError *error) {
+    [Common hideLoading];
+    if (error) {
+      [self showError:error];
+      return;
+    }
+    [self refreshStatus];
+    [self vMenuBgClick:nil];
+  };
+  [Common showLoading];
+  if ([Course.isJoin isEqualToNumber:@0]) [User joinCourseWithBlock:successBlock];
+  else [User quitCourseWithBlock:successBlock];
 }
 
 - (IBAction)btnShareClick:(UIButton *)sender {

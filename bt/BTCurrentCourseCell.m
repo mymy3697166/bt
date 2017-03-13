@@ -32,13 +32,10 @@
   btnCourse.layer.cornerRadius = 16;
 }
 
-- (void)setData:(NSDictionary *)data inController:(UIViewController *)controller {
-  if (!data) return;
+- (void)setData:(BTCourse *)course inController:(UIViewController *)controller {
   viewController = controller;
-  NSArray *plans = data[@"course_plans"];
-  NSArray *userPlans = data[@"user_plans"];
   // 去重用户训练
-  NSArray *duPlans = [self distinct:userPlans];
+  NSArray *duPlans = [self distinct:Course.plans];
   // 计算自今天起之后的训练
   NSMutableArray *yPlans = [NSMutableArray arrayWithArray:plans];
   [duPlans enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -130,13 +127,10 @@
   }
 }
 
-- (NSArray *)distinct:(NSArray *)source {
+- (NSArray *)distinct:(RLMArray<BTPlanRecord> *)source {
   NSMutableArray *newArray = [NSMutableArray array];
-  [source enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-    NSDictionary *item = obj;
-    NSTimeInterval cd = [item[@"complete_time"] integerValue];
-    NSDate *time = [NSDate dateWithTimeIntervalSince1970:cd];
-    NSTimeInterval date = [[time toDate] timeIntervalSince1970];
+  for (BTPlanRecord *record in source) {
+    NSTimeInterval date = [[record.completeTime toDate] timeIntervalSince1970];
     NSDictionary *res = [newArray find:^BOOL(id i) {
       return [i[@"date"] isEqualToNumber:[NSNumber numberWithInteger:date]];
     }];
@@ -145,6 +139,9 @@
     if (!res){
       [newArray addObject:newItem];
     }
+  }
+  [source enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    NSDictionary *item = obj;
   }];
   return newArray;
 }

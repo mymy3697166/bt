@@ -17,6 +17,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
+  config.schemaVersion = 2;
+  config.migrationBlock = ^(RLMMigration *migration, uint64_t oldSchemaVersion) {
+    if (oldSchemaVersion < 1) {}
+  };
+  [RLMRealmConfiguration setDefaultConfiguration:config];
   return YES;
 }
 
