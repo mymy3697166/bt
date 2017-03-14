@@ -37,79 +37,88 @@
   // 去重用户训练
   NSArray *duPlans = [self distinct:User.planRecords];
   // 计算自今天起之后的训练
-  NSMutableArray *yPlans = [NSMutableArray arrayWithArray:];
-//  [duPlans enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//    if ([yPlans[idx][@"id"] isEqual:@0]) [yPlans removeObjectAtIndex:0];
-//    [yPlans removeObjectAtIndex:0];
-//  }];
-//  if (yPlans.count > 0 && [yPlans[0][@"id"] isEqual:@0]) {
-//    NSTimeInterval cd = [duPlans.lastObject[@"complete_time"] integerValue];
-//    if (cd < [[[NSDate date] toDate] timeIntervalSince1970] - 86400) [yPlans removeObjectAtIndex:0];
-//  }
-//  // 判断今天又没有完成训练
-//  NSDictionary *tPlan = [duPlans find:^BOOL(id item) {
-//    NSTimeInterval sd = [[[NSDate date] toDate] timeIntervalSince1970];
-//    NSTimeInterval ed = sd + 86399;
-//    NSTimeInterval cd = [item[@"complete_time"] integerValue];
-//    return cd <= ed && cd >= sd;
-//  }];
-//  // 渲染日历
-//  NSMutableArray *dates = [NSMutableArray array];
-//  for (int i = 0; i < 5; i++) {
-//    CGFloat w = (vCalendar.bounds.size.width - 32) / 5;
-//    BTCourseHomeCalendarView *view = [[BTCourseHomeCalendarView alloc] init];
-//    [view.ivIcon tintColor:[UIColor lightGrayColor]];
-//    NSDate *date = [[[NSDate date] toDate] dateByAddingTimeInterval:86400 * i];
-//    view.labDate.text = [NSString stringWithFormat:@"%2ld", (long)[date day]];
-//    NSDictionary *plan;
-//    if (i < yPlans.count) {
-//      plan = yPlans[i];
-//    }
-//    if (i == 0) {
-//      view.labDate.text = @"今";
-//      if (plan && [plan[@"id"] isEqual:@0]) {
-//        view.labComplete.text = @"休息";
-//        view.labDate.textColor = RGB(0, 178, 255);
-//        view.ivIcon.image = [UIImage imageNamed:@"icon_rest"];
-//        [view.ivIcon tintColor:RGB(0, 178, 255)];
-//      }
-//      if (plan && ![plan[@"id"] isEqual:@0]) {
-//        view.labComplete.text = @"训练";
-//        view.labDate.textColor = RGB(255, 128, 0);
-//        view.ivIcon.image = [UIImage imageNamed:@"icon_fire"];
-//        [view.ivIcon tintColor:RGB(255, 128, 0)];
-//      }
-//      if (plan && ![plan[@"id"] isEqual:@0] && tPlan) {
-//        view.labComplete.text = @"完成";
-//        view.labDate.textColor = RGB(0, 178, 255);
-//        view.ivIcon.image = [UIImage imageNamed:@"icon_selected_yes"];
-//        [view.ivIcon tintColor:RGB(0, 178, 255)];
-//      }
-//      if (!plan) {
-//        view.labComplete.text = @"无训练";
-//      }
-//    } else {
-//      if (plan && [plan[@"id"] isEqual:@0]) {
-//        view.labComplete.text = @"休息";
-//        view.ivIcon.image = [UIImage imageNamed:@"icon_rest"];
-//        [view.ivIcon tintColor:[UIColor lightGrayColor]];
-//      }
-//    }
-//    view.frame = CGRectMake(w * i, 0, w, 70);
-//    [vCalendar addSubview:view];
-//    [dates addObject:view];
-//  }
-//  [self setPlan:yPlans[0] isComplete:tPlan != nil];
+  NSMutableArray *yPlans = [NSMutableArray array];
+  for (BTPlan *item in Course.plans) {[yPlans addObject:item];}
+  NSInteger index = 0;
+  BTPlan *plan;
+  while (index < duPlans.count) {
+    plan = yPlans.firstObject;
+    if (![plan.dataId isEqualToNumber:@0]) index++;
+    [yPlans removeObjectAtIndex:0];
+  }
+  BTPlanRecord *record = duPlans.lastObject;
+  if (record) {
+    NSTimeInterval lastRecordTime = [[record.completeTime toDate] timeIntervalSince1970];
+    NSTimeInterval nowTime = [[[NSDate date] toDate] timeIntervalSince1970];
+    NSInteger dayCount = (nowTime - lastRecordTime) / 86400 - 1;
+    for (int i = 0; i < dayCount; i++) {
+      plan = yPlans.firstObject;
+      if ([plan.dataId isEqualToNumber:@0]) [yPlans removeObjectAtIndex:0];
+      else break;
+    }
+  }
+  // 判断今天又没有完成训练
+  BTPlanRecord *tPlan = [duPlans find:^BOOL(BTPlanRecord *item) {
+    NSString *sd = [[NSDate date] toStringWithFormat:@"yyyyMMdd"];
+    NSString *cd = [item.completeTime toStringWithFormat:@"yyyyMMdd"];
+    return [sd isEqualToString:cd];
+  }];
+  // 渲染日历
+  NSMutableArray *dates = [NSMutableArray array];
+  for (int i = 0; i < 5; i++) {
+    CGFloat w = (vCalendar.bounds.size.width - 32) / 5;
+    BTCourseHomeCalendarView *view = [[BTCourseHomeCalendarView alloc] init];
+    [view.ivIcon tintColor:[UIColor lightGrayColor]];
+    NSDate *date = [[[NSDate date] toDate] dateByAddingTimeInterval:86400 * i];
+    view.labDate.text = [NSString stringWithFormat:@"%2ld", (long)[date day]];
+    if (i < yPlans.count) {
+      plan = yPlans[i];
+    }
+    if (i == 0) {
+      view.labDate.text = @"今";
+      if (plan && [plan.dataId isEqualToNumber:@0]) {
+        view.labComplete.text = @"休息";
+        view.labDate.textColor = RGB(0, 178, 255);
+        view.ivIcon.image = [UIImage imageNamed:@"icon_rest"];
+        [view.ivIcon tintColor:RGB(0, 178, 255)];
+      }
+      if (plan && ![plan.dataId isEqualToNumber:@0]) {
+        view.labComplete.text = @"训练";
+        view.labDate.textColor = RGB(255, 128, 0);
+        view.ivIcon.image = [UIImage imageNamed:@"icon_fire"];
+        [view.ivIcon tintColor:RGB(255, 128, 0)];
+      }
+      if (plan && ![plan.dataId isEqualToNumber:@0] && tPlan) {
+        view.labComplete.text = @"完成";
+        view.labDate.textColor = RGB(0, 178, 255);
+        view.ivIcon.image = [UIImage imageNamed:@"icon_selected_yes"];
+        [view.ivIcon tintColor:RGB(0, 178, 255)];
+      }
+      if (!plan) {
+        view.labComplete.text = @"无训练";
+      }
+    } else {
+      if (plan && [plan.dataId isEqualToNumber:@0]) {
+        view.labComplete.text = @"休息";
+        view.ivIcon.image = [UIImage imageNamed:@"icon_rest"];
+        [view.ivIcon tintColor:[UIColor lightGrayColor]];
+      }
+    }
+    view.frame = CGRectMake(w * i, 0, w, 70);
+    [vCalendar addSubview:view];
+    [dates addObject:view];
+  }
+  [self setPlan:yPlans[0] isComplete:tPlan != nil];
 }
 
-- (void)setPlan:(NSDictionary *)plan isComplete:(BOOL)com {
-  BOOL rest = [plan[@"id"] isEqual:@0];
+- (void)setPlan:(BTPlan *)plan isComplete:(BOOL)com {
+  BOOL rest = [plan.dataId isEqualToNumber:@0];
   if (rest) {
     labTitle.text = @"今日休息";
     vRest.hidden = NO;
   } else {
     labTitle.text = @"今日训练";
-    [ivPlanImage loadURL:[URL_IMAGEPATH stringByAppendingString:plan[@"cover"]]];
+    [ivPlanImage loadURL:[URL_IMAGEPATH stringByAppendingString:plan.cover]];
     if (com) {
       ivComplete.image = [UIImage imageNamed:@"icon_selected_yes"];
       [ivComplete tintColor:RGB(0, 178, 255)];
@@ -121,9 +130,9 @@
       labComplete.text = @"今日未完成";
     }
     labPlanTitle.text = plan[@"name"];
-    labLevel.text = [NSString stringWithFormat:@"%@ / %@", plan[@"level_name"], plan[@"tool"]];
-    labDuration.text = [NSString stringWithFormat:@"耗时：%@", plan[@"duration"]];
-    labCaloire.text = [NSString stringWithFormat:@"消耗热量：%@kcal", plan[@"calorie"]];
+    labLevel.text = [NSString stringWithFormat:@"%@ / %@", plan.levelName, plan.tool];
+    labDuration.text = [NSString stringWithFormat:@"耗时：%@", plan.duration];
+    labCaloire.text = [NSString stringWithFormat:@"消耗热量：%@kcal", plan.calorie];
   }
 }
 
