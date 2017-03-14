@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTCommon.h"
 
 @interface BTCurrentCourseCell : UITableViewCell
 - (void)setData:(BTCourse *)course inController:(UIViewController *)controller;

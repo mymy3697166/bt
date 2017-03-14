@@ -168,7 +168,7 @@ static BTUser *currentUser;
     }
     [Realm transactionWithBlock:^{
       Course.isJoin = @1;
-      Course.startTime = [NSDate date];
+      Course.startTime = [NSDate dateWithTimeIntervalSince1970:[data[@"data"][@"start_time"] integerValue]];
     }];
     block(nil);
   }];

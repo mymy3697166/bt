@@ -166,6 +166,9 @@
   if ([sectionData[@"key"] isEqualToString:@"BTWeightCell"]) {
     BTWeightCell *wc = (BTWeightCell *)cell;
     [wc setData:sectionData[@"data"][indexPath.row] inController:self];
+  } else if ([sectionData[@"key"] isEqualToString:@"BTCurrentCourseCell"]) {
+    BTCurrentCourseCell *ccc = (BTCurrentCourseCell *)cell;
+    [ccc setData:sectionData[@"data"][indexPath.row] inController:self];
   } else if ([sectionData[@"key"] isEqualToString:@"BTNoCourseCell"]) {
     BTNoCourseCell *ncc = (BTNoCourseCell *)cell;
     [ncc setData:sectionData[@"data"][indexPath.row] inController:self];
