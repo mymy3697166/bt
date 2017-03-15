@@ -93,6 +93,11 @@
       if (block) dispatch_async(dispatch_get_main_queue(), ^{block();});
       return;
     }
+    if (![res[@"status"] isEqualToNumber:@0]) {
+      [self showError:[NSError errorWithDomain:@"BTLOGICERROR" code:[res[@"status"] integerValue] userInfo:res]];
+      if (block) dispatch_async(dispatch_get_main_queue(), ^{block();});
+      return;
+    }
     while (dataSource.count > 1) {
       [dataSource removeLastObject];
     }

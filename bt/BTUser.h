@@ -54,6 +54,8 @@ RLM_ARRAY_TYPE(BTPlanRecord)
 + (instancetype)currentUser;
 /// 使用手机号和密码登录
 + (void)loginWithMobilePhone:(NSString *)mobilePhone andPwd:(NSString *)pwd andBlock:(void(^)(NSError *error))block;
+/// 登出
+- (void)logout;
 /// 注册
 + (void)registerWithMobilePhone:(NSString *)mobilePhone andPwd:(NSString *)pwd andVerifyCode:(NSString *)verifyCode andBlock:(void(^)(NSError *error))block;
 /// 发送注册验证码

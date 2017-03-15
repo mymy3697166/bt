@@ -13,6 +13,7 @@
 		00053FF71E27AF4300067791 /* BTHeightPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00053FF61E27AF4300067791 /* BTHeightPickerView.m */; };
 		000540001E27CE1400067791 /* BTWeightPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00053FFF1E27CE1400067791 /* BTWeightPickerView.m */; };
 		000540021E27DA7C00067791 /* BTHeightPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 000540011E27DA7C00067791 /* BTHeightPickerView.xib */; };
+		004EC8BF1E797E760045048A /* BTArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004EC8BE1E797E760045048A /* BTArticleViewController.m */; };
 		004F59231E30E1A000A9E522 /* BTArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F59221E30E1A000A9E522 /* BTArticleCell.m */; };
 		0066B8751E66FE0D004169CB /* BTWeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0066B8741E66FE0D004169CB /* BTWeightCell.xib */; };
 		0066D7591E758472006DB0D4 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0066D7311E758472006DB0D4 /* MJRefresh.bundle */; };
@@ -116,6 +117,8 @@
 		00053FFE1E27CE1400067791 /* BTWeightPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWeightPickerView.h; sourceTree = "<group>"; };
 		00053FFF1E27CE1400067791 /* BTWeightPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWeightPickerView.m; sourceTree = "<group>"; };
 		000540011E27DA7C00067791 /* BTHeightPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTHeightPickerView.xib; sourceTree = "<group>"; };
+		004EC8BD1E797E760045048A /* BTArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTArticleViewController.h; sourceTree = "<group>"; };
+		004EC8BE1E797E760045048A /* BTArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTArticleViewController.m; sourceTree = "<group>"; };
 		004F59211E30E1A000A9E522 /* BTArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTArticleCell.h; sourceTree = "<group>"; };
 		004F59221E30E1A000A9E522 /* BTArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTArticleCell.m; sourceTree = "<group>"; };
 		0066B8741E66FE0D004169CB /* BTWeightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTWeightCell.xib; sourceTree = "<group>"; };
@@ -516,6 +519,8 @@
 			children = (
 				5C41E7931E7910450060BC71 /* BTArticleListViewController.h */,
 				5C41E7941E7910450060BC71 /* BTArticleListViewController.m */,
+				004EC8BD1E797E760045048A /* BTArticleViewController.h */,
+				004EC8BE1E797E760045048A /* BTArticleViewController.m */,
 			);
 			name = article;
 			sourceTree = "<group>";
@@ -670,6 +675,7 @@
 				006A3DFB1E29FD5C00BD4F10 /* BTConfirmCourseViewController.m in Sources */,
 				006B2A491E2FBF8A0002A484 /* BTRecommendArticleCell.m in Sources */,
 				00053FEE1E22587900067791 /* BTCaptchaViewController.m in Sources */,
+				004EC8BF1E797E760045048A /* BTArticleViewController.m in Sources */,
 				5CCE4BB01E24A4F20010DDA5 /* BTPwdViewController.m in Sources */,
 				0066D7651E758472006DB0D4 /* MJRefreshGifHeader.m in Sources */,
 				5C4606491E700836009B0F52 /* BTCourse.m in Sources */,

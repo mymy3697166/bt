@@ -81,6 +81,12 @@ static BTUser *currentUser;
   }];
 }
 
+- (void)logout {
+  [Realm transactionWithBlock:^{
+    currentUser.isLogin = @0;
+  }];
+}
+
 + (void)registerWithMobilePhone:(NSString *)mobilePhone andPwd:(NSString *)pwd andVerifyCode:(NSString *)verifyCode andBlock:(void (^)(NSError *))block {
   [Common asyncPost:URL_REGISTER forms:@{@"uid": mobilePhone, @"pwd": pwd, @"code": verifyCode} completion:^(NSDictionary *data, NSError *error) {
     if (error) {

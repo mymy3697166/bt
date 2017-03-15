@@ -11,6 +11,7 @@
 #import "BTSecondaryArticleCell.h"
 #import "MJRefresh.h"
 #import "BTListBottomCell.h"
+#import "BTArticleViewController.h"
 
 @interface BTArticleListViewController () <UITableViewDelegate, UITableViewDataSource> {
   __weak IBOutlet UITableView *tvArticles;
@@ -39,13 +40,10 @@
   mjHeader.lastUpdatedTimeLabel.hidden = YES;
   tvArticles.mj_header = mjHeader;
   MJRefreshAutoNormalFooter *mjFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-    if (!hasNext) {
-      [tvArticles.mj_footer endRefreshing];
-      return;
-    }
     page++;
     [self fetchArticles:^{
-      [mjFooter endRefreshing];
+      if (!hasNext) [tvArticles.mj_footer endRefreshingWithNoMoreData];
+      else [tvArticles.mj_footer endRefreshing];
     }];
   }];
   mjHeader.lastUpdatedTimeLabel.hidden = YES;
@@ -115,6 +113,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
-  
+  [self performSegueWithIdentifier:@"articlelist_article" sender:dataSource[indexPath.section]];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if ([segue.identifier isEqualToString:@"articlelist_article"]) {
+    BTArticleViewController *vc = segue.destinationViewController;
+    vc.article = sender;
+  }
 }
 @end

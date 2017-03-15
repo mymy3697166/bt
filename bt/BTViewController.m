@@ -22,7 +22,11 @@
 
 - (void)showError:(NSError *)error {
   if ([error.domain isEqualToString:@"BTLOGICERROR"]) {
-    [Common info:error.userInfo[@"description"]];
+    NSString *ep = error.userInfo[@"ep"];
+    if ([ep isEqualToString:@"mtoken"]) {
+      [User logout];
+      [self.tabBarController performSegueWithIdentifier:@"tab_login" sender:nil];
+    } else [Common info:error.userInfo[@"description"]];
     return;
   }
   [Common info:@"网络不给力，请稍后重试"];
