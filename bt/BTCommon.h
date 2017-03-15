@@ -55,6 +55,7 @@
 #define URL_QUITCOURSE [URL_BASE stringByAppendingString:@"api_v2/health_course/quit_course"]
 #define URL_FETCHPLANHOME [URL_BASE stringByAppendingString:@"api_v2/health_course/fetch"]
 #define URL_FETCHDYNAMICS [URL_BASE stringByAppendingString:@"api_v2/health_dynamic/fetch_new_dynamics"]
+#define URL_FETCHARTICLES [URL_BASE stringByAppendingString:@"api_v2/health_article/fetch_articles"]
 
 @interface BTCommon : NSObject
 /// 信息提示

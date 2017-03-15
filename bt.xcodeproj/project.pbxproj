@@ -35,7 +35,6 @@
 		0066D76A1E758472006DB0D4 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0066D7541E758472006DB0D4 /* UIScrollView+MJExtension.m */; };
 		0066D76B1E758472006DB0D4 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 0066D7561E758472006DB0D4 /* UIScrollView+MJRefresh.m */; };
 		0066D76C1E758472006DB0D4 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0066D7581E758472006DB0D4 /* UIView+MJExtension.m */; };
-		006942DD1E741D4D009F7CAB /* BTRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 006942DC1E741D4D009F7CAB /* BTRefreshView.m */; };
 		006A3DFB1E29FD5C00BD4F10 /* BTConfirmCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A3DFA1E29FD5C00BD4F10 /* BTConfirmCourseViewController.m */; };
 		006B2A461E2F780D0002A484 /* BTNoCourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B2A451E2F780D0002A484 /* BTNoCourseCell.m */; };
 		006B2A491E2FBF8A0002A484 /* BTRecommendArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B2A481E2FBF8A0002A484 /* BTRecommendArticleCell.m */; };
@@ -67,6 +66,9 @@
 		5C41508B1E2DC4C000046514 /* BTCourseHomeCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C41508A1E2DC4C000046514 /* BTCourseHomeCalendarView.m */; };
 		5C41508D1E2DC4D500046514 /* BTCourseHomeCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C41508C1E2DC4D500046514 /* BTCourseHomeCalendarView.xib */; };
 		5C4150901E2DD05A00046514 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C41508F1E2DD05A00046514 /* NSArray+Extension.m */; };
+		5C41E78E1E790B860060BC71 /* BTMainArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C41E78D1E790B860060BC71 /* BTMainArticleCell.m */; };
+		5C41E7911E790F8F0060BC71 /* BTSecondaryArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C41E7901E790F8F0060BC71 /* BTSecondaryArticleCell.m */; };
+		5C41E7951E7910450060BC71 /* BTArticleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C41E7941E7910450060BC71 /* BTArticleListViewController.m */; };
 		5C4389A51E2329E5009C7C75 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4389A41E2329E5009C7C75 /* MBProgressHUD.m */; };
 		5C4389A91E232F40009C7C75 /* BTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4389A81E232F40009C7C75 /* BTUser.m */; };
 		5C439DC51E70F183008DD770 /* BTNoCourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C439DC41E70F183008DD770 /* BTNoCourseCell.xib */; };
@@ -157,8 +159,6 @@
 		0066D7561E758472006DB0D4 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		0066D7571E758472006DB0D4 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		0066D7581E758472006DB0D4 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
-		006942DB1E741D4D009F7CAB /* BTRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRefreshView.h; sourceTree = "<group>"; };
-		006942DC1E741D4D009F7CAB /* BTRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRefreshView.m; sourceTree = "<group>"; };
 		006A3DF91E29FD5C00BD4F10 /* BTConfirmCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTConfirmCourseViewController.h; sourceTree = "<group>"; };
 		006A3DFA1E29FD5C00BD4F10 /* BTConfirmCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTConfirmCourseViewController.m; sourceTree = "<group>"; };
 		006B2A441E2F780D0002A484 /* BTNoCourseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTNoCourseCell.h; sourceTree = "<group>"; };
@@ -216,6 +216,12 @@
 		5C41508C1E2DC4D500046514 /* BTCourseHomeCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTCourseHomeCalendarView.xib; sourceTree = "<group>"; };
 		5C41508E1E2DD05A00046514 /* NSArray+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Extension.h"; sourceTree = "<group>"; };
 		5C41508F1E2DD05A00046514 /* NSArray+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Extension.m"; sourceTree = "<group>"; };
+		5C41E78C1E790B860060BC71 /* BTMainArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMainArticleCell.h; sourceTree = "<group>"; };
+		5C41E78D1E790B860060BC71 /* BTMainArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMainArticleCell.m; sourceTree = "<group>"; };
+		5C41E78F1E790F8F0060BC71 /* BTSecondaryArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSecondaryArticleCell.h; sourceTree = "<group>"; };
+		5C41E7901E790F8F0060BC71 /* BTSecondaryArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSecondaryArticleCell.m; sourceTree = "<group>"; };
+		5C41E7931E7910450060BC71 /* BTArticleListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTArticleListViewController.h; sourceTree = "<group>"; };
+		5C41E7941E7910450060BC71 /* BTArticleListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTArticleListViewController.m; sourceTree = "<group>"; };
 		5C4389A31E2329E5009C7C75 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		5C4389A41E2329E5009C7C75 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		5C4389A71E232F40009C7C75 /* BTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUser.h; sourceTree = "<group>"; };
@@ -462,6 +468,7 @@
 				007E563D1E1FF203001CFCD4 /* BTViewController.m */,
 				00053FE11E21155600067791 /* login */,
 				5C4030311E2CD38900C25408 /* plan */,
+				5C41E7921E7910150060BC71 /* article */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -472,11 +479,10 @@
 				5C45389B1E72A5E80025D983 /* BTListBottomCell.h */,
 				5C45389C1E72A5E80025D983 /* BTListBottomCell.m */,
 				5C45389D1E72A5E80025D983 /* BTListBottomCell.xib */,
-				006942DB1E741D4D009F7CAB /* BTRefreshView.h */,
-				006942DC1E741D4D009F7CAB /* BTRefreshView.m */,
 				0066B8761E66FE1A004169CB /* login */,
 				0066B8771E66FE21004169CB /* plan */,
 				5C439DCA1E7124D1008DD770 /* dynamic */,
+				5C41E78B1E790B260060BC71 /* article */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -492,6 +498,26 @@
 				5CF1554B1E76771400DBC086 /* BTCourseViewController.m */,
 			);
 			name = plan;
+			sourceTree = "<group>";
+		};
+		5C41E78B1E790B260060BC71 /* article */ = {
+			isa = PBXGroup;
+			children = (
+				5C41E78C1E790B860060BC71 /* BTMainArticleCell.h */,
+				5C41E78D1E790B860060BC71 /* BTMainArticleCell.m */,
+				5C41E78F1E790F8F0060BC71 /* BTSecondaryArticleCell.h */,
+				5C41E7901E790F8F0060BC71 /* BTSecondaryArticleCell.m */,
+			);
+			name = article;
+			sourceTree = "<group>";
+		};
+		5C41E7921E7910150060BC71 /* article */ = {
+			isa = PBXGroup;
+			children = (
+				5C41E7931E7910450060BC71 /* BTArticleListViewController.h */,
+				5C41E7941E7910450060BC71 /* BTArticleListViewController.m */,
+			);
+			name = article;
 			sourceTree = "<group>";
 		};
 		5C4389A61E232F07009C7C75 /* models */ = {
@@ -640,7 +666,6 @@
 				00053FE01E210A0200067791 /* BTRegisterViewController.m in Sources */,
 				0066D7601E758472006DB0D4 /* MJRefreshBackNormalFooter.m in Sources */,
 				5C41508B1E2DC4C000046514 /* BTCourseHomeCalendarView.m in Sources */,
-				006942DD1E741D4D009F7CAB /* BTRefreshView.m in Sources */,
 				0066D7661E758472006DB0D4 /* MJRefreshHeader.m in Sources */,
 				006A3DFB1E29FD5C00BD4F10 /* BTConfirmCourseViewController.m in Sources */,
 				006B2A491E2FBF8A0002A484 /* BTRecommendArticleCell.m in Sources */,
@@ -662,6 +687,7 @@
 				0066D76A1E758472006DB0D4 /* UIScrollView+MJExtension.m in Sources */,
 				5C40302D1E2C98A400C25408 /* NSData+Extension.m in Sources */,
 				5CF1554C1E76771400DBC086 /* BTCourseViewController.m in Sources */,
+				5C41E78E1E790B860060BC71 /* BTMainArticleCell.m in Sources */,
 				0066D7631E758472006DB0D4 /* MJRefreshConst.m in Sources */,
 				006B2A461E2F780D0002A484 /* BTNoCourseCell.m in Sources */,
 				007E563B1E1FE2F9001CFCD4 /* BTLoginNavigationController.m in Sources */,
@@ -670,10 +696,12 @@
 				5C4030271E2C94E700C25408 /* NSDate+Extension.m in Sources */,
 				007E561F1E1FCC6A001CFCD4 /* AppDelegate.m in Sources */,
 				007E56351E1FE05D001CFCD4 /* BTTabBarController.m in Sources */,
+				5C41E7911E790F8F0060BC71 /* BTSecondaryArticleCell.m in Sources */,
 				5C439DD01E712852008DD770 /* BTDynamicTitleCell.m in Sources */,
 				007E56381E1FE1B6001CFCD4 /* BTNavigationController.m in Sources */,
 				5C3F7F8D1E25C0C50057D831 /* BTDatePickerView.m in Sources */,
 				0066D75E1E758472006DB0D4 /* MJRefreshBackFooter.m in Sources */,
+				5C41E7951E7910450060BC71 /* BTArticleListViewController.m in Sources */,
 				00053FF71E27AF4300067791 /* BTHeightPickerView.m in Sources */,
 				5C41368A1E2899F800A25AE6 /* BTTagViewController.m in Sources */,
 				5C4030241E2C8FD400C25408 /* NSObject+Extension.m in Sources */,
@@ -817,7 +845,7 @@
 				);
 				INFOPLIST_FILE = bt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.selfdoctor.bt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.selfdoctor.kg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -834,7 +862,7 @@
 				);
 				INFOPLIST_FILE = bt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.selfdoctor.bt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.selfdoctor.kg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -16,7 +16,6 @@
 #import "BTDynamicCell.h"
 #import "BTListBottomCell.h"
 #import "MJRefresh.h"
-#import "MJRefreshStateHeader.h"
 
 @interface BTPlanHomeViewController () <UITableViewDataSource, UITableViewDelegate> {
   __weak IBOutlet UITableView *tvTable;
@@ -91,6 +90,7 @@
     NSDictionary *res = [Common syncPost:URL_FETCHPLANHOME forms:@{@"article": @1, @"course": @1} error:&error];
     if (error) {
       [self showError:error];
+      if (block) dispatch_async(dispatch_get_main_queue(), ^{block();});
       return;
     }
     while (dataSource.count > 1) {
