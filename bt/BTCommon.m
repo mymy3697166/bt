@@ -99,7 +99,6 @@
 }
 
 - (void)requestQueue:(void(^)())block {
-  //dispatch_queue_t queue = dispatch_queue_create("requestQueue", nil);
   dispatch_async(dispatch_get_main_queue(), block);
 }
 

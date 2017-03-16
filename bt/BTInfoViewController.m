@@ -65,6 +65,24 @@
   btnGenderM.layer.cornerRadius = 15;
   btnGenderM.layer.borderWidth = 1;
   btnGenderM.layer.borderColor = RGB(170, 170, 170).CGColor;
+  if(User) {
+    if (![User.avatar null]) {
+      avatar = User.avatar;
+      NSLog(@"%@", User);
+      NSLog(@"%@", [URL_AVATARPATH stringByAppendingPathComponent:avatar]);
+      [Common cacheImage:[URL_AVATARPATH stringByAppendingPathComponent:avatar] completion:^(UIImage *image) {
+        [btnAvatar setBackgroundImage:image forState:UIControlStateNormal];
+      }];
+    }
+    if (![User.gender null]) {
+      if ([User.gender isEqualToString:@"F"]) [self genderFClick:nil];
+      else [self genderMClick:nil];
+    }
+    if (![User.nickname null]) tbNickname.text = User.nickname;
+    if (![User.dob null]) tbDob.text = [User.dob toStringWithFormat:@"yyyy年MM月dd日"];
+    if (User.weights.count > 0) tbWeight.text = [User.weights.lastObject[@"weight"] stringValue];
+    if (User.heights.count > 0) tbHeight.text = [User.heights.lastObject[@"height"] stringValue];
+  }
 }
 
 - (IBAction)genderFClick:(UIButton *)sender {
@@ -178,28 +196,26 @@
     [Common info:@"请输入体重"];
     return;
   }
-  
-//  [Common showLoading];
-//  [Common requestQueue:^{
-//    NSDate *dob = [tbDob.text toDateWithFormat:@"yyyy年MM月dd日"];
-//    NSString *dobString = [dob toStringWithFormat:@"yyyy-MM-dd"];
-//    NSDictionary *params = @{@"avatar": avatar, @"nc": tbNickname.text, @"gender": gender, @"dob": dobString};
-//    NSDictionary *data = [Common syncPost:URL_UPDATEUSERINFO forms:params];
-//    if ([data[@"status"] isEqual:@1]) {
-//      [Common info:data[@"description"]];
-//      return;
-//    }
-//    data = [Common syncPost:URL_UPDATEHEIGHT forms:@{@"height": @([tbHeight.text intValue])}];
-//    data = [Common syncPost:URL_UPDATEWEIGHT forms:@{@"weight": @([tbWeight.text intValue])}];
-//    [Common hideLoading];
-//    U.avatar = avatar;
-//    U.nickname = tbNickname.text;
-//    U.gender = gender;
-//    U.height = @([tbHeight.text intValue]);
-//    U.weight = @([tbWeight.text floatValue]);
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//      [self performSegueWithIdentifier:@"info_tag" sender:nil];
-//    });
-//  }];
+  [Realm transactionWithBlock:^{
+    User.avatar = avatar;
+    User.gender = gender;
+    User.nickname = tbNickname.text;
+    User.dob = [tbDob.text toDateWithFormat:@"yyyy年MM月dd日"];
+  }];
+  [Common showLoading];
+  [User saveInfoWithBlock:^(NSError *error) {
+    [Common hideLoading];
+    if (error) {
+      [self showError:error];
+      return;
+    }
+    [self performSegueWithIdentifier:@"info_tag" sender:nil];
+  }];
+  if ((User.weights.count > 0 && ![[User.weights.lastObject[@"weight"] stringValue] isEqualToString:tbWeight.text]) || User.weights.count == 0) {
+    [User updateWeight:[NSNumber numberWithFloat:[tbWeight.text floatValue]] withBlock:nil];
+  }
+  if ((User.heights.count > 0 && ![[User.heights.lastObject[@"height"] stringValue] isEqualToString:tbHeight.text]) || User.heights.count == 0) {
+    [User updateHeight:[NSNumber numberWithFloat:[tbHeight.text floatValue]] withBlock:nil];
+  }
 }
 @end

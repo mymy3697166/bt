@@ -34,6 +34,13 @@ RLM_ARRAY_TYPE(BTHeightRecord)
 @property NSDate *completeTime;
 @end
 RLM_ARRAY_TYPE(BTPlanRecord)
+/// 标签
+@interface BTTag : RLMObject
+@property NSString *dataId;
+@property BTUser *user;
+@property NSString *name;
+@end
+RLM_ARRAY_TYPE(BTTag)
 /// 用户
 @interface BTUser : RLMObject
 @property NSNumber<RLMInt> *mid;
@@ -50,6 +57,7 @@ RLM_ARRAY_TYPE(BTPlanRecord)
 @property RLMArray<BTHeightRecord> *heights;
 @property NSNumber<RLMBool> *isLogin;
 @property RLMArray<BTPlanRecord> *planRecords;
+@property RLMArray<BTTag> *tags;
 /// 当前用户
 + (instancetype)currentUser;
 /// 使用手机号和密码登录
@@ -66,6 +74,8 @@ RLM_ARRAY_TYPE(BTPlanRecord)
 - (void)saveInfoWithBlock:(void(^)(NSError *error))block;
 /// 更新体重数据
 - (void)updateWeight:(NSNumber *)weight withBlock:(void(^)(NSError *error))block;
+/// 更新身高数据
+- (void)updateHeight:(NSNumber *)height withBlock:(void(^)(NSError *error))block;
 /// 加入课程
 - (void)joinCourseWithBlock:(void(^)(NSError *error))block;
 /// 退出课程

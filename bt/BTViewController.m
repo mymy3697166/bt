@@ -26,6 +26,8 @@
     if ([ep isEqualToString:@"mtoken"]) {
       [User logout];
       [self.tabBarController performSegueWithIdentifier:@"tab_login" sender:nil];
+    } else if ([ep isEqualToString:@"tags"]) {
+      [self.tabBarController performSegueWithIdentifier:@"tab_login" sender:@"tags"];
     } else [Common info:error.userInfo[@"description"]];
     return;
   }

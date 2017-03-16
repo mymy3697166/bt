@@ -98,6 +98,11 @@
       if (block) dispatch_async(dispatch_get_main_queue(), ^{block();});
       return;
     }
+    if (!res[@"course_id"] || [res[@"course_id"] null]) {
+      [self showError:[NSError errorWithDomain:@"BTLOGICERROR" code:1 userInfo:@{@"ep": @"tags"}]];
+      if (block) dispatch_async(dispatch_get_main_queue(), ^{block();});
+      return;
+    }
     while (dataSource.count > 1) {
       [dataSource removeLastObject];
     }

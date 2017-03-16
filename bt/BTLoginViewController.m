@@ -54,6 +54,11 @@
     [Common hideLoading];
     if (error) [self showError:error];
     else {
+      if ([User.nickname null] || [User.avatar null] || [User.gender null] || [User.dob null] || User.weights.count == 0 || User.heights.count == 0) {
+        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BTInfoViewController"];
+        [self.navigationController pushViewController:vc animated:NO];
+        return;
+      }
       [Notif postNotificationName:@"N_LOGIN_SUCCESS" object:nil];
       [self dismissViewControllerAnimated:YES completion:nil];
     }

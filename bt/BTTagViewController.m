@@ -18,7 +18,6 @@
 @end
 
 @implementation BTTagViewController
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   dataSource = @[];

@@ -19,9 +19,9 @@ static BTUser *currentUser;
 + (NSString *)primaryKey {return @"dataId";}
 @end
 
-@implementation BTPlanRecord
+@implementation BTPlanRecord @end
 
-@end
+@implementation BTTag @end
 
 @implementation BTUser
 + (NSString *)primaryKey {
@@ -44,11 +44,11 @@ static BTUser *currentUser;
   NSDictionary *forms = @{@"uid": mobilePhone, @"pwd": pwd, @"scope": @"description,activity,weights", };
   [Common asyncPost:URL_LOGIN forms:forms completion:^(NSDictionary *data, NSError *error) {
     if (error) {
-      block(error);
+      if (block) block(error);
       return;
     }
     if (![data[@"status"] isEqual:@0]) {
-      block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
+      if (block) block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
       return;
     }
     currentUser = [[BTUser alloc] init];
@@ -77,7 +77,7 @@ static BTUser *currentUser;
       }
       [Realm addOrUpdateObject:currentUser];
     }];
-    block(nil);
+    if (block) block(nil);
   }];
 }
 
@@ -90,11 +90,11 @@ static BTUser *currentUser;
 + (void)registerWithMobilePhone:(NSString *)mobilePhone andPwd:(NSString *)pwd andVerifyCode:(NSString *)verifyCode andBlock:(void (^)(NSError *))block {
   [Common asyncPost:URL_REGISTER forms:@{@"uid": mobilePhone, @"pwd": pwd, @"code": verifyCode} completion:^(NSDictionary *data, NSError *error) {
     if (error) {
-      block(error);
+      if (block) block(error);
       return;
     }
     if (![data[@"status"] isEqual:@0]) {
-      block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
+      if (block) block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
       return;
     }
     if (!currentUser) currentUser = [[BTUser alloc] init];
@@ -104,53 +104,64 @@ static BTUser *currentUser;
     [Realm transactionWithBlock:^{
       [Realm addOrUpdateObject:currentUser];
     }];
-    block(nil);
+    if (block) block(nil);
   }];
 }
 
 + (void)sendRegisterVerifyCodeToMobilePhone:(NSString *)mobilePhone andBlock:(void (^)(NSError *))block {
   [Common asyncPost:URL_REGISTERCODE forms:@{@"mobile_no": mobilePhone} completion:^(NSDictionary *data, NSError *error) {
     if (error) {
-      block(error);
+      if (block) block(error);
       return;
     }
     if (![data[@"status"] isEqual:@0]) {
-      block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
+      if (block) block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
       return;
     }
-    block(nil);
+    if (block) block(nil);
   }];
 }
 
 + (void)validateVerifyCodeForMobilePhone:(NSString *)mobilePhone andVerifyCode:(NSString *)code andBlock:(void (^)(NSError *))block {
   [Common asyncPost:URL_VALIDATECODE forms:@{@"mobile_no": mobilePhone, @"code": code} completion:^(NSDictionary *data, NSError *error) {
     if (error) {
-      block(error);
+      if (block) block(error);
       return;
     }
     if (![data[@"status"] isEqual:@0]) {
-      block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
+      if (block) block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
       return;
     }
-    block(nil);
+    if (block) block(nil);
   }];
 }
 
 - (void)saveInfoWithBlock:(void (^)(NSError *))block {
-  
+  NSDictionary *forms = @{@"avatar": _avatar, @"nc": _nickname, @"gender": _gender, @"dob": [_dob toStringWithFormat:@"yyyy-MM-dd"]};
+  [Common asyncPost:URL_UPDATEUSERINFO forms:forms completion:^(NSDictionary *data, NSError *error) {
+    if (error) {
+      if (block) block(error);
+      return;
+    }
+    if (![data[@"status"] isEqual:@0]) {
+      if (block) block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
+      return;
+    }
+    if (block) block(nil);
+  }];
 }
 
 - (void)updateWeight:(NSNumber *)weight withBlock:(void(^)(NSError *))block {
   BTWeightRecord *wr = [[BTWeightRecord alloc] init];
-  wr.user = User;
+  wr.user = self;
   wr.weight = weight;
   [Common asyncPost:URL_UPDATEWEIGHT forms:@{@"weight": weight} completion:^(NSDictionary *data, NSError *error) {
     if (error) {
-      block(error);
+      if (block) block(error);
       return;
     }
     if (![data[@"status"] isEqual:@0]) {
-      block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
+      if (block) block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
       return;
     }
     wr.dataId = data[@"data"][@"id"];
@@ -158,36 +169,58 @@ static BTUser *currentUser;
     [Realm transactionWithBlock:^{
       [self.weights addObject:wr];
     }];
-    block(nil);
+    if (block) block(nil);
+  }];
+}
+
+- (void)updateHeight:(NSNumber *)height withBlock:(void (^)(NSError *))block {
+  BTHeightRecord *hr = [[BTHeightRecord alloc] init];
+  hr.user = self;
+  hr.height = height;
+  [Common asyncPost:URL_UPDATEHEIGHT forms:@{@"height": height} completion:^(NSDictionary *data, NSError *error) {
+    if (error) {
+      if (block) block(error);
+      return;
+    }
+    if (![data[@"status"] isEqual:@0]) {
+      if (block) block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
+      return;
+    }
+    hr.dataId = data[@"data"][@"id"];
+    hr.createdAt = [NSDate dateWithTimeIntervalSince1970:[data[@"data"][@"created_at"] integerValue]];
+    [Realm transactionWithBlock:^{
+      [self.heights addObject:hr];
+    }];
+    if (block) block(nil);
   }];
 }
 
 - (void)joinCourseWithBlock:(void(^)(NSError *))block {
   [Common asyncPost:URL_JOINCOURSE forms:@{@"id": Course.dataId} completion:^(NSDictionary *data, NSError *error) {
     if (error) {
-      block(error);
+      if (block) block(error);
       return;
     }
     if (![data[@"status"] isEqual:@0]) {
-      block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
+      if (block) block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
       return;
     }
     [Realm transactionWithBlock:^{
       Course.isJoin = @1;
       Course.startTime = [NSDate dateWithTimeIntervalSince1970:[data[@"data"][@"start_time"] integerValue]];
     }];
-    block(nil);
+    if (block) block(nil);
   }];
 }
 
 - (void)quitCourseWithBlock:(void (^)(NSError *))block {
   [Common asyncPost:URL_QUITCOURSE forms:@{@"id": Course.dataId} completion:^(NSDictionary *data, NSError *error) {
     if (error) {
-      block(error);
+      if (block) block(error);
       return;
     }
     if (![data[@"status"] isEqual:@0]) {
-      block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
+      if (block) block([NSError errorWithDomain:@"BTLOGICERROR" code:[data[@"status"] integerValue] userInfo:data]);
       return;
     }
     [Realm transactionWithBlock:^{
@@ -195,7 +228,7 @@ static BTUser *currentUser;
       Course.startTime = nil;
       [User.planRecords removeAllObjects];
     }];
-    block(nil);
+    if (block) block(nil);
   }];
 }
 @end

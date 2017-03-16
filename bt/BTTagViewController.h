@@ -9,5 +9,4 @@
 #import "BTViewController.h"
 
 @interface BTTagViewController : BTViewController
-
 @end

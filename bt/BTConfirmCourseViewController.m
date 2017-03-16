@@ -43,6 +43,7 @@
   [Common asyncPost:URL_FETCHRECOMMENTCOURSE forms:@{@"tags": self.tags} completion:^(NSDictionary *data, NSError *error) {
     if (!data) return;
     if ([data[@"status"] isEqual:@0]) {
+      [BTCourse updateCourseWithData:<#(NSDictionary *)#>]
       courseId = data[@"data"][@"id"];
       [ivCover loadURL:[NSString stringWithFormat:@"%@%@", URL_IMAGEPATH, data[@"data"][@"cover"]]];
       labName.text = data[@"data"][@"name"];
@@ -66,18 +67,19 @@
 
 - (IBAction)startClick:(UIButton *)sender {
   [Common showLoading];
-  [Common asyncPost:URL_JOINCOURSE forms:@{@"id": courseId} completion:^(NSDictionary *data, NSError *error) {
+  [User joinCourseWithBlock:^(NSError *error) {
     [Common hideLoading];
-    if (!data) return;
-    if ([data[@"status"] isEqual:@0]) {
-      [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-    } else {
-      [Common info:data[@"description"]];
+    if (error) {
+      [self showError:error];
+      return;
     }
+    [Notif postNotificationName:@"N_LOGIN_SUCCESS" object:nil];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
   }];
 }
 
 - (IBAction)skipClick:(UIButton *)sender {
+  [Notif postNotificationName:@"N_LOGIN_SUCCESS" object:nil];
   [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 @end
